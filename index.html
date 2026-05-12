@@ -16,15 +16,18 @@
     --navy-3: #1F4567;
     --navy-deep: #07182A;
     --sky:   #9ADCFF;
+    --sky-warm:#9BDCFF;
 
     /* Cream palette — landing body */
     --cream:     #F5EBDE;
     --cream-2:   #EFE2D0;
     --cream-3:   #E6D5BD;
     --warm-tan:  #BD8E7B;
+    --warm-coral:#C59478;
     --warm-deep: #756359;
     --warm-text: #A19389;
     --warm-brown:#613F25;
+    --warm-pill: #614025;
 
     /* UI */
     --ink:   #1A2333;
@@ -54,286 +57,309 @@
   img { display: block; max-width: 100%; }
 
   /* ============================================
-     LANDING PAGE
+     LANDING PAGE  (Figma node 1:89 — 402px frame, mobile)
      ============================================ */
-  .landing { max-width: 480px; margin: 0 auto; background: var(--cream); }
+  .landing { max-width: 402px; margin: 0 auto; background: var(--cream); position: relative; }
 
-  /* HERO */
+  /* HERO — woman photo with logo + eyebrow + headline overlay */
   .hero {
     position: relative;
-    padding: 18px 22px 36px;
-    background:
-      radial-gradient(120% 60% at 50% 0%, rgba(154,220,255,.08) 0%, transparent 60%),
-      linear-gradient(180deg, var(--navy-2) 0%, var(--navy-1) 55%, var(--navy-deep) 100%);
     color: #fff;
     overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0;
+    aspect-ratio: 402 / 1043;
     background:
-      radial-gradient(60% 35% at 70% 30%, rgba(189,142,123,.28) 0%, transparent 70%),
-      radial-gradient(50% 40% at 20% 50%, rgba(154,220,255,.12) 0%, transparent 70%);
+      linear-gradient(180deg, #58a8d8 0%, #6fb2d8 30%, #2c5f86 75%, #0E2238 100%);
+  }
+  .hero-photo {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
     pointer-events: none;
   }
-  .hero-inner { position: relative; }
+  .hero-logo {
+    position: absolute;
+    top: 18px; left: 50%; transform: translateX(-50%);
+    width: 253px; height: auto;
+    z-index: 2;
+  }
   .hero .eyebrow {
+    position: absolute;
+    top: 77px; left: 0; right: 0;
     text-align: center;
     font-weight: 700;
-    font-size: 9px;
-    letter-spacing: 2px;
+    font-size: 8px;
+    letter-spacing: 1.86px;
     text-transform: uppercase;
-    color: rgba(255,255,255,.75);
-    margin-bottom: 8px;
+    color: #fff;
+    z-index: 2;
   }
-  .logo {
-    text-align: center;
-    font-family: 'Fraunces', Georgia, serif;
-    font-weight: 600;
-    font-size: 24px;
-    letter-spacing: .5px;
-    margin-bottom: 20px;
-  }
-  .logo .pep { color: var(--sky); }
-
-  .hero-portrait {
-    position: relative;
-    aspect-ratio: 4/3;
-    border-radius: 18px;
-    margin: 16px -4px 28px;
-    overflow: hidden;
-    background:
-      radial-gradient(60% 70% at 50% 20%, #f4d4b9 0%, #d59a73 35%, #8d5a3e 70%, #4a2e1f 100%);
-    box-shadow: 0 12px 32px rgba(0,0,0,.35), inset 0 0 60px rgba(0,0,0,.2);
-  }
-  .hero-portrait::after {
-    content: '';
-    position: absolute; inset: 0;
-    background:
-      radial-gradient(50% 40% at 50% 80%, rgba(255,255,255,.15) 0%, transparent 60%),
-      linear-gradient(180deg, transparent 50%, rgba(14,34,56,.4) 100%);
-  }
-  .hero-portrait .placeholder {
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    color: rgba(255,255,255,.5);
-    font-size: 11px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    font-weight: 600;
-  }
-
   .hero h1 {
+    position: absolute;
+    top: 446px; left: 50%; transform: translateX(-50%);
+    width: 311px;
     font-family: 'Inter', sans-serif;
     font-weight: 800;
-    font-size: 26px;
-    line-height: 1.1;
-    letter-spacing: -.5px;
+    font-size: 29px;
+    line-height: 29px;
+    letter-spacing: -1.45px;
     text-align: center;
-    margin-bottom: 8px;
+    color: #fff;
+    z-index: 2;
   }
   .hero h1 .accent {
     display: block;
     color: var(--sky);
-    font-size: 20px;
-    margin-top: 6px;
-    letter-spacing: -.3px;
+    font-size: 22px;
+    line-height: 26px;
+    letter-spacing: -1.1px;
+    margin-top: 16px;
   }
 
-  /* Q1 — the goal tile */
+  /* Q1 — sky-blue translucent panel with five tiles, overlays the bottom of the hero */
   .q1 {
-    margin-top: 28px;
-    background: rgba(255,255,255,.04);
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 22px;
-    padding: 22px 16px 18px;
-    backdrop-filter: blur(6px);
+    position: absolute;
+    top: 614px; left: 50%; transform: translateX(-50%);
+    width: 330px;
+    padding: 16px 24px 22px;
+    border-radius: 42px;
+    background: rgba(155, 220, 255, 0.30);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    z-index: 3;
+    mix-blend-mode: normal;
   }
   .q1 .step-label {
     text-align: center;
     font-weight: 700;
-    font-size: 9px;
-    letter-spacing: 2.2px;
+    font-size: 8px;
+    letter-spacing: 1.86px;
     text-transform: uppercase;
     color: rgba(255,255,255,.5);
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
   .q1 h2 {
-    font-weight: 600;
+    font-weight: 500;
     font-size: 18px;
+    line-height: 1;
     text-align: center;
-    margin-bottom: 16px;
+    margin-bottom: 22px;
     color: #fff;
+    letter-spacing: -0.2px;
   }
-  .q1-options { display: flex; flex-direction: column; gap: 9px; }
+  .q1-options { display: flex; flex-direction: column; gap: 7px; }
   .q1-opt {
-    display: flex; align-items: center; gap: 14px;
+    position: relative;
+    display: flex; align-items: center; gap: 18px;
     width: 100%;
-    padding: 14px 18px;
+    height: 54px;
+    padding: 0 22px;
     border: 0;
-    border-radius: 14px;
-    background: rgba(255,255,255,.08);
-    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 999px;
+    background: rgba(155, 220, 255, 0.20);
     color: #fff;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 13px;
     text-align: left;
-    transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    transition: background .2s ease, transform .15s ease;
+    letter-spacing: -0.1px;
   }
   .q1-opt:hover, .q1-opt:focus-visible {
-    background: rgba(255,255,255,.14);
-    border-color: rgba(255,255,255,.22);
-    transform: translateY(-1px);
+    background: rgba(155, 220, 255, 0.34);
     outline: none;
   }
-  .q1-opt:active { transform: scale(.98); }
+  .q1-opt:active { transform: scale(.985); }
   .q1-opt .icon {
-    width: 28px; height: 28px;
+    width: 32px;
     display: grid; place-items: center;
-    color: var(--sky);
     flex-shrink: 0;
   }
-  .q1-opt svg { width: 24px; height: 24px; stroke: currentColor; stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-  .q1-opt .arrow { margin-left: auto; opacity: .4; transition: transform .2s ease, opacity .2s ease; }
+  .q1-opt .icon img { width: 26px; height: auto; }
+  .q1-opt .arrow {
+    margin-left: auto;
+    width: 14px; height: 14px;
+    opacity: .85;
+    flex-shrink: 0;
+    transition: transform .2s ease, opacity .2s ease;
+    color: #fff;
+  }
+  .q1-opt .arrow svg { width: 100%; height: 100%; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
   .q1-opt:hover .arrow { opacity: 1; transform: translateX(2px); }
+
+  /* CREAM TRANSITION — picks up where the hero ends, gives the page its peach base */
+  .cream-wrap { background: var(--cream); position: relative; }
 
   /* THREE STEPS */
   .three-steps {
-    padding: 56px 22px 40px;
+    padding: 64px 36px 16px;
     text-align: center;
-    background: var(--cream);
+    position: relative;
   }
   .three-steps .eyebrow {
     font-weight: 700;
-    font-size: 10px;
-    letter-spacing: 2.2px;
+    font-size: 11px;
+    letter-spacing: 2.23px;
     text-transform: uppercase;
-    color: var(--warm-text);
-    margin-bottom: 14px;
+    color: #fff;
+    margin-bottom: 22px;
+    text-shadow: 0 1px 8px rgba(0,0,0,.35);
   }
   .three-steps h3 {
-    font-weight: 700;
-    font-size: 30px;
-    line-height: 1.05;
-    color: var(--warm-deep);
-    margin-bottom: 26px;
-    letter-spacing: -.5px;
+    font-weight: 800;
+    font-size: 31px;
+    line-height: 33.1px;
+    color: #fff;
+    margin-bottom: 36px;
+    letter-spacing: -1.55px;
+    text-shadow: 0 2px 12px rgba(0,0,0,.4);
   }
+  .three-steps-bg {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(180deg, rgba(7,24,42,.92) 0%, rgba(35,52,68,.80) 60%, rgba(245,235,222,0) 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .three-steps > * { position: relative; z-index: 1; }
   .step-card {
-    background: var(--cream-2);
-    border-radius: 16px;
-    padding: 22px 24px;
-    margin-bottom: 14px;
+    background: rgba(255,255,255,0.92);
+    border-radius: 24px;
+    padding: 28px 28px 26px;
+    margin-bottom: 18px;
     text-align: center;
-    box-shadow: 0 2px 8px rgba(117,99,89,.08);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.10);
   }
   .step-card h4 {
-    font-weight: 700;
-    font-size: 19px;
+    font-weight: 800;
+    font-size: 20px;
     color: var(--warm-deep);
     margin-bottom: 10px;
+    letter-spacing: -0.4px;
   }
   .step-card p {
     font-size: 13px;
-    line-height: 1.4;
+    line-height: 14.4px;
     color: var(--warm-text);
   }
 
   /* FOUNDERS */
   .founders {
-    padding: 44px 24px 48px;
+    padding: 56px 28px 56px;
     text-align: center;
     background: var(--cream);
   }
   .founders .eyebrow {
     font-weight: 700;
     font-size: 10px;
-    letter-spacing: 2.2px;
+    letter-spacing: 2.13px;
     text-transform: uppercase;
     color: var(--warm-text);
-    margin-bottom: 18px;
+    margin-bottom: 22px;
   }
   .founders p {
     font-weight: 500;
-    font-size: 18px;
-    line-height: 1.3;
-    letter-spacing: -.2px;
+    font-size: 19px;
+    line-height: 22.8px;
+    letter-spacing: -0.57px;
     color: var(--warm-deep);
-  }
-  .founders p .accent { color: var(--warm-tan); }
-
-  /* VALUE PROPS */
-  .value-props {
-    padding: 36px 28px 50px;
-    background: var(--cream);
-  }
-  .vp { text-align: center; padding: 20px 0; }
-  .vp h4 {
-    font-weight: 700;
-    font-size: 25px;
-    line-height: 1.05;
-    color: var(--warm-brown);
-    margin-bottom: 10px;
-    letter-spacing: -.4px;
-  }
-  .vp p {
-    font-size: 13px;
-    line-height: 1.4;
-    color: var(--ink-2);
     max-width: 320px;
     margin: 0 auto;
   }
+  .founders p .accent { color: var(--warm-coral); }
 
-  /* CLOSING CTA */
-  .closing {
-    padding: 36px 28px 40px;
-    text-align: center;
+  /* VALUE PROPS — 4 stacked promises */
+  .value-props {
+    padding: 10px 28px 36px;
     background: var(--cream);
+  }
+  .vp { text-align: center; padding: 32px 0; }
+  .vp h4 {
+    font-weight: 800;
+    font-size: 27px;
+    line-height: 28.1px;
+    color: var(--warm-brown);
+    margin-bottom: 22px;
+    letter-spacing: -1.08px;
+  }
+  .vp p {
+    font-size: 13px;
+    line-height: 14.4px;
+    color: rgba(0,0,0,0.80);
+    max-width: 290px;
+    margin: 0 auto;
+    letter-spacing: -0.48px;
+  }
+
+  /* CLOSING — dark wood section with the brown pill CTA */
+  .closing {
+    padding: 80px 28px 32px;
+    text-align: center;
+    background:
+      radial-gradient(120% 60% at 50% 0%, rgba(245,235,222,0) 0%, transparent 30%),
+      linear-gradient(180deg, var(--cream) 0%, #6b5544 28%, #4a382b 60%, #2a1d15 100%);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
   }
   .closing h3 {
     font-family: 'Inter', sans-serif;
     font-weight: 800;
-    font-size: 32px;
-    line-height: 1.05;
-    margin-bottom: 16px;
-    letter-spacing: -.8px;
-    color: #1a1a1a;
+    font-size: 36px;
+    line-height: 36px;
+    margin-bottom: 22px;
+    letter-spacing: -1.44px;
+    color: #fff;
   }
   .closing h3 .ital {
-    font-family: 'Fraunces', serif;
+    font-family: 'Fraunces', Georgia, serif;
     font-style: italic;
     font-weight: 500;
     color: var(--warm-tan);
+    font-size: 36px;
+    line-height: 36px;
   }
   .closing p {
-    font-weight: 700;
-    font-size: 14px;
-    color: var(--ink);
-    margin-bottom: 22px;
+    font-weight: 800;
+    font-size: 15px;
+    line-height: 1.3;
+    color: #fff;
+    margin-bottom: 36px;
+    max-width: 260px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .cta-pill {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 16px 28px;
+    display: inline-flex; align-items: center; justify-content: center; gap: 14px;
+    width: 287px;
+    height: 72px;
+    padding: 0 28px;
     border-radius: 999px;
-    background: var(--warm-deep);
+    background: var(--warm-pill);
     color: #fff;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 14px;
-    letter-spacing: .3px;
+    letter-spacing: 0.2px;
     border: 0;
-    box-shadow: 0 6px 16px rgba(117,99,89,.35);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.45);
     transition: transform .2s ease, box-shadow .2s ease;
   }
-  .cta-pill:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(117,99,89,.45); }
+  .cta-pill:hover { transform: translateY(-1px); box-shadow: 0 12px 28px rgba(0,0,0,.5); }
   .cta-pill:active { transform: scale(.98); }
+  .cta-pill .arrow { width: 18px; height: 14px; }
 
   .footer {
-    padding: 22px 24px 28px;
+    padding: 36px 24px 28px;
     text-align: center;
-    background: var(--navy-deep);
-    color: rgba(255,255,255,.65);
+    background: #2a1d15;
+    color: #fff;
+    font-size: 12px;
+    line-height: 14.4px;
+    font-weight: 500;
+  }
+  .footer .copy {
+    margin-top: 18px;
+    opacity: .5;
     font-size: 11px;
-    line-height: 1.4;
   }
 
   /* ============================================
@@ -537,60 +563,56 @@
 <!-- ============================================ LANDING ============================================ -->
 <main class="landing" id="landing">
   <section class="hero">
-    <div class="hero-inner">
-      <p class="eyebrow">Personal Assessment</p>
-      <p class="logo"><span class="pep">Peptide</span>Match</p>
+    <img class="hero-photo" src="assets/hero-woman.png" alt="" aria-hidden="true">
+    <p class="eyebrow">personal assessment</p>
+    <img class="hero-logo" src="assets/logo.png" alt="PeptideMatch">
 
-      <div class="hero-portrait" aria-hidden="true">
-        <div class="placeholder">Hero photograph</div>
-      </div>
+    <h1>
+      Get a clear answer on whether peptides are right for you
+      <span class="accent">in 2 minutes flat</span>
+    </h1>
 
-      <h1>
-        Get a clear answer on<br>whether peptides are<br>right for you
-        <span class="accent">in 2 minutes flat</span>
-      </h1>
+    <!-- Q1 — sky-blue translucent panel sitting over the bottom of the hero -->
+    <div class="q1">
+      <p class="step-label">step 1</p>
+      <h2>What do you want most?</h2>
+      <div class="q1-options">
+        <button class="q1-opt" data-goal="body_composition" aria-label="A Better Looking Body">
+          <span class="icon"><img src="assets/q1-icon-body.png" alt=""></span>
+          A Better Looking Body
+          <span class="arrow"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span>
+        </button>
 
-      <!-- Q1 — LIVES ON LANDING -->
-      <div class="q1">
-        <p class="step-label">Step 1</p>
-        <h2>What do you want most?</h2>
-        <div class="q1-options">
-          <button class="q1-opt" data-goal="body_composition" aria-label="A Better Looking Body">
-            <span class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.4"/><path d="M9 12c0-2 1.5-3 3-3s3 1 3 3v3l-1 8h-4l-1-8v-3z"/></svg></span>
-            A Better Looking Body
-            <span class="arrow"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
-          </button>
+        <button class="q1-opt" data-goal="energy_recovery" aria-label="More Energy and Focus">
+          <span class="icon"><img src="assets/q1-icon-energy.png" alt=""></span>
+          More Energy &amp; Focus
+          <span class="arrow"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span>
+        </button>
 
-          <button class="q1-opt" data-goal="energy_recovery" aria-label="More Energy and Focus">
-            <span class="icon"><svg viewBox="0 0 24 24"><path d="M13 2L5 14h7l-1 8 8-12h-7l1-8z"/></svg></span>
-            More Energy &amp; Focus
-            <span class="arrow"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
-          </button>
+        <button class="q1-opt" data-goal="hormonal" aria-label="Have Better Sex">
+          <span class="icon"><img src="assets/q1-icon-sex.png" alt=""></span>
+          Have Better Sex
+          <span class="arrow"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span>
+        </button>
 
-          <button class="q1-opt" data-goal="hormonal" aria-label="Have Better Sex">
-            <span class="icon"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9-9.5C1.5 7 5 4 8 5.5c1.4.7 2.5 1.9 4 4 1.5-2.1 2.6-3.3 4-4C19 4 22.5 7 21 11.5 19 16.5 12 21 12 21z"/></svg></span>
-            Have Better Sex
-            <span class="arrow"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
-          </button>
+        <button class="q1-opt" data-goal="skin_aging" aria-label="Better Skin and Hair">
+          <span class="icon"><img src="assets/q1-icon-skin.png" alt=""></span>
+          Better Skin &amp; Hair
+          <span class="arrow"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span>
+        </button>
 
-          <button class="q1-opt" data-goal="skin_aging" aria-label="Better Skin and Hair">
-            <span class="icon"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.4L19 10l-5.2 1.6L12 17l-1.8-5.4L5 10l5.2-1.6L12 3z"/></svg></span>
-            Better Skin &amp; Hair
-            <span class="arrow"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
-          </button>
-
-          <button class="q1-opt" data-goal="perimenopause_suspected" aria-label="Feel Like Myself Again">
-            <span class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg></span>
-            Feel Like Myself Again
-            <span class="arrow"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
-          </button>
-        </div>
+        <button class="q1-opt" data-goal="perimenopause_suspected" aria-label="Feel Like Myself Again">
+          <span class="icon"><img src="assets/q1-icon-self.png" alt=""></span>
+          Feel Like Myself Again
+          <span class="arrow"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span>
+        </button>
       </div>
     </div>
   </section>
 
   <section class="three-steps">
-    <p class="eyebrow">Your free assessment</p>
+    <div class="three-steps-bg" aria-hidden="true"></div>
+    <p class="eyebrow">your free assessment</p>
     <h3>Three steps.<br>Zero guesswork.</h3>
     <div class="step-card">
       <h4>Take the assessment</h4>
@@ -602,23 +624,23 @@
     </div>
     <div class="step-card">
       <h4>Connect with an expert</h4>
-      <p>Book a consultation with a peptide-informed expert who reviews your bloodwork — or orders new labs if you don't have any — and prescribes a protocol tailored to you.</p>
+      <p>Book a consultation with a peptide-informed expert who reviews your bloodwork and prescribes a protocol tailored to you.</p>
     </div>
   </section>
 
   <section class="founders">
-    <p class="eyebrow">From our founders</p>
+    <p class="eyebrow">from our founders</p>
     <p>We kept hearing about peptides from friends, podcasts, and on socials, but every time we tried to figure out if they were right for us, we hit a wall&hellip; <span class="accent">So we just built the tool we wished we had.</span></p>
   </section>
 
   <section class="value-props">
     <div class="vp">
       <h4>Your personalized<br>peptide profile</h4>
-      <p>Not generic advice — a recommendation matched to your body, your symptoms, and your goals.</p>
+      <p>Not generic advice, a recommendation matched to your body, your symptoms, and your goals.</p>
     </div>
     <div class="vp">
       <h4>A clear next step, not<br>a research assignment</h4>
-      <p>Whether that's an over-the-counter product you can start today or a doctor who can build you a real protocol.</p>
+      <p>Whether that's an over the counter product you can start today or a doctor who can build you a real protocol.</p>
     </div>
     <div class="vp">
       <h4>Access to experts<br>when you're ready</h4>
@@ -632,15 +654,16 @@
 
   <section class="closing">
     <h3>Find the peptide plan<br><span class="ital">that fits you</span></h3>
-    <p>Two minutes. Seven questions. One clear answer — no more Reddit rabbit holes.</p>
+    <p>Two minutes. Seven questions. One clear answer, no more Reddit rabbit holes.</p>
     <button class="cta-pill" onclick="scrollToQ1()">
       take the assessment
-      <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+      <span class="arrow"><img src="assets/cta-arrow.png" alt=""></span>
     </button>
   </section>
 
   <footer class="footer">
-    For educational purposes only. Not medical advice.<br>Consult a licensed provider before starting any protocol.<br><br>&copy; 2026 PeptideMatch
+    For educational purposes only. Not medical advice. Consult a licensed provider before starting any protocol.
+    <div class="copy">&copy; 2026 PeptideMatch</div>
   </footer>
 </main>
 
