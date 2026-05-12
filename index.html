@@ -618,11 +618,11 @@
      via the ::before pseudos defined above.
      ============================================ */
 
-  /* On viewports wider than 402px, the hero spans the full viewport — the
-     blue gradient bleeds edge-to-edge — but the woman photo stays pinned to
-     the 402px center column so her composition isn't blown up by object-fit:
-     cover at desktop widths. Foreground (logo, eyebrow, h1, q1) is also
-     centered there via the existing left:50%/translateX on each element. */
+  /* On viewports wider than 402px, the hero spans the full viewport. The
+     woman photo expands to a 600px-wide centered column AND fades softly into
+     the blue gradient on both sides via a horizontal mask. The result is the
+     iPhone-aspect woman at near-natural size in the middle, blending into a
+     full-bleed blue scene — no hard edge between photo and gradient. */
   @media (min-width: 480px) {
     .quiz-shell, .results-shell { max-width: 480px; }
 
@@ -632,15 +632,32 @@
       aspect-ratio: auto;
       height: 1043px;
     }
-    /* Photo: 402px wide, centered. Blue gradient on .hero shows on the sides. */
     .hero-photo {
+      /* Centered column wider than 402 so the woman sits in a more generous
+         frame; mask fades the outer edges into the gradient */
       inset: 0 auto 0 50%;
       transform: translateX(-50%);
-      width: 402px;
+      width: min(100vw, 720px);
+      max-width: 720px;
       height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      -webkit-mask: linear-gradient(to right,
+        transparent 0%,
+        rgba(0,0,0,0.4) 8%,
+        black 22%,
+        black 78%,
+        rgba(0,0,0,0.4) 92%,
+        transparent 100%);
+      mask: linear-gradient(to right,
+        transparent 0%,
+        rgba(0,0,0,0.4) 8%,
+        black 22%,
+        black 78%,
+        rgba(0,0,0,0.4) 92%,
+        transparent 100%);
     }
-    /* Keep ::before's gradient identical to .hero's bg so any z-index quirks
-       at the column edges blend seamlessly */
+    /* Keep ::before's gradient identical to .hero's bg for seamless fade */
     .hero::before {
       background:
         linear-gradient(180deg, #58a8d8 0%, #6fb2d8 30%, #2c5f86 75%, #0E2238 100%);
