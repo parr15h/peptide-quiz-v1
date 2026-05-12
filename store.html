@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#1F2D3D">
+<title>Your Store · PeptideMatch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:ital,wght@0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #2C3E50; --navy-deep: #1F2D3D;
+    --cream: #F4E6D6; --cream-warm: #EDDFCE; --cream-deep: #E5D4BD;
+    --offwhite: #FAF7F2;
+    --ink: #1A2333; --ink-2: #4A5666; --muted: #8A95A3;
+    --line: #E8E0D2; --line-strong: #D9CFBE;
+    --yes: #2C7A5A; --maybe: #B58B25;
+    --bucket: #C68F4E; --bucket-soft: #F1DDC2;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: var(--ink); background: var(--offwhite); -webkit-font-smoothing: antialiased; line-height: 1.5; }
+  body.lock { overflow: hidden; height: 100vh; }
+  button, a { font-family: inherit; cursor: pointer; }
+
+  .shell { max-width: 480px; margin: 0 auto; background: var(--offwhite); min-height: 100vh; }
+
+  /* NAV */
+  .nav { background: var(--navy-deep); color: #fff; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; padding-top: calc(14px + env(safe-area-inset-top, 0)); }
+  .nav .back { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,.85); text-decoration: none; font-size: 13px; font-weight: 500; }
+  .nav .back .arr { font-size: 18px; line-height: 1; }
+  .nav .back:hover { color: #fff; }
+  .nav .center { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,.6); font-weight: 700; }
+  .nav .menu { width: 28px; height: 28px; border: 0; background: transparent; display: flex; flex-direction: column; justify-content: center; gap: 4px; cursor: pointer; padding: 0; }
+  .nav .menu span { display: block; height: 1.5px; background: #fff; border-radius: 2px; width: 16px; margin-left: auto; }
+  .nav .menu span:nth-child(2) { width: 12px; }
+
+  /* HERO */
+  .hero { background: linear-gradient(180deg, var(--cream) 0%, var(--cream-warm) 100%); padding: 32px 22px 28px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: var(--bucket); opacity: .08; border-radius: 50%; }
+  .hero .lab { font-size: 10.5px; letter-spacing: 2px; text-transform: uppercase; color: var(--bucket); font-weight: 700; margin-bottom: 10px; }
+  .hero h1 { font-size: 38px; font-weight: 700; letter-spacing: -.7px; line-height: 1.05; margin-bottom: 12px; color: var(--ink); }
+  .hero h1 .em { font-family: 'Fraunces', serif; font-style: italic; font-weight: 500; color: var(--bucket); }
+  .hero .stats { font-size: 14px; color: var(--ink-2); line-height: 1.5; margin-bottom: 16px; }
+  .hero .stats b { color: var(--ink); font-weight: 600; }
+  .hero .why { font-size: 13.5px; color: var(--ink-2); line-height: 1.5; padding: 12px 14px; border-left: 3px solid var(--bucket); background: rgba(198, 143, 78, .06); border-radius: 6px; }
+  .hero .why b { color: var(--ink); font-weight: 600; }
+
+  /* FILTERS */
+  .filters { background: #fff; border-bottom: 1px solid var(--line); padding: 14px 22px; position: sticky; z-index: 40; }
+  .filters { top: 54px; }
+  .filter-row { display: flex; gap: 6px; flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+  .filter-row::-webkit-scrollbar { display: none; }
+  .filter-label { font-size: 9.5px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); font-weight: 700; padding: 6px 0; flex-shrink: 0; min-width: 56px; }
+  .pill { padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line-strong); background: #fff; color: var(--ink-2); font-size: 12.5px; font-weight: 500; cursor: pointer; flex-shrink: 0; transition: all .12s; font-family: inherit; white-space: nowrap; }
+  .pill:hover { border-color: var(--bucket); color: var(--ink); }
+  .pill.active { background: var(--bucket); color: #fff; border-color: var(--bucket); font-weight: 600; }
+
+  /* PRODUCT SECTIONS */
+  .product-section { padding: 28px 22px 8px; }
+  .product-section:last-of-type { padding-bottom: 28px; }
+  .section-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  .section-header .title { font-size: 18px; font-weight: 700; letter-spacing: -.2px; color: var(--ink); }
+  .section-header .title .em { font-family: 'Fraunces', serif; font-style: italic; font-weight: 500; color: var(--bucket); }
+  .section-header .count { font-size: 11px; color: var(--muted); font-weight: 500; letter-spacing: .3px; }
+
+  .product-stack { display: flex; flex-direction: column; gap: 10px; }
+  .product { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 16px; text-decoration: none; color: inherit; display: block; transition: transform .12s, box-shadow .12s, border-color .12s; }
+  .product:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(20,30,40,.06); border-color: var(--line-strong); }
+  .product .top { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 10px; }
+  .product .img { width: 48px; height: 48px; border-radius: 12px; background: var(--bucket-soft); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+  .product .body { flex: 1; min-width: 0; }
+  .product .cat { font-size: 9.5px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+  .product .t { font-size: 16px; font-weight: 600; margin-top: 2px; line-height: 1.2; letter-spacing: -.1px; }
+  .product .why { font-size: 13px; color: var(--ink-2); line-height: 1.5; padding-left: 60px; margin-bottom: 10px; margin-top: -4px; }
+  .product .footer { padding-left: 60px; display: flex; align-items: center; justify-content: space-between; padding-top: 10px; border-top: 1px solid var(--line); }
+  .product .price { font-size: 14px; font-weight: 600; color: var(--ink); }
+  .product .buy { font-size: 13px; font-weight: 600; color: var(--bucket); display: flex; align-items: center; gap: 4px; }
+  .product .buy .arr { font-size: 14px; }
+  .product.hidden { display: none; }
+  .product-section.empty .empty-msg { display: block; }
+  .empty-msg { display: none; padding: 24px; text-align: center; color: var(--muted); font-size: 13px; }
+
+  /* STICKY ACTIONS */
+  .sticky-actions { position: sticky; bottom: 0; background: linear-gradient(180deg, rgba(250,247,242,0) 0%, var(--offwhite) 30%); padding: 32px 22px 20px; padding-bottom: calc(20px + env(safe-area-inset-bottom, 0)); }
+  .sticky-actions .row { display: flex; gap: 8px; }
+  .sticky-btn { flex: 1; padding: 14px 16px; border-radius: 999px; font-size: 13.5px; font-weight: 500; text-decoration: none; cursor: pointer; border: 0; text-align: center; font-family: inherit; transition: transform .12s, background .12s; }
+  .sticky-btn:active { transform: scale(.98); }
+  .sticky-btn.primary { background: var(--navy-deep); color: #fff; }
+  .sticky-btn.primary:hover { background: var(--navy); }
+
+  footer { background: var(--cream-deep); padding: 22px; text-align: center; color: var(--ink-2); font-size: 11px; line-height: 1.6; }
+  footer a { color: var(--ink); }
+  footer .small { font-size: 10px; opacity: .65; margin-top: 4px; }
+
+  /* SAVE MODAL (bottom sheet) — uses same phone-capture mechanic as results.html */
+  .modal-bg { position: fixed; inset: 0; background: rgba(20, 30, 40, .55); display: flex; align-items: flex-end; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .2s; z-index: 100; }
+  .modal-bg.open { opacity: 1; pointer-events: auto; }
+  .modal { background: var(--offwhite); width: 100%; max-width: 420px; border-radius: 22px 22px 0 0; padding: 28px 24px calc(24px + env(safe-area-inset-bottom, 0)); transform: translateY(40px); transition: transform .25s ease-out; position: relative; }
+  .modal-bg.open .modal { transform: translateY(0); }
+  @media (min-width: 460px) {
+    .modal-bg { align-items: center; }
+    .modal { border-radius: 22px; }
+  }
+  .modal .check { width: 36px; height: 36px; border-radius: 50%; background: var(--yes); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; margin-bottom: 14px; }
+  .modal h3 { font-size: 24px; font-weight: 700; letter-spacing: -.4px; line-height: 1.15; margin-bottom: 10px; color: var(--ink); }
+  .modal h3 .em { font-family: 'Fraunces', serif; font-style: italic; font-weight: 500; color: var(--bucket); }
+  .modal p { font-size: 14px; color: var(--ink-2); line-height: 1.5; margin-bottom: 16px; }
+  .modal .promises { list-style: none; margin-bottom: 18px; background: rgba(198, 143, 78, .06); border-radius: 10px; padding: 12px 14px; }
+  .modal .promises li { font-size: 13px; color: var(--ink-2); line-height: 1.45; padding: 5px 0; display: flex; gap: 10px; align-items: flex-start; }
+  .modal .promises li .arr { color: var(--bucket); font-weight: 700; flex-shrink: 0; }
+
+  .channel-toggle { display: flex; gap: 6px; margin-bottom: 10px; background: var(--cream-warm); padding: 4px; border-radius: 999px; width: fit-content; }
+  .channel-toggle button { background: transparent; border: 0; cursor: pointer; padding: 6px 14px; border-radius: 999px; font-size: 12.5px; font-weight: 500; color: var(--ink-2); font-family: inherit; display: flex; align-items: center; gap: 6px; transition: background .12s, color .12s; }
+  .channel-toggle button:hover { color: var(--ink); }
+  .channel-toggle button.active { background: #fff; color: var(--ink); font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,.06); }
+  .channel-toggle button .ico { font-size: 13px; }
+
+  .email-row { display: flex; gap: 8px; margin-bottom: 12px; }
+  .email-row input { flex: 1; min-width: 0; padding: 14px 16px; border-radius: 999px; border: 1px solid var(--line-strong); background: #fff; color: var(--ink); font-size: 14px; font-family: inherit; outline: none; transition: border-color .12s; }
+  .email-row input:focus { border-color: var(--bucket); }
+  .email-row button { padding: 14px 22px; border-radius: 999px; background: var(--navy-deep); color: #fff; border: 0; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: 500; }
+  .email-row button:hover { background: var(--navy); }
+
+  .modal .skip { text-align: center; font-size: 12.5px; color: var(--muted); font-weight: 500; cursor: pointer; padding: 8px; text-decoration: none; display: block; }
+  .modal .skip:hover { color: var(--ink-2); }
+  .modal .url-line { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 11.5px; color: var(--muted); line-height: 1.45; }
+  .modal .url-line code { color: var(--ink-2); font-family: 'Inter', monospace; background: var(--cream-warm); padding: 1px 6px; border-radius: 4px; font-size: 11px; }
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <nav class="nav">
+    <a href="results.html" class="back"><span class="arr">←</span><span>your results</span></a>
+    <span class="center">Your Store</span>
+    <button class="menu" aria-label="Menu"><span></span><span></span></button>
+  </nav>
+
+  <section class="hero">
+    <div class="lab">Your store</div>
+    <h1 id="heroHeadline">Energy &amp; <span class="em">focus.</span></h1>
+    <div class="stats"><b id="statCount">32 picks</b> · <span id="statBlurb">curated for women who matched to CJC + Ipamorelin</span></div>
+    <div class="why">
+      Filtered to the items that actually move the needle on your bucket — and ordered by what most women in your situation reach for first. <b>Nothing here pays us to recommend it</b> over something that fits you better.
+    </div>
+  </section>
+
+  <div class="filters">
+    <div class="filter-row" data-filter-group="price">
+      <span class="filter-label">Price</span>
+      <button class="pill active" data-price="all">All</button>
+      <button class="pill" data-price="entry">Under $50</button>
+      <button class="pill" data-price="mid">$50–500</button>
+      <button class="pill" data-price="premium">$500+</button>
+    </div>
+  </div>
+
+  <section class="product-section" data-section="tests">
+    <div class="section-header">
+      <div class="title">Tests <span class="em">worth running</span></div>
+      <div class="count"><span data-count></span> picks</div>
+    </div>
+    <div class="product-stack"></div>
+    <div class="empty-msg">No tests match this filter.</div>
+  </section>
+
+  <section class="product-section" data-section="products">
+    <div class="section-header">
+      <div class="title">Products that <span class="em">pair with the protocol</span></div>
+      <div class="count"><span data-count></span> picks</div>
+    </div>
+    <div class="product-stack"></div>
+    <div class="empty-msg">No products match this filter.</div>
+  </section>
+
+  <section class="product-section" data-section="people">
+    <div class="section-header">
+      <div class="title">People worth <span class="em">talking to</span></div>
+      <div class="count"><span data-count></span> picks</div>
+    </div>
+    <div class="product-stack"></div>
+    <div class="empty-msg">No people match this filter.</div>
+  </section>
+
+  <div class="sticky-actions">
+    <div class="row">
+      <button class="sticky-btn primary" id="saveStoreBtn">save my store</button>
+    </div>
+  </div>
+
+  <footer>
+    Some links are partner / affiliate. We only recommend things we'd send a friend to. <a href="#">Disclosures →</a>
+    <div class="small">PeptideMatch · Educational. Not medical advice.</div>
+  </footer>
+
+</div>
+
+<!-- POST-SAVE MODAL -->
+<div class="modal-bg" id="saveModal">
+  <div class="modal">
+    <div class="check">✓</div>
+    <h3>Saved. <span class="em">Want it to keep getting smarter?</span></h3>
+    <p>Your store is yours and lives at the URL below. We'll only reach out when something changes that's actually relevant to you.</p>
+    <ul class="promises">
+      <li><span class="arr">→</span>Updates if any product in your store gets meaningfully better (or cheaper)</li>
+      <li><span class="arr">→</span>A 90-day re-check to see if your situation has shifted</li>
+      <li><span class="arr">→</span>Prep notes the day before any provider call you book</li>
+    </ul>
+
+    <div class="channel-toggle" role="tablist">
+      <button data-channel="phone" class="active"><span class="ico">💬</span> Text</button>
+      <button data-channel="email"><span class="ico">📧</span> Email</button>
+    </div>
+
+    <div class="email-row">
+      <input type="tel" id="contactInput" placeholder="your mobile number" autocomplete="tel" inputmode="tel" />
+      <button id="sendContact">send →</button>
+    </div>
+    <a href="#" class="skip" id="skipModal">no thanks · I'll come back to the URL</a>
+    <div class="url-line">Your store URL · <code id="storeUrl">peptidematch.com/s/3f7g2k</code></div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   PeptideMatch V1 — Store page
+   Reads bucket + verdict from URL params or sessionStorage.
+   Renders all picks for that bucket, with price filtering.
+   ============================================================ */
+
+const BUCKETS = {
+  energy_recovery: {
+    storeName: 'energy & focus.',
+    storeBlurb: 'curated for women who matched to CJC + Ipamorelin',
+    tests: [
+      ['🧪','Lab panel','Function Health','Comprehensive baseline before any peptide protocol — the marker most providers want before prescribing.','$499/yr','mid'],
+      ['📊','Metabolic data','Levels CGM','Glucose volatility is an underrated 3am-waker. 30 days of data tells you whether to invest in the protocol or fix the diet first.','$199 + sub','mid'],
+      ['🩸','Cortisol panel','DUTCH 4-point test','Maps your cortisol curve across the day. If yours is wrong-shaped, peptides won\'t deliver until cortisol\'s addressed.','$300','mid'],
+      ['🌙','Hormone tracking','Mira monitor','Monthly home hormone tracking. Useful if you want to see whether peri is in the picture before any GH-pathway protocol.','$199 + sub','mid'],
+      ['🧬','Annual deep panel','InsideTracker Ultimate','Alternative to Function — heavier on athletic / performance markers. Pick this one if your goal is recomp + recovery.','$599','premium'],
+      ['⚗️','Hormone optimization','Marek Health','For when you want to actually optimize hormones, not just test them. Includes provider-led interpretation + Rx if needed.','$1,500/yr','premium'],
+      ['🦴','Bone density','DEXA scan','Catches early bone loss that peri quietly accelerates. Worth a baseline if you\'re 35+, especially before HRT discussions.','$300','mid'],
+      ['🦠','Gut panel','Genova GI Effects','If your fatigue tracks with bloat or recent antibiotic use, this is more useful than another fatigue panel.','$699','premium'],
+      ['❤️','Cardiovascular','Function CV+ panel','ApoB, Lp(a), advanced lipids. Most women your age never get these run. They are the ones that matter.','$499','mid'],
+      ['🧠','Genetic testing','23andMe Health','One-time. Tells you about caffeine metabolism, vitamin D conversion, and a few peptide-relevant pathways.','$199','mid']
+    ],
+    products: [
+      ['🛌','Sleep optimization','Eight Sleep Pod','CJC works during deep sleep. Cooling tech adds 30–60 min of deep sleep nightly — where the entire protocol does its job.','$2,500','premium'],
+      ['💍','Recovery tracking','Oura Ring','Measures the variables your protocol is supposed to move. Without it you\'re guessing whether anything\'s working.','$299 + sub','mid'],
+      ['🔥','Recovery','HigherDose sauna blanket','Heat-shock proteins compound the same recovery pathways peptides target. 4× per week is the sweet spot.','$699','premium'],
+      ['🦵','Active recovery','Therabody compression boots','Most-impactful active recovery tool for women training 3×+/wk. 20 min between sessions = better return on the protocol.','$700','premium'],
+      ['🧊','Cold therapy','The Plunge','Premium cold-plunge tier. Cold exposure 2–3× a week pairs surprisingly well with GH-pathway protocols for fat metabolism.','$4,995','premium'],
+      ['🔴','Red light','Joovv panel','Skin + recovery + mitochondrial markers. Real evidence base — but only worth it if you\'re already doing the basics.','$1,500','premium'],
+      ['⏰','Sleep environment','Hatch Restore','Sunrise alarm + sound + dim wake-up routine. The least-sexy tool with the most consistent compliance lift.','$200','mid'],
+      ['💪','Recovery','Theragun Pro','Mass-market device, real benefit. Consider this if you\'re not ready for compression boots.','$300','mid'],
+      ['💊','Foundational','Magnesium glycinate (Pure Encap.)','Foundational. The supplement we\'d send a friend to. Take with peptides or instead of them — both work.','$25/mo','entry'],
+      ['🥬','Daily greens','AG1 / Athletic Greens','Pricey but real if you struggle to eat veggies + protein consistently. Skip if your basics are already covered.','$99/mo','mid'],
+      ['⚡','Longevity stack','Tru Niagen NMN/NR','NAD precursor. Pairs well with CJC for energy + cellular repair. Best evidence base in the longevity-supplement category.','$40/mo','entry'],
+      ['🏋️','Performance','Premium creatine subscription','5g daily. Brain + body benefits women over 30 underuse. The cheapest legitimate performance supplement on this list.','$25/mo','entry']
+    ],
+    people: [
+      ['🩺','Concierge medicine','Forward','Tech-forward concierge primary care. Includes labs, basic specialty referrals, and unlimited messaging — useful as a hub.','$99/mo','mid'],
+      ['🌿','Functional medicine','Parsley Health','Functional-med approach with telehealth + labs. Good fit if your symptoms haven\'t been taken seriously by traditional GPs.','$175/mo','mid'],
+      ['💪','Personal training','Future','App-based 1:1 coaching. Real human, real adjustments, real accountability. Most-likely-to-stick performance investment.','$199/mo','mid'],
+      ['🏥','Premium concierge','Q.bio','Premium tier — includes regular advanced imaging + concierge primary. The Forward step-up if you want more visibility.','$349/mo','premium'],
+      ['🧬','Longevity workup','Modern Age','One-time deep dive. Useful if you\'re peri-curious + want a longevity-medicine framing on your numbers.','$1,500','premium'],
+      ['🏋️‍♀️','Strength coaching','Caliber','App-based strength-specific coaching. Cheaper than Future, slightly less hand-holding. Good if you have form basics already.','$30/mo','entry'],
+      ['💉','IV therapy','NAD+ IV protocol','5–10 session series. Real benefit for some, expensive theater for others. Worth trying once if your foundations are dialed.','$300/session','mid'],
+      ['😴','Sleep specialty','Sleep specialist referral','If your sleep tracker shows low deep sleep + apnea risk markers, see one of these before you spend on devices.','$500+','premium'],
+      ['🧘','Mental health','Alma therapist match','Insurance-friendly therapist matching. A good therapist is the highest-ROI line on this entire page.','$150/session','mid'],
+      ['🍽️','Nutrition coaching','MacroFactor','App-based macro tracking that adapts. The smartest nutrition tool on the market if you\'ll actually use it.','$72/yr','entry']
+    ]
+  }
+};
+
+/* Load session */
+let session = { sessionId: null, utm: {}, verdict: null };
+try {
+  const raw = sessionStorage.getItem('pm_session');
+  if (raw) Object.assign(session, JSON.parse(raw));
+} catch(e) {}
+const params = new URLSearchParams(location.search);
+['utm_source','utm_medium','utm_campaign','v','lp','qz','cta'].forEach(k => {
+  const val = params.get(k);
+  if (val) session.utm[k] = val;
+});
+const urlBucket = params.get('bucket');
+const urlVerdict = params.get('verdict');
+if (urlBucket && !session.verdict) session.verdict = { bucket: urlBucket, verdict: urlVerdict || 'YES' };
+
+const bucket = session.verdict?.bucket || 'energy_recovery';
+const data = BUCKETS[bucket] || BUCKETS.energy_recovery;
+
+function fire(event, payload = {}) {
+  console.log('[event]', { event, bucket, ...session.utm, sessionId: session.sessionId, ...payload, ts: Date.now() });
+}
+
+/* Render hero */
+const [headline, sub] = data.storeName.split('&').length > 1
+  ? [data.storeName.split('&')[0].trim() + ' &', data.storeName.split('&')[1].trim()]
+  : ['', data.storeName];
+document.getElementById('heroHeadline').innerHTML = headline
+  ? `${headline} <span class="em">${sub}</span>`
+  : `<span class="em">${sub}</span>`;
+
+/* Render product stacks */
+function renderSection(sectionName, items) {
+  const section = document.querySelector(`[data-section="${sectionName}"]`);
+  const stack = section.querySelector('.product-stack');
+  stack.innerHTML = '';
+  items.forEach(item => {
+    const [emoji, cat, name, why, price, tier] = item;
+    const a = document.createElement('a');
+    a.href = '#';
+    a.className = 'product';
+    a.dataset.price = tier;
+    a.innerHTML = `
+      <div class="top">
+        <div class="img">${emoji}</div>
+        <div class="body">
+          <div class="cat">${cat}</div>
+          <div class="t">${name}</div>
+        </div>
+      </div>
+      <div class="why">${why}</div>
+      <div class="footer">
+        <div class="price">${price}</div>
+        <div class="buy">${sectionName === 'people' ? 'book' : 'buy'} <span class="arr">→</span></div>
+      </div>`;
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      fire('store_item_clicked', { section: sectionName, name });
+    });
+    stack.appendChild(a);
+  });
+  section.querySelector('[data-count]').textContent = items.length;
+}
+
+renderSection('tests',    data.tests    || BUCKETS.energy_recovery.tests);
+renderSection('products', data.products || BUCKETS.energy_recovery.products);
+renderSection('people',   data.people   || BUCKETS.energy_recovery.people);
+
+const totalPicks = (data.tests?.length || 0) + (data.products?.length || 0) + (data.people?.length || 0);
+document.getElementById('statCount').textContent = `${totalPicks} picks`;
+document.getElementById('statBlurb').textContent = data.storeBlurb;
+
+/* Filter logic */
+const pricePills = document.querySelectorAll('.filter-row[data-filter-group="price"] .pill');
+const allProducts = () => document.querySelectorAll('.product');
+const allSections = () => document.querySelectorAll('.product-section');
+let activePrice = 'all';
+
+function applyFilters() {
+  allProducts().forEach(p => {
+    const price = p.dataset.price;
+    const match = activePrice === 'all' || price === activePrice;
+    p.classList.toggle('hidden', !match);
+  });
+  allSections().forEach(sec => {
+    const visible = sec.querySelectorAll('.product:not(.hidden)').length;
+    sec.classList.toggle('empty', visible === 0);
+  });
+}
+pricePills.forEach(pill => pill.addEventListener('click', () => {
+  pricePills.forEach(p => p.classList.remove('active'));
+  pill.classList.add('active');
+  activePrice = pill.dataset.price;
+  fire('filter_changed', { filter: 'price', value: activePrice });
+  applyFilters();
+}));
+
+/* Save store → modal */
+const saveBtn = document.getElementById('saveStoreBtn');
+const modal = document.getElementById('saveModal');
+const skip = document.getElementById('skipModal');
+const sendContact = document.getElementById('sendContact');
+const contactInput = document.getElementById('contactInput');
+
+saveBtn.addEventListener('click', () => { modal.classList.add('open'); fire('save_store_opened'); });
+skip.addEventListener('click', e => { e.preventDefault(); modal.classList.remove('open'); fire('save_store_dismissed'); });
+modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
+sendContact.addEventListener('click', () => {
+  const v = contactInput.value.trim();
+  if (!v) return;
+  fire('save_store_submitted', { channel: contactInput.type, value: v });
+  // ----------- WIRE TO SMS / EMAIL PROVIDER HERE -----------
+  modal.querySelector('.email-row').innerHTML = '<div style="padding: 14px; color: var(--yes); font-weight: 600; text-align: center; width: 100%;">✓ Sent. Check ' + (contactInput.type === 'email' ? 'your inbox' : 'your texts') + '.</div>';
+});
+
+const channelButtons = document.querySelectorAll('.channel-toggle button');
+channelButtons.forEach(b => b.addEventListener('click', () => {
+  channelButtons.forEach(x => x.classList.remove('active'));
+  b.classList.add('active');
+  if (b.dataset.channel === 'email') {
+    contactInput.type = 'email';
+    contactInput.placeholder = 'your email';
+    contactInput.autocomplete = 'email';
+    contactInput.inputMode = 'email';
+  } else {
+    contactInput.type = 'tel';
+    contactInput.placeholder = 'your mobile number';
+    contactInput.autocomplete = 'tel';
+    contactInput.inputMode = 'tel';
+  }
+  contactInput.value = '';
+  contactInput.focus();
+}));
+
+/* Generate a stable-ish store URL slug from the session */
+const slug = (session.sessionId || 'preview').slice(0, 8);
+document.getElementById('storeUrl').textContent = `peptidematch.com/s/${slug}`;
+
+fire('store_viewed');
+</script>
+</body>
+</html>

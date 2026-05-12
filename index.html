@@ -726,29 +726,15 @@
       </div>
     </section>
 
-    <!-- Q6: Openness + budget (two-part) -->
+    <!-- Q6: Injection openness -->
     <section class="quiz-screen" data-step="q6">
       <p class="quiz-step-label">Step 6 of 7</p>
-      <h2 class="quiz-q">A couple of practical things —</h2>
-      <p class="quiz-sub">No judgment on either — we just want the answer to fit your life.</p>
-
-      <div class="pair-q">
-        <p class="pair-q-label">How do you feel about injections?</p>
-        <div class="opt-list" data-single="q6a">
-          <button class="opt" data-val="open">Open<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
-          <button class="opt" data-val="prefer_oral">Prefer oral<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
-          <button class="opt" data-val="hard_no">Hard no<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
-        </div>
-      </div>
-
-      <div class="pair-q">
-        <p class="pair-q-label">What can you spend per month to feel better?</p>
-        <div class="opt-list" data-single="q6b">
-          <button class="opt" data-val="under_50">Under $50<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
-          <button class="opt" data-val="50_200">$50 – $200<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
-          <button class="opt" data-val="200_500">$200 – $500<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
-          <button class="opt" data-val="500_plus">$500+<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
-        </div>
+      <h2 class="quiz-q">How do you feel about injections?</h2>
+      <p class="quiz-sub">Some of the strongest peptides are injection-only. We'll match you accordingly.</p>
+      <div class="opt-list" data-single="q6a">
+        <button class="opt" data-val="open">Open<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+        <button class="opt" data-val="prefer_oral">Prefer oral<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+        <button class="opt" data-val="hard_no">Hard no<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
       </div>
     </section>
 
@@ -785,7 +771,7 @@
    PeptideMatch V1 — Quiz engine, rules engine, results render
    ============================================================
    Architecture:
-   - state.answers = { q1, q2, q3 (array), q4, q5a, q5b, q6a, q6b, q7 (array) }
+   - state.answers = { q1, q2, q3 (array), q4, q5a, q5b, q6a, q7 (array) }
    - state.utm     = persisted from URL params per doc 03
    - state.step    = current step index (q2..q7)
    - rulesEngine() → { verdict: YES|MAYBE|NO, bucket, reason, confidence }
@@ -793,7 +779,7 @@
    ============================================================ */
 
 const state = {
-  answers: { q1: null, q2: null, q3: [], q4: null, q5a: null, q5b: null, q6a: null, q6b: null, q7: [] },
+  answers: { q1: null, q2: null, q3: [], q4: null, q5a: null, q5b: null, q6a: null, q7: [] },
   utm: {},
   step: 'q2',
   history: [],
@@ -924,10 +910,10 @@ document.querySelectorAll('[data-single]').forEach(group => {
       opt.classList.add('selected');
       state.answers[key] = opt.dataset.val;
 
-      // Q5 and Q6 are two-part — don't auto-advance, wait for Continue
+      // Q5 is two-part (training + labs) — don't auto-advance, wait for Continue
       const screen = group.closest('.quiz-screen');
       const stepName = screen.dataset.step;
-      if (stepName === 'q5' || stepName === 'q6') {
+      if (stepName === 'q5') {
         updateContinueState();
         return;
       }
@@ -986,11 +972,11 @@ function updateContinueState() {
   if (step === 'q2' || step === 'q4') ready = !!state.answers[step];
   if (step === 'q3') ready = (state.answers.q3 || []).length > 0;
   if (step === 'q5') ready = !!state.answers.q5a && !!state.answers.q5b;
-  if (step === 'q6') ready = !!state.answers.q6a && !!state.answers.q6b;
+  if (step === 'q6') ready = !!state.answers.q6a;
   if (step === 'q7') ready = true; // contraindications can be blank (means "none")
 
-  // Auto-advance steps hide the continue button
-  const autoAdvanceSteps = ['q2','q4'];
+  // Auto-advance steps hide the continue button (Q6 is now single-part)
+  const autoAdvanceSteps = ['q2','q4','q6'];
   if (autoAdvanceSteps.includes(step)) {
     continueWrap.classList.remove('show');
   } else {

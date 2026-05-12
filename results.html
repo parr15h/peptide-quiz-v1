@@ -3,658 +3,351 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<meta name="theme-color" content="#0E2238">
+<meta name="theme-color" content="#1F2D3D">
 <title>Your PeptideMatch Results</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:ital,wght@0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy-1: #0E2238;
-    --navy-2: #15324F;
-    --navy-3: #1F4567;
-    --navy-deep: #07182A;
-    --sky:   #9ADCFF;
-
-    --cream:     #F5EBDE;
-    --cream-2:   #EFE2D0;
-    --cream-3:   #E6D5BD;
-    --warm-tan:  #BD8E7B;
-    --warm-deep: #756359;
-    --warm-text: #A19389;
-    --warm-brown:#613F25;
-
-    --ink:   #1A2333;
-    --ink-2: #4A5666;
-    --muted: #8A95A3;
-    --line:  #E8E0D2;
-    --white: #FFFFFF;
-
-    --yes:   #2C7A5A;
-    --maybe: #B58B25;
-    --no:    #8B3A2F;
+    --navy: #2C3E50; --navy-deep: #1F2D3D;
+    --cream: #F4E6D6; --cream-warm: #EDDFCE; --cream-deep: #E5D4BD;
+    --offwhite: #FAF7F2;
+    --ink: #1A2333; --ink-2: #4A5666; --muted: #8A95A3;
+    --line: #E8E0D2; --line-strong: #D9CFBE;
+    --yes: #2C7A5A; --maybe: #B58B25; --no: #8B3A2F;
+    --bucket: #C68F4E; --bucket-soft: #F1DDC2;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { width: 100%; }
-  body {
+  html, body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     color: var(--ink); background: var(--cream);
-    -webkit-font-smoothing: antialiased;
-    line-height: 1.5;
-    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased; line-height: 1.5;
   }
   body.lock { overflow: hidden; height: 100vh; }
-  button { font-family: inherit; cursor: pointer; }
-  img { display: block; max-width: 100%; }
+  button, a.btn, a.btn-store { font-family: inherit; cursor: pointer; }
 
   .results-shell { max-width: 480px; margin: 0 auto; }
 
-  /* ============ BLOCK 1 — Verdict + provider CTA ============ */
-  .verdict-block {
-    background:
-      radial-gradient(80% 60% at 50% 0%, rgba(154,220,255,.10) 0%, transparent 60%),
-      linear-gradient(180deg, var(--navy-2) 0%, var(--navy-1) 75%, var(--navy-deep) 100%);
-    color: #fff;
-    padding: 18px 22px 40px;
-    position: relative;
-    overflow: hidden;
+  /* ============ BLOCK 1 — verdict + provider CTA ============ */
+  .block-1 {
+    background: linear-gradient(180deg, var(--navy) 0%, var(--navy) 60%, var(--navy-deep) 100%);
+    padding: 24px 22px 32px; color: #fff;
   }
-  .verdict-header {
-    display: flex; align-items: center; justify-content: space-between;
-    padding-top: env(safe-area-inset-top, 0);
-    margin-bottom: 36px;
-  }
-  .logo-sm {
-    font-family: 'Fraunces', serif;
-    font-weight: 600; font-size: 20px;
-    letter-spacing: .3px;
-  }
-  .logo-sm .pep { color: var(--sky); }
-  .verdict-chip {
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 6px 12px;
-    border-radius: 999px;
-    font-size: 10.5px;
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-  }
-  .verdict-chip.yes  { background: rgba(86, 187, 138, .15); color: #7FD8AA; border: 1px solid rgba(86, 187, 138, .35); }
-  .verdict-chip.maybe{ background: rgba(255, 200, 90, .15); color: #FFD88B; border: 1px solid rgba(255, 200, 90, .35); }
-  .verdict-chip.no   { background: rgba(230, 130, 110, .15); color: #FFA590; border: 1px solid rgba(230, 130, 110, .35); }
-  .verdict-chip .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .topbar { display: flex; align-items: center; justify-content: space-between; padding: 4px 0 56px; padding-top: calc(4px + env(safe-area-inset-top, 0)); }
+  .logo { font-size: 18px; font-weight: 700; letter-spacing: -.3px; }
+  .logo span { font-weight: 400; opacity: .65; }
+  .menu-btn { width: 32px; height: 32px; border: 0; background: transparent; display: flex; flex-direction: column; justify-content: center; gap: 4px; cursor: pointer; padding: 0; }
+  .menu-btn span { display: block; height: 1.5px; background: #fff; border-radius: 2px; width: 18px; margin-left: auto; }
+  .menu-btn span:nth-child(2) { width: 14px; }
 
-  .step-label {
-    font-size: 10.5px; letter-spacing: 2.2px;
-    text-transform: uppercase; font-weight: 700;
-    color: rgba(255,255,255,.5);
-    margin-bottom: 12px;
-  }
-  .verdict-name {
-    font-size: 13px; color: rgba(255,255,255,.65);
-    margin-bottom: 6px;
-    font-weight: 500;
-  }
-  .verdict-headline {
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 1.1;
-    letter-spacing: -.7px;
-    margin-bottom: 20px;
-  }
-  .verdict-headline .em {
-    font-family: 'Fraunces', Georgia, serif;
-    font-style: italic;
-    font-weight: 500;
-    color: var(--sky);
-  }
-  .reason {
-    background: rgba(255,255,255,.06);
-    border: 1px solid rgba(255,255,255,.10);
-    border-radius: 14px;
-    padding: 14px 16px;
-    margin-bottom: 26px;
-    font-size: 13.5px;
-    line-height: 1.5;
-    color: rgba(255,255,255,.85);
-  }
-  .reason strong { color: #fff; }
+  .v-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+  .v-chip { display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+  .v-chip.yes   { background: rgba(86, 187, 138, .15); color: #7FD8AA; border: 1px solid rgba(86, 187, 138, .3); }
+  .v-chip.maybe { background: rgba(255, 200, 90, .15); color: #FFD88B; border: 1px solid rgba(255, 200, 90, .3); }
+  .v-chip.no    { background: rgba(230, 130, 110, .15); color: #FFA590; border: 1px solid rgba(230, 130, 110, .3); }
+  .v-chip .dot  { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
 
-  /* Peptide stack */
-  .peptide-stack {
-    display: flex; flex-direction: column; gap: 10px;
-    margin-bottom: 28px;
-  }
-  .peptide-card {
-    background: rgba(255,255,255,.05);
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 14px;
-    padding: 16px;
-    transition: background .2s ease;
-  }
-  .peptide-card.top {
-    background: rgba(154,220,255,.08);
-    border-color: rgba(154,220,255,.32);
-  }
-  .peptide-card:hover { background: rgba(255,255,255,.10); }
-  .peptide-head {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 4px;
-  }
-  .peptide-name { font-weight: 700; font-size: 16px; }
-  .peptide-tag {
-    font-size: 9px; letter-spacing: 1.3px; text-transform: uppercase;
-    color: var(--sky); font-weight: 700;
-  }
-  .peptide-label { font-size: 12.5px; color: rgba(255,255,255,.6); margin-bottom: 10px; }
-  .peptide-stats { display: flex; gap: 14px; font-size: 11px; color: rgba(255,255,255,.55); }
-  .peptide-stats .stat strong { display: block; color: #fff; font-size: 13px; font-weight: 600; margin-top: 2px; }
+  h1.headline { font-size: 44px; font-weight: 700; line-height: 1.04; letter-spacing: -.9px; color: #fff; margin-bottom: 18px; }
+  h1 .accent { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 500; color: #FFD88B; }
 
-  /* Provider CTA */
-  .provider-cta {
-    background: var(--sky);
-    color: var(--navy-1);
-    border: 0;
-    width: 100%;
-    padding: 18px 22px;
-    border-radius: 16px;
-    font-weight: 700;
-    font-size: 15px;
-    letter-spacing: .2px;
-    margin-bottom: 10px;
-    box-shadow: 0 12px 28px rgba(0,0,0,.30);
-    transition: transform .2s ease;
-  }
-  .provider-cta:hover { transform: translateY(-1px); }
-  .provider-cta:active { transform: scale(.98); }
-  .provider-cta-sub {
-    text-align: center; width: 100%;
-    background: transparent; border: 0;
-    color: rgba(255,255,255,.7);
-    font-weight: 500; font-size: 13px;
-    padding: 12px;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-  .provider-cta-sub:hover { color: #fff; }
+  .supporting-line { font-size: 14.5px; color: rgba(255,255,255,.65); line-height: 1.45; margin-bottom: 18px; font-weight: 400; }
+  .supporting-line b { color: #fff; font-weight: 600; }
 
-  .trust-strip {
-    margin-top: 16px;
-    display: flex; align-items: center; justify-content: center; gap: 12px;
-    font-size: 10.5px; color: rgba(255,255,255,.55);
-    flex-wrap: wrap;
-  }
-  .trust-strip .dot-sep { color: rgba(255,255,255,.25); }
+  .because { margin-bottom: 32px; }
+  .because .lab { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,.5); font-weight: 600; margin-bottom: 10px; }
+  .because ul { list-style: none; }
+  .because li { font-size: 14px; color: rgba(255,255,255,.85); line-height: 1.5; padding: 5px 0; display: flex; gap: 10px; align-items: flex-start; }
+  .because li .arr { color: #FFD88B; font-weight: 700; flex-shrink: 0; font-size: 13px; line-height: 1.5; }
 
-  /* ============ BLOCK 2 — Alternatives ============ */
-  .alt-block {
-    background: var(--cream);
-    padding: 38px 22px 100px;
-  }
-  .alt-block .eyebrow {
-    font-weight: 700;
-    font-size: 10px;
-    letter-spacing: 2.2px;
-    text-transform: uppercase;
-    color: var(--warm-text);
-    text-align: center;
-    margin-bottom: 12px;
-  }
-  .alt-block h3 {
-    text-align: center;
-    font-weight: 700;
-    font-size: 26px;
-    line-height: 1.1;
-    color: var(--warm-deep);
-    margin-bottom: 8px;
-    letter-spacing: -.5px;
-  }
-  .alt-block h3 .ital {
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-weight: 500;
-    color: var(--warm-tan);
-  }
-  .alt-block .alt-sub {
-    text-align: center;
-    font-size: 13px;
-    color: var(--warm-text);
-    margin: 0 auto 22px;
-    max-width: 320px;
-    line-height: 1.4;
-  }
-  .alt-list { display: flex; flex-direction: column; gap: 12px; }
-  .alt-card {
-    background: var(--cream-2);
-    border-radius: 14px;
-    padding: 16px;
-    display: flex; gap: 14px;
-    align-items: flex-start;
-    border: 1px solid var(--line);
-    transition: background .2s ease;
-  }
-  .alt-card:hover { background: var(--cream-3); }
-  .alt-icon {
-    width: 44px; height: 44px;
-    border-radius: 10px;
-    background: var(--cream-3);
-    display: grid; place-items: center;
-    flex-shrink: 0;
-    color: var(--warm-deep);
-  }
-  .alt-icon svg { width: 22px; height: 22px; stroke: currentColor; stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-  .alt-body { flex: 1; min-width: 0; }
-  .alt-head {
-    display: flex; align-items: baseline; justify-content: space-between;
-    gap: 8px; margin-bottom: 4px;
-  }
-  .alt-name { font-weight: 700; font-size: 14.5px; color: var(--warm-deep); }
-  .alt-price { font-weight: 600; font-size: 12px; color: var(--warm-tan); white-space: nowrap; }
-  .alt-desc { font-size: 12.5px; line-height: 1.4; color: var(--warm-text); margin-bottom: 8px; }
-  .alt-cta {
-    background: transparent; border: 0;
-    color: var(--warm-deep); font-weight: 600; font-size: 12px;
-    padding: 0;
-    text-decoration: underline; text-underline-offset: 2px;
-  }
-  .alt-cta:hover { color: var(--warm-tan); }
+  .inline-note { border-radius: 12px; padding: 14px 16px; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+  .inline-note.maybe { background: rgba(255, 200, 90, .08); border: 1px solid rgba(255, 200, 90, .25); }
+  .inline-note.no    { background: rgba(230, 130, 110, .08); border: 1px solid rgba(230, 130, 110, .25); }
+  .inline-note .icon { width: 32px; height: 32px; border-radius: 50%; background: rgba(255, 200, 90, .15); color: #FFD88B; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+  .inline-note.no .icon { background: rgba(230, 130, 110, .15); color: #FFA590; }
+  .inline-note .text { font-size: 14px; line-height: 1.4; color: rgba(255,255,255,.85); }
+  .inline-note .text b { display: block; color: #fff; margin-bottom: 1px; }
 
-  .results-footer {
-    padding: 22px 24px 36px;
-    text-align: center;
-    background: var(--navy-deep);
-    color: rgba(255,255,255,.55);
-    font-size: 11px;
-    line-height: 1.5;
-  }
+  .pep-section-label { font-size: 10.5px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.55); font-weight: 700; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.1); margin-bottom: 14px; }
+  .pep-stack { display: flex; flex-direction: column; gap: 10px; }
+  .pep { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 14px; padding: 16px; color: #fff; display: flex; align-items: center; gap: 14px; position: relative; }
+  .pep.top { background: var(--cream); border: 0; color: var(--ink); }
+  .pep.top .top-tag { position: absolute; top: -9px; left: 14px; background: #FFD88B; color: var(--navy-deep); font-size: 9.5px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; padding: 4px 9px; border-radius: 999px; }
+  .pep .icon { width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,.1); display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-style: italic; font-weight: 600; font-size: 18px; flex-shrink: 0; color: rgba(255,255,255,.85); }
+  .pep.top .icon { background: var(--bucket); color: #fff; }
+  .pep .body { flex: 1; min-width: 0; }
+  .pep h3 { font-size: 17px; font-weight: 700; letter-spacing: -.2px; line-height: 1.2; margin-bottom: 2px; }
+  .pep .meta { font-size: 12px; opacity: .7; }
+  .pep.top .meta { opacity: .65; color: var(--ink-2); }
+  .pep .arrow-r { color: rgba(255,255,255,.5); font-size: 18px; flex-shrink: 0; }
+  .pep.top .arrow-r { color: var(--bucket); }
 
-  /* ============================================
-     FLOATING SAVE-THIS BUTTON
-     ============================================ */
+  .provider-cta { margin-top: 28px; background: var(--cream); border-radius: 22px; padding: 28px 22px; color: var(--ink); }
+  .provider-cta .step-label { color: var(--muted); margin-bottom: 8px; font-size: 10.5px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; }
+  .provider-cta h3 { font-size: 24px; font-weight: 700; letter-spacing: -.4px; line-height: 1.15; margin-bottom: 18px; }
+  .provider-cta h3 .accent { font-family: 'Fraunces', serif; font-style: italic; font-weight: 500; }
+  .btn { display: block; width: 100%; border: 0; cursor: pointer; font-family: inherit; padding: 18px 22px; border-radius: 999px; font-size: 15px; font-weight: 500; letter-spacing: .2px; text-align: center; transition: transform .12s, background .12s; text-decoration: none; }
+  .btn:active { transform: scale(.98); }
+  .btn-primary { background: var(--navy-deep); color: #fff; }
+  .btn-primary:hover { background: var(--navy); }
+  .btn-primary .arrow { display: inline-block; margin-left: 6px; }
+  .btn-secondary { background: transparent; color: var(--ink); border: 1px solid var(--line-strong); margin-top: 10px; }
+  .btn-secondary:hover { background: #fff; }
+  .free-line { font-size: 12px; color: var(--muted); text-align: center; margin-top: 12px; letter-spacing: .2px; }
+  .free-line span { color: var(--bucket); font-weight: 600; }
+
+  /* ============ BLOCK 2 — pair with your protocol ============ */
+  .block-2 { background: var(--offwhite); padding: 44px 22px 52px; border-top: 1px solid var(--line); }
+  .block-2-header { margin-bottom: 22px; }
+  .block-2-header .lab { font-size: 10.5px; letter-spacing: 2px; text-transform: uppercase; color: var(--bucket); font-weight: 700; margin-bottom: 10px; }
+  .block-2-header h2 { font-size: 28px; font-weight: 700; letter-spacing: -.5px; line-height: 1.1; }
+  .block-2-header h2 .accent { font-family: 'Fraunces', serif; font-style: italic; font-weight: 500; color: var(--bucket); }
+
+  .buy-group { margin-bottom: 28px; }
+  .buy-group:last-child { margin-bottom: 0; }
+  .buy-group-header { margin-bottom: 12px; padding-top: 16px; border-top: 1px solid var(--line); display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  .buy-group:first-of-type .buy-group-header { border-top: 0; padding-top: 0; }
+  .buy-group-title { font-size: 18px; font-weight: 700; letter-spacing: -.2px; line-height: 1.2; color: var(--ink); }
+  .buy-group-title .accent { font-family: 'Fraunces', serif; font-style: italic; font-weight: 500; color: var(--bucket); }
+  .buy-group-count { font-size: 11px; color: var(--muted); font-weight: 500; letter-spacing: .3px; flex-shrink: 0; }
+
+  .buy-stack { display: flex; flex-direction: column; gap: 10px; }
+  .buy { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 14px; display: flex; gap: 14px; align-items: center; text-decoration: none; color: inherit; transition: transform .12s, box-shadow .12s, border-color .12s; }
+  .buy:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(20,30,40,.06); border-color: var(--line-strong); }
+  .buy .img { width: 56px; height: 56px; border-radius: 12px; background: var(--cream-warm); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+  .buy .body { flex: 1; min-width: 0; }
+  .buy .cat { font-size: 9.5px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+  .buy .t { font-size: 16px; font-weight: 600; margin-top: 2px; line-height: 1.2; letter-spacing: -.1px; }
+  .buy .price-r { font-size: 13.5px; font-weight: 600; color: var(--ink); flex-shrink: 0; text-align: right; display: flex; flex-direction: column; gap: 3px; align-items: flex-end; }
+  .buy .price-r .arr { color: var(--muted); font-size: 16px; }
+
+  .see-all-link { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; padding: 12px 14px; border: 1px dashed var(--line-strong); border-radius: 12px; background: transparent; text-decoration: none; cursor: pointer; transition: background .12s, border-color .12s; }
+  .see-all-link:hover { background: #fff; border-color: var(--bucket); }
+  .see-all-link .label-l { font-size: 13.5px; font-weight: 600; color: var(--bucket); letter-spacing: .1px; }
+  .see-all-link .label-l .em { font-family: 'Fraunces', serif; font-style: italic; font-weight: 500; }
+  .see-all-link .chev { color: var(--bucket); font-size: 14px; transition: transform .15s; }
+  .buy-group.expanded .see-all-link .chev { transform: rotate(180deg); }
+  .buy-group.expanded .see-all-link .text-default { display: none; }
+  .buy-group:not(.expanded) .see-all-link .text-expanded { display: none; }
+  .buy-group:not(.expanded) .buy.hidden-extra { display: none; }
+
+  /* Full-store CTA */
+  .full-store-cta { margin-top: 36px; background: linear-gradient(180deg, var(--cream-warm) 0%, var(--cream-deep) 100%); border-radius: 22px; padding: 28px 24px 24px; text-align: left; position: relative; overflow: hidden; }
+  .full-store-cta::before { content: ''; position: absolute; top: -40px; right: -40px; width: 140px; height: 140px; background: var(--bucket); opacity: .08; border-radius: 50%; }
+  .full-store-cta .lab { font-size: 10.5px; letter-spacing: 2px; text-transform: uppercase; color: var(--bucket); font-weight: 700; margin-bottom: 8px; }
+  .full-store-cta h3 { font-size: 26px; font-weight: 700; letter-spacing: -.4px; line-height: 1.1; margin-bottom: 10px; color: var(--ink); }
+  .full-store-cta h3 .em { font-family: 'Fraunces', serif; font-style: italic; font-weight: 500; color: var(--bucket); }
+  .full-store-cta p { font-size: 14px; color: var(--ink-2); line-height: 1.5; margin-bottom: 18px; }
+  .full-store-cta .preview-row { display: flex; gap: 6px; margin-bottom: 18px; }
+  .full-store-cta .icon-bubble { width: 36px; height: 36px; border-radius: 50%; background: #fff; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .full-store-cta .more-bubble { width: 36px; height: 36px; border-radius: 50%; background: var(--bucket); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+  .btn-store { display: flex; align-items: center; justify-content: space-between; width: 100%; border: 0; cursor: pointer; font-family: inherit; padding: 16px 22px; border-radius: 999px; font-size: 15px; font-weight: 500; letter-spacing: .2px; text-decoration: none; background: var(--navy-deep); color: #fff; transition: transform .12s, background .12s; }
+  .btn-store:active { transform: scale(.98); }
+  .btn-store:hover { background: var(--navy); }
+
+  footer { background: var(--cream-deep); padding: 22px; text-align: center; color: var(--ink-2); font-size: 11px; line-height: 1.6; }
+  footer a { color: var(--ink); }
+  footer .small { font-size: 10px; opacity: .65; margin-top: 4px; }
+
+  /* State visibility — driven by body[data-state="yes|maybe|no"] */
+  body[data-state="yes"] .only-maybe, body[data-state="yes"] .only-no,
+  body[data-state="maybe"] .only-yes, body[data-state="maybe"] .only-no,
+  body[data-state="no"] .only-yes, body[data-state="no"] .only-maybe { display: none; }
+
+  /* ============ FLOATING SAVE-THIS BUTTON (preserved from prior build) ============ */
   .save-fab {
-    position: fixed;
-    right: 16px;
-    bottom: 20px;
+    position: fixed; right: 16px; bottom: 20px;
     bottom: calc(20px + env(safe-area-inset-bottom, 0));
-    z-index: 50;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 16px 12px 14px;
-    border: 0;
-    border-radius: 999px;
-    background: var(--warm-deep);
-    color: #fff;
-    font-weight: 600;
-    font-size: 13px;
+    z-index: 50; display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 16px 12px 14px; border: 0; border-radius: 999px;
+    background: var(--bucket); color: #fff; font-weight: 600; font-size: 13px;
     letter-spacing: .2px;
-    box-shadow:
-      0 12px 28px rgba(20, 12, 4, .35),
-      0 2px 4px rgba(20, 12, 4, .18),
-      inset 0 1px 0 rgba(255,255,255,.10);
+    box-shadow: 0 12px 28px rgba(20, 12, 4, .35), 0 2px 4px rgba(20, 12, 4, .18), inset 0 1px 0 rgba(255,255,255,.10);
     transition: transform .2s ease, box-shadow .2s ease;
     animation: fabIn .55s cubic-bezier(.34, 1.4, .64, 1) .3s both;
   }
-  .save-fab:hover {
-    transform: translateY(-2px);
-    box-shadow:
-      0 16px 36px rgba(20, 12, 4, .42),
-      0 2px 4px rgba(20, 12, 4, .18),
-      inset 0 1px 0 rgba(255,255,255,.12);
-  }
+  .save-fab:hover { transform: translateY(-2px); box-shadow: 0 16px 36px rgba(20, 12, 4, .42), 0 2px 4px rgba(20, 12, 4, .18), inset 0 1px 0 rgba(255,255,255,.12); }
   .save-fab:active { transform: scale(.97); }
   .save-fab svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-  .save-fab .pulse {
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    box-shadow: 0 0 0 0 rgba(189, 142, 123, .55);
-    animation: pulse 2.6s ease-out infinite;
-  }
+  .save-fab .pulse { position: absolute; inset: 0; border-radius: inherit; box-shadow: 0 0 0 0 rgba(198, 143, 78, .55); animation: pulse 2.6s ease-out infinite; }
   @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(189, 142, 123, .55); }
-    70% { box-shadow: 0 0 0 16px rgba(189, 142, 123, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(189, 142, 123, 0); }
+    0% { box-shadow: 0 0 0 0 rgba(198, 143, 78, .55); }
+    70% { box-shadow: 0 0 0 16px rgba(198, 143, 78, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(198, 143, 78, 0); }
   }
-  @keyframes fabIn {
-    from { transform: translateY(20px) scale(.85); opacity: 0; }
-    to   { transform: translateY(0) scale(1); opacity: 1; }
-  }
-  .save-fab.saved {
-    background: var(--yes);
-    animation: none;
-  }
+  @keyframes fabIn { from { transform: translateY(20px) scale(.85); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; } }
+  .save-fab.saved { background: var(--yes); animation: none; }
   .save-fab.saved .pulse { display: none; }
 
-  /* ============================================
-     SAVE MODAL (bottom sheet)
-     ============================================ */
-  .scrim {
-    position: fixed;
-    inset: 0;
-    background: rgba(7, 24, 42, 0);
-    z-index: 100;
-    pointer-events: none;
-    transition: background .35s ease;
-  }
-  .scrim.open {
-    background: rgba(7, 24, 42, .55);
-    pointer-events: auto;
-  }
+  /* Scrim + bottom sheet */
+  .scrim { position: fixed; inset: 0; background: rgba(20, 30, 40, 0); z-index: 100; pointer-events: none; transition: background .35s ease; }
+  .scrim.open { background: rgba(20, 30, 40, .55); pointer-events: auto; }
   .save-sheet {
-    position: fixed;
-    left: 0; right: 0;
-    bottom: 0;
-    z-index: 110;
-    background: var(--cream);
-    border-radius: 24px 24px 0 0;
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 110;
+    background: var(--offwhite); border-radius: 24px 24px 0 0;
     padding: 18px 22px calc(28px + env(safe-area-inset-bottom, 0));
-    max-width: 480px;
-    margin: 0 auto;
-    transform: translateY(100%);
-    transition: transform .42s cubic-bezier(.22,.61,.36,1);
+    max-width: 480px; margin: 0 auto;
+    transform: translateY(100%); transition: transform .42s cubic-bezier(.22,.61,.36,1);
     box-shadow: 0 -20px 60px rgba(0,0,0,.25);
-    max-height: 90vh;
-    overflow-y: auto;
+    max-height: 90vh; overflow-y: auto;
   }
   .save-sheet.open { transform: translateY(0); }
-  .sheet-grabber {
-    width: 38px; height: 4px;
-    background: rgba(0,0,0,.12);
-    border-radius: 999px;
-    margin: 0 auto 18px;
-  }
-  .sheet-eyebrow {
-    text-align: center;
-    font-weight: 700;
-    font-size: 10px;
-    letter-spacing: 2.2px;
-    text-transform: uppercase;
-    color: var(--warm-text);
-    margin-bottom: 8px;
-  }
-  .sheet-title {
-    text-align: center;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 1.1;
-    color: var(--warm-deep);
-    margin-bottom: 8px;
-    letter-spacing: -.4px;
-  }
-  .sheet-title .ital {
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-weight: 500;
-    color: var(--warm-tan);
-  }
-  .sheet-sub {
-    text-align: center;
-    font-size: 13px;
-    color: var(--ink-2);
-    line-height: 1.45;
-    margin: 0 auto 22px;
-    max-width: 320px;
-  }
+  .sheet-grabber { width: 38px; height: 4px; background: rgba(0,0,0,.12); border-radius: 999px; margin: 0 auto 18px; }
+  .sheet-eyebrow { text-align: center; font-weight: 700; font-size: 10px; letter-spacing: 2.2px; text-transform: uppercase; color: var(--bucket); margin-bottom: 8px; }
+  .sheet-title { text-align: center; font-weight: 700; font-size: 24px; line-height: 1.1; color: var(--ink); margin-bottom: 8px; letter-spacing: -.4px; }
+  .sheet-title .ital { font-family: 'Fraunces', serif; font-style: italic; font-weight: 500; color: var(--bucket); }
+  .sheet-sub { text-align: center; font-size: 13px; color: var(--ink-2); line-height: 1.45; margin: 0 auto 22px; max-width: 320px; }
 
-  .phone-row {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 14px;
-  }
-  .phone-cc {
-    background: var(--white);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 0 14px;
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--warm-deep);
-    height: 54px;
-    appearance: none;
+  .phone-row { display: flex; gap: 10px; margin-bottom: 14px; }
+  .phone-cc { background: #fff; border: 1px solid var(--line-strong); border-radius: 12px; padding: 0 14px; font-size: 15px; font-weight: 600; color: var(--ink); height: 54px; appearance: none;
     background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='none' stroke='%23756359' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' d='M1 1l4 4 4-4'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    padding-right: 32px;
+    background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px;
   }
-  .phone-input {
-    flex: 1;
-    background: var(--white);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 0 16px;
-    font-size: 17px;
-    font-weight: 500;
-    color: var(--ink);
-    height: 54px;
-    font-family: inherit;
-    letter-spacing: .3px;
-    -webkit-appearance: none;
-  }
+  .phone-input { flex: 1; background: #fff; border: 1px solid var(--line-strong); border-radius: 12px; padding: 0 16px; font-size: 17px; font-weight: 500; color: var(--ink); height: 54px; font-family: inherit; letter-spacing: .3px; -webkit-appearance: none; }
   .phone-input::placeholder { color: var(--muted); }
-  .phone-input:focus { outline: 2px solid var(--warm-tan); outline-offset: -1px; border-color: var(--warm-tan); }
-
-  .consent {
-    display: flex; align-items: flex-start; gap: 10px;
-    margin: 16px 0 18px;
-    font-size: 11.5px; line-height: 1.4;
-    color: var(--ink-2);
-  }
-  .consent input { margin-top: 2px; flex-shrink: 0; accent-color: var(--warm-deep); }
-  .consent a { color: var(--warm-deep); }
-
-  .sheet-cta {
-    width: 100%;
-    background: var(--warm-deep);
-    color: #fff;
-    border: 0;
-    padding: 16px 24px;
-    border-radius: 14px;
-    font-weight: 700;
-    font-size: 15px;
-    letter-spacing: .2px;
-    box-shadow: 0 8px 18px rgba(117,99,89,.35);
-    transition: transform .2s ease, opacity .2s ease;
-  }
+  .phone-input:focus { outline: 2px solid var(--bucket); outline-offset: -1px; border-color: var(--bucket); }
+  .consent { display: flex; align-items: flex-start; gap: 10px; margin: 16px 0 18px; font-size: 11.5px; line-height: 1.4; color: var(--ink-2); }
+  .consent input { margin-top: 2px; flex-shrink: 0; accent-color: var(--bucket); }
+  .consent a { color: var(--bucket); }
+  .sheet-cta { width: 100%; background: var(--navy-deep); color: #fff; border: 0; padding: 16px 24px; border-radius: 14px; font-weight: 700; font-size: 15px; letter-spacing: .2px; box-shadow: 0 8px 18px rgba(31, 45, 61, .35); transition: transform .2s ease, opacity .2s ease; }
   .sheet-cta:disabled { opacity: .4; cursor: not-allowed; box-shadow: none; }
   .sheet-cta:not(:disabled):hover { transform: translateY(-1px); }
   .sheet-cta:not(:disabled):active { transform: scale(.98); }
-  .sheet-cancel {
-    margin-top: 10px;
-    width: 100%;
-    background: transparent;
-    border: 0;
-    color: var(--ink-2);
-    font-weight: 500;
-    font-size: 13px;
-    padding: 10px;
-  }
+  .sheet-cancel { margin-top: 10px; width: 100%; background: transparent; border: 0; color: var(--ink-2); font-weight: 500; font-size: 13px; padding: 10px; }
 
-  /* Success state */
-  .save-sheet .success {
-    display: none;
-    padding-top: 8px;
-  }
+  .save-sheet .success { display: none; padding-top: 8px; }
   .save-sheet.success-state .form  { display: none; }
   .save-sheet.success-state .success { display: block; }
-  .check-mark {
-    width: 64px; height: 64px;
-    border-radius: 50%;
-    background: var(--yes);
-    margin: 0 auto 18px;
-    display: grid; place-items: center;
-    animation: checkIn .45s cubic-bezier(.34, 1.4, .64, 1) both;
-  }
+  .check-mark { width: 64px; height: 64px; border-radius: 50%; background: var(--yes); margin: 0 auto 18px; display: grid; place-items: center; animation: checkIn .45s cubic-bezier(.34, 1.4, .64, 1) both; }
   .check-mark svg { width: 28px; height: 28px; stroke: #fff; stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-  @keyframes checkIn {
-    from { transform: scale(.4); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-  }
-  .phone-preview {
-    margin: 18px auto 8px;
-    max-width: 320px;
-    padding: 16px;
-    background: var(--cream-3);
-    border-radius: 18px 18px 18px 4px;
-    font-size: 13.5px;
-    line-height: 1.45;
-    color: var(--ink);
-    position: relative;
-  }
-  .phone-preview::before {
-    content: '';
-    position: absolute;
-    bottom: -1px; left: -1px;
-    width: 18px; height: 18px;
-    background: var(--cream-3);
-    border-radius: 0 18px 0 0;
-    transform: skewX(-20deg);
-    z-index: -1;
-  }
-  .phone-preview .label {
-    font-size: 10.5px;
-    text-transform: uppercase;
-    letter-spacing: 1.3px;
-    color: var(--warm-text);
-    font-weight: 700;
-    margin-bottom: 6px;
-  }
+  @keyframes checkIn { from { transform: scale(.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .phone-preview { margin: 18px auto 8px; max-width: 320px; padding: 16px; background: var(--cream-warm); border-radius: 18px 18px 18px 4px; font-size: 13.5px; line-height: 1.45; color: var(--ink); position: relative; }
+  .phone-preview .label { font-size: 10.5px; text-transform: uppercase; letter-spacing: 1.3px; color: var(--muted); font-weight: 700; margin-bottom: 6px; }
 
-  /* Empty-state (no session data — direct visit) */
-  .empty-state {
-    padding: 60px 24px;
-    text-align: center;
-    background: var(--cream);
-    min-height: 100vh;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
+  /* Empty state (direct visit, no quiz data) */
+  .empty-state { padding: 60px 24px; text-align: center; background: var(--cream); min-height: 100vh; display: none; flex-direction: column; align-items: center; justify-content: center; }
   body.no-data .results-shell { display: none; }
   body.no-data .save-fab { display: none; }
   body.no-data .empty-state { display: flex; }
-  .empty-state h2 {
-    font-weight: 700;
-    font-size: 24px;
-    color: var(--warm-deep);
-    margin-bottom: 10px;
-    letter-spacing: -.4px;
-  }
-  .empty-state p {
-    font-size: 14px;
-    color: var(--ink-2);
-    margin-bottom: 22px;
-    max-width: 320px;
-  }
-  .empty-state a {
-    display: inline-block;
-    padding: 14px 28px;
-    background: var(--warm-deep);
-    color: #fff;
-    text-decoration: none;
-    border-radius: 999px;
-    font-weight: 600;
-    font-size: 14px;
-  }
+  .empty-state h2 { font-weight: 700; font-size: 24px; color: var(--ink); margin-bottom: 10px; letter-spacing: -.4px; }
+  .empty-state p { font-size: 14px; color: var(--ink-2); margin-bottom: 22px; max-width: 320px; }
+  .empty-state a { display: inline-block; padding: 14px 28px; background: var(--navy-deep); color: #fff; text-decoration: none; border-radius: 999px; font-weight: 600; font-size: 14px; }
 
   /* Dev chip */
-  .dev-chip {
-    position: fixed; top: 8px; left: 8px;
-    background: rgba(0,0,0,.7); color: #fff;
-    font-size: 10px; padding: 4px 8px;
-    border-radius: 6px; z-index: 9999;
-    font-family: monospace;
-    pointer-events: none;
-    opacity: .8;
-  }
-
-  @media (min-width: 480px) {
-    .save-sheet { border-radius: 24px; bottom: 24px; left: 50%; transform: translate(-50%, calc(100% + 24px)); max-width: 460px; }
-    .save-sheet.open { transform: translate(-50%, 0); }
-  }
+  .dev-chip { position: fixed; top: 8px; left: 8px; background: rgba(0,0,0,.7); color: #fff; font-size: 10px; padding: 4px 8px; border-radius: 6px; z-index: 9999; font-family: monospace; pointer-events: none; opacity: .8; }
 </style>
 </head>
-<body>
+<body data-state="yes">
 
-<div class="results-shell" id="resultsShell">
+<div class="results-shell">
 
-  <!-- ============ BLOCK 1: Verdict + Provider CTA ============ -->
-  <section class="verdict-block">
-    <header class="verdict-header">
-      <span class="logo-sm"><span class="pep">Peptide</span>Match</span>
-      <span class="verdict-chip" id="verdictChip">
-        <span class="dot"></span>
-        <span id="verdictChipLabel">Strong fit</span>
-      </span>
+  <!-- ============ BLOCK 1 — verdict + provider CTA ============ -->
+  <section class="block-1">
+    <header class="topbar">
+      <div class="logo">Peptide<span>Match</span></div>
+      <button class="menu-btn" aria-label="Menu"><span></span><span></span></button>
     </header>
 
-    <p class="step-label">Your results</p>
-    <p class="verdict-name" id="verdictName">Your profile: —</p>
-    <h1 class="verdict-headline" id="verdictHeadline">Loading your match…</h1>
+    <div class="v-row only-yes"><span class="v-chip yes"><span class="dot"></span><span id="chipYesLabel">Strong fit</span></span></div>
+    <div class="v-row only-maybe"><span class="v-chip maybe"><span class="dot"></span><span id="chipMaybeLabel">Worth exploring</span></span></div>
+    <div class="v-row only-no"><span class="v-chip no"><span class="dot"></span><span id="chipNoLabel">Not right, right now</span></span></div>
 
-    <div class="reason" id="verdictReason">
-      We're reading your answers and matching you to the right peptide profile.
+    <h1 class="headline only-yes" id="headlineYes">Peptides look like <span class="accent">a strong fit</span> for you.</h1>
+    <h1 class="headline only-maybe" id="headlineMaybe">Peptides could fit — <span class="accent">one thing first.</span></h1>
+    <h1 class="headline only-no" id="headlineNo">Not the <span class="accent">right tool</span> right now.</h1>
+
+    <p class="supporting-line only-yes" id="supportingLine"><b>3 of 12 peptides</b> fit your cluster · top 18% match this week.</p>
+
+    <div class="inline-note maybe only-maybe">
+      <div class="icon">!</div>
+      <div class="text" id="maybeNote"><b>Get bloodwork first.</b>~30 min at home. We'll keep your match warm.</div>
+    </div>
+    <div class="inline-note no only-no">
+      <div class="icon">·</div>
+      <div class="text" id="noNote"><b>Re-take in 90 days.</b>If your foundations move, peptides may be the call then.</div>
     </div>
 
-    <div class="peptide-stack" id="peptideStack"></div>
+    <div class="because only-yes">
+      <div class="lab">Because you said</div>
+      <ul id="becauseList"></ul>
+    </div>
 
-    <button class="provider-cta" id="providerCta">Book a free 15-minute provider call →</button>
-    <button class="provider-cta-sub" id="providerCtaSub">Browse providers in your state</button>
+    <div class="pep-section-label only-yes">Step 02 · Your top match + 2 alternatives</div>
+    <div class="pep-section-label only-maybe">Step 02 · Likely top match</div>
 
-    <div class="trust-strip">
-      <span>100+ vetted providers</span>
-      <span class="dot-sep">•</span>
-      <span>Telehealth in 47 states</span>
-      <span class="dot-sep">•</span>
-      <span>First call is free</span>
+    <div class="pep-stack only-yes" id="pepStackYes"></div>
+    <div class="pep-stack only-maybe" id="pepStackMaybe"></div>
+
+    <div class="provider-cta only-yes">
+      <div class="step-label">Step 03</div>
+      <h3>Talk to a <span class="accent">peptide-trained</span> provider.</h3>
+      <button class="btn btn-primary" id="ctaBookYes">book my free 15-min call <span class="arrow">→</span></button>
+      <div class="free-line"><span>15 min</span> · <span>free</span> · <span>no commitment</span></div>
+    </div>
+    <div class="provider-cta only-maybe">
+      <div class="step-label">Optional</div>
+      <h3>Want to talk <span class="accent">while labs come back?</span></h3>
+      <button class="btn btn-primary" id="ctaBookMaybe">book my free 15-min call <span class="arrow">→</span></button>
+      <button class="btn btn-secondary" id="ctaSaveMaybe">save my match · email me</button>
+    </div>
+    <div class="provider-cta only-no">
+      <div class="step-label">When you're ready</div>
+      <h3>We'll be <span class="accent">here.</span></h3>
+      <button class="btn btn-primary" id="ctaSaveNo">save my match · email me</button>
+      <button class="btn btn-secondary" id="ctaRetakeNo">re-take the assessment</button>
     </div>
   </section>
 
-  <!-- ============ BLOCK 2: Alternatives ============ -->
-  <section class="alt-block">
-    <p class="eyebrow" id="altEyebrow">Or start here today</p>
-    <h3 id="altHeadline">Four things that <span class="ital">help</span> — no provider needed</h3>
-    <p class="alt-sub" id="altSub">Hand-picked for your profile. Mix of supplements, devices, and a free guide so there's a next step at every budget.</p>
-    <div class="alt-list" id="altList"></div>
+  <!-- ============ BLOCK 2 — pair with your protocol ============ -->
+  <section class="block-2">
+    <div class="block-2-header">
+      <div class="lab">Pair with your protocol</div>
+      <h2 id="block2Headline">Other moves <span class="accent">worth deciding on</span> for energy &amp; focus.</h2>
+    </div>
+
+    <!-- Three groups: Tests / Products / People. Populated dynamically by JS. -->
+    <div class="buy-group" data-group="tests"></div>
+    <div class="buy-group" data-group="products"></div>
+    <div class="buy-group" data-group="people"></div>
+
+    <!-- Full-store CTA -->
+    <div class="full-store-cta">
+      <div class="lab">Your store</div>
+      <h3 id="storeHeadline">Everything for <span class="em">energy &amp; focus.</span></h3>
+      <p id="storeSub">32 products and services, curated for women who matched to <strong id="storePeptide">CJC + Ipamorelin</strong>. Filterable by price.</p>
+      <div class="preview-row" id="storePreview"></div>
+      <a href="store.html" id="storeLink" class="btn-store"><span>open your full store</span><span class="arrow">→</span></a>
+    </div>
   </section>
 
-  <footer class="results-footer">
-    For educational purposes only. Not medical advice. Consult a licensed provider before starting any protocol.<br>&copy; 2026 PeptideMatch
+  <footer>
+    Some links are partner / affiliate. <a href="#">Disclosures →</a>
+    <div class="small">PeptideMatch · Educational. Not medical advice.</div>
   </footer>
 </div>
 
-<!-- ============ EMPTY STATE (direct-visit with no quiz data) ============ -->
+<!-- Empty state -->
 <div class="empty-state">
   <h2>No results yet</h2>
   <p>Take the 2-minute quiz and we'll match you to the right peptide profile.</p>
   <a href="/">Start the quiz →</a>
 </div>
 
-<!-- ============================================
-     FLOATING SAVE-THIS BUTTON
-     ============================================ -->
+<!-- Floating Save This button (preserved from prior build) -->
 <button class="save-fab" id="saveFab" aria-label="Save my results">
   <span class="pulse"></span>
   <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
   <span id="saveFabLabel">Save This</span>
 </button>
 
-<!-- ============================================
-     SCRIM + SAVE SHEET
-     ============================================ -->
 <div class="scrim" id="scrim"></div>
 
 <aside class="save-sheet" id="saveSheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
   <div class="sheet-grabber"></div>
-
   <div class="form">
     <p class="sheet-eyebrow">Save your results</p>
     <h2 class="sheet-title" id="sheetTitle">Get your match <span class="ital">texted to you</span></h2>
-    <p class="sheet-sub">We'll text your profile, your peptide match, and the alternatives — so you can come back to all of it whenever.</p>
-
+    <p class="sheet-sub">We'll text your profile, your peptide match, and the curated picks — so you can come back to all of it whenever.</p>
     <div class="phone-row">
       <select class="phone-cc" id="phoneCc" aria-label="Country code">
         <option value="+1" selected>🇺🇸 +1</option>
@@ -662,39 +355,24 @@
         <option value="+61">🇦🇺 +61</option>
         <option value="+1">🇨🇦 +1</option>
       </select>
-      <input
-        class="phone-input"
-        id="phoneInput"
-        type="tel"
-        inputmode="tel"
-        autocomplete="tel-national"
-        placeholder="(555) 123-4567"
-        maxlength="16"
-      >
+      <input class="phone-input" id="phoneInput" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="(555) 123-4567" maxlength="16">
     </div>
-
     <label class="consent">
       <input type="checkbox" id="consent" checked>
       <span>OK to receive a text from PeptideMatch with my results and an occasional check-in. Reply <strong>STOP</strong> anytime. Msg &amp; data rates may apply. <a href="#" onclick="return false">SMS terms</a>.</span>
     </label>
-
     <button class="sheet-cta" id="sheetCta" disabled>Text my results</button>
     <button class="sheet-cancel" id="sheetCancel">Not right now</button>
   </div>
-
   <div class="success">
-    <div class="check-mark">
-      <svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-    </div>
+    <div class="check-mark"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
     <p class="sheet-eyebrow">Sent</p>
     <h2 class="sheet-title">Check your phone <span class="ital">in a sec</span></h2>
     <p class="sheet-sub">Your results just went to <strong id="sentTo">your phone</strong>. The text has a link back to this page — bookmark it and come back anytime.</p>
-
     <div class="phone-preview">
       <p class="label">PeptideMatch · just now</p>
       <p id="previewMsg">Hi! Here's your PeptideMatch result…</p>
     </div>
-
     <button class="sheet-cta" id="sheetDone" style="background: var(--yes); margin-top: 18px;">Done</button>
   </div>
 </aside>
@@ -703,147 +381,138 @@
 
 <script>
 /* ============================================================
-   PeptideMatch V1 — Results page
-   Reads session data from sessionStorage (set by quiz on completion)
-   Falls back to URL params for share links
+   PeptideMatch V1 — Results page (matches 09_results experience/06)
+   Reads sessionStorage (from quiz) or URL params (share links).
+   Falls back to YES + energy_recovery for direct/empty visits.
    ============================================================ */
 
-const PROFILE_MAP = {
+/* ---------- Per-bucket content ----------
+   - displayName  → short, plain copy ("energy & focus", "joint recovery", ...)
+   - topPeptides  → 3 cards in the verdict block (top + 2 alternates)
+   - tests/products/people → group lists for BLOCK 2 (showing 3–4 + expand)
+*/
+const BUCKETS = {
+  energy_recovery: {
+    displayName: 'energy & focus',
+    storeName: 'energy & focus',
+    storeBlurb: 'curated for women who matched to CJC + Ipamorelin',
+    topPeptides: [
+      { name: 'CJC + Ipamorelin', initials: 'CJ', meta: '8–12 weeks' },
+      { name: 'BPC-157',          initials: 'BP', meta: '4–8 weeks' },
+      { name: 'Thymosin Alpha-1', initials: 'Tα', meta: '6–10 weeks' }
+    ],
+    tests: [
+      ['🧪','Lab panel','Function Health','$499/yr'],
+      ['📊','Metabolic data','Levels CGM','$199 + sub'],
+      ['🩸','Cortisol panel','DUTCH 4-point test','$300'],
+      ['🌙','Hormone tracking','Mira monitor','$199 + sub'],
+      ['🧬','Annual deep panel','InsideTracker Ultimate','$599'],
+      ['⚗️','Hormone optimization','Marek Health','$1,500/yr'],
+      ['🦴','Bone density','DEXA scan','$300'],
+      ['🦠','Gut panel','Genova GI','$699'],
+      ['❤️','Cardiovascular','Function CV+ panel','$499'],
+      ['🧠','Genetic testing','23andMe Health','$199']
+    ],
+    products: [
+      ['🛌','Sleep optimization','Eight Sleep Pod','$2,500'],
+      ['💍','Recovery tracking','Oura Ring','$299 + sub'],
+      ['🔥','Recovery','HigherDose sauna blanket','$699'],
+      ['🦵','Active recovery','Therabody compression boots','$700'],
+      ['🧊','Cold therapy','The Plunge','$4,995'],
+      ['🔴','Red light','Joovv panel','$1,500'],
+      ['⏰','Sleep environment','Hatch Restore','$200'],
+      ['💪','Recovery','Theragun Pro','$300'],
+      ['💊','Foundational','Magnesium glycinate','$25/mo'],
+      ['🥬','Daily greens','AG1 / Athletic Greens','$99/mo'],
+      ['⚡','Longevity stack','Tru Niagen NMN/NR','$40/mo'],
+      ['🏋️','Performance','Premium creatine','$25/mo']
+    ],
+    people: [
+      ['🩺','Concierge medicine','Forward','$99/mo'],
+      ['🌿','Functional medicine','Parsley Health','$175/mo'],
+      ['💪','Personal training','Future','$199/mo'],
+      ['🏥','Premium concierge','Q.bio','$349/mo'],
+      ['🧬','Longevity workup','Modern Age','$1,500'],
+      ['🏋️‍♀️','Strength coaching','Caliber','$30/mo'],
+      ['💉','IV therapy','NAD+ IV protocol','$300/session'],
+      ['😴','Sleep specialty','Sleep specialist','$500+'],
+      ['🧘','Mental health','Alma therapist match','$150/session'],
+      ['🍽️','Nutrition coaching','MacroFactor','$72/yr']
+    ]
+  },
   joint_tendon: {
-    name: 'The Repair Profile',
-    headline: v => v === 'YES'
-      ? 'BPC-157 is a <span class="em">strong fit</span> for the recovery and joint pain you described.'
-      : 'BPC-157 may be a fit — let\'s get you set up to confirm.',
-    peptides: [
-      { name: 'BPC-157', tag: 'Best match for you', label: 'The tissue-repair peptide', timeline: '4–8 weeks', admin: 'Subcutaneous', cost: '$150–$300/mo' },
-      { name: 'TB-500', tag: '', label: 'Tendon + ligament recovery', timeline: '6–10 weeks', admin: 'Subcutaneous', cost: '$200–$350/mo' },
-      { name: 'Collagen + curcumin', tag: 'OTC option', label: 'Connective tissue support, oral', timeline: '8–12 weeks', admin: 'Oral', cost: '$45–$75/mo' }
+    displayName: 'joint & recovery',
+    storeName: 'joint recovery',
+    storeBlurb: 'curated for women who matched to BPC-157',
+    topPeptides: [
+      { name: 'BPC-157', initials: 'BP', meta: '4–8 weeks' },
+      { name: 'TB-500',  initials: 'TB', meta: '6–10 weeks' },
+      { name: 'Collagen + curcumin', initials: 'C+', meta: '8–12 weeks' }
     ]
   },
   body_composition: {
-    name: 'The Recomp Profile',
-    headline: v => v === 'YES'
-      ? 'Tesamorelin + CJC/Ipamorelin are a <span class="em">strong fit</span> for the stubborn weight you described.'
-      : 'A growth-hormone optimizer could be a fit — with a couple of things to handle first.',
-    peptides: [
-      { name: 'Tesamorelin', tag: 'Best match for you', label: 'FDA-approved, visceral fat focus', timeline: '12–16 weeks', admin: 'Subcutaneous', cost: '$400–$700/mo' },
-      { name: 'CJC-1295 + Ipamorelin', tag: '', label: 'Growth hormone optimizer', timeline: '8–12 weeks', admin: 'Subcutaneous', cost: '$300–$500/mo' },
-      { name: 'GLP-1 partner', tag: 'Alt path', label: 'Semaglutide / Tirzepatide via telehealth', timeline: '4–8 weeks', admin: 'Subcutaneous', cost: '$199–$399/mo' }
-    ]
-  },
-  energy_recovery: {
-    name: 'The Energy Rebuild Profile',
-    headline: v => v === 'YES'
-      ? 'CJC-1295 + Ipamorelin are a <span class="em">strong fit</span> for the fatigue and recovery you described.'
-      : 'A growth-hormone optimizer could be a fit — with one prerequisite first.',
-    peptides: [
-      { name: 'CJC-1295 + Ipamorelin', tag: 'Best match for you', label: 'Growth hormone optimizer', timeline: '8–12 weeks', admin: 'Subcutaneous', cost: '$300–$500/mo' },
-      { name: 'BPC-157', tag: '', label: 'Systemic repair and gut-brain axis', timeline: '4–8 weeks', admin: 'Subcutaneous', cost: '$150–$300/mo' },
-      { name: 'Thymosin Alpha-1', tag: '', label: 'Immune-energy support', timeline: '6–10 weeks', admin: 'Subcutaneous', cost: '$300–$450/mo' }
+    displayName: 'body composition',
+    storeName: 'body composition',
+    storeBlurb: 'curated for women who matched to Tesamorelin + CJC',
+    topPeptides: [
+      { name: 'Tesamorelin', initials: 'Tm', meta: '12–16 weeks' },
+      { name: 'CJC + Ipamorelin', initials: 'CJ', meta: '8–12 weeks' },
+      { name: 'GLP-1 partner', initials: 'GL', meta: '4–8 weeks' }
     ]
   },
   skin_aging: {
-    name: 'The Radiance Profile',
-    headline: v => v === 'YES'
-      ? 'GHK-Cu and Epitalon are a <span class="em">strong fit</span> for the skin changes you described.'
-      : 'GHK-Cu could be a fit — and there are topical paths you can start today.',
-    peptides: [
-      { name: 'GHK-Cu', tag: 'Best match for you', label: 'Skin regeneration + collagen', timeline: '6–12 weeks', admin: 'Topical or subcutaneous', cost: '$80–$250/mo' },
-      { name: 'Epitalon', tag: '', label: 'Cellular anti-aging', timeline: '12+ weeks', admin: 'Subcutaneous', cost: '$300–$450/cycle' },
-      { name: 'CJC-1295 + Ipamorelin', tag: '', label: 'Growth hormone — indirect skin benefits', timeline: '8–12 weeks', admin: 'Subcutaneous', cost: '$300–$500/mo' }
+    displayName: 'skin & anti-aging',
+    storeName: 'skin & anti-aging',
+    storeBlurb: 'curated for women who matched to GHK-Cu',
+    topPeptides: [
+      { name: 'GHK-Cu',   initials: 'GH', meta: '6–12 weeks' },
+      { name: 'Epitalon', initials: 'Ep', meta: '12+ weeks' },
+      { name: 'CJC + Ipamorelin', initials: 'CJ', meta: '8–12 weeks' }
     ]
   },
   sleep: {
-    name: 'The Deep Sleep Profile',
-    headline: v => v === 'YES'
-      ? 'DSIP and the growth-hormone optimizer are a <span class="em">strong fit</span> for the sleep you described.'
-      : 'A sleep-focused protocol could be a fit — with a couple of things to handle first.',
-    peptides: [
-      { name: 'DSIP', tag: 'Best match for you', label: 'Delta sleep inducing peptide', timeline: '2–6 weeks', admin: 'Subcutaneous', cost: '$200–$350/mo' },
-      { name: 'CJC-1295 + Ipamorelin', tag: '', label: 'Deeper sleep architecture', timeline: '2–4 weeks', admin: 'Subcutaneous', cost: '$300–$500/mo' },
-      { name: 'Epitalon', tag: '', label: 'Circadian rhythm reset', timeline: '4–8 weeks', admin: 'Subcutaneous', cost: '$300–$450/cycle' }
+    displayName: 'sleep',
+    storeName: 'sleep',
+    storeBlurb: 'curated for women who matched to DSIP',
+    topPeptides: [
+      { name: 'DSIP', initials: 'DS', meta: '2–6 weeks' },
+      { name: 'CJC + Ipamorelin', initials: 'CJ', meta: '2–4 weeks' },
+      { name: 'Epitalon', initials: 'Ep', meta: '4–8 weeks' }
     ]
   },
   perimenopause: {
-    name: 'The Hormonal Bridge Profile',
-    headline: () => 'What you\'re describing sounds <span class="em">hormonal</span> — start with a hormone partner; peptides can come second.',
-    peptides: [
-      { name: 'HRT partner consult', tag: 'Best match for you', label: 'Midi / Alloy / Evernow telehealth', timeline: '4–8 weeks', admin: 'Oral or patch', cost: '$50–$200/mo' },
-      { name: 'PT-141', tag: '', label: 'Libido + arousal', timeline: '4–8 weeks', admin: 'Subcutaneous', cost: '$150–$300/mo' },
-      { name: 'Kisspeptin-10', tag: 'Emerging', label: 'Hormonal axis support', timeline: '8–12 weeks', admin: 'Subcutaneous', cost: '$350–$500/mo' }
+    displayName: 'hormones',
+    storeName: 'hormonal balance',
+    storeBlurb: 'routed primarily to an HRT partner; peptides as adjunct',
+    topPeptides: [
+      { name: 'HRT partner consult', initials: 'HR', meta: '4–8 weeks' },
+      { name: 'PT-141',          initials: 'PT', meta: '4–8 weeks' },
+      { name: 'Kisspeptin-10',   initials: 'Ks', meta: '8–12 weeks' }
     ]
   },
   contraindicated: {
-    name: 'See your doctor first',
-    headline: () => 'Peptides aren\'t the right tool <span class="em">right now</span> — let\'s get you to the right one.',
-    peptides: []
+    displayName: 'foundations',
+    storeName: 'foundations',
+    storeBlurb: 'a short menu so you leave with something useful',
+    topPeptides: []
   },
   too_young: {
-    name: 'Foundations first',
-    headline: () => 'Peptides can wait — at your age, your body\'s already doing the work peptides help with later.',
-    peptides: []
+    displayName: 'foundations',
+    storeName: 'foundations',
+    storeBlurb: 'what moves the needle before peptides become useful',
+    topPeptides: []
   }
 };
 
-const ALT_MAP = {
-  joint_tendon: [
-    { icon: 'beaker', name: 'Function Health lab panel', price: '$499', desc: 'Inflammation + recovery markers your provider will want before any protocol.', cta: 'Order labs' },
-    { icon: 'pill',   name: 'Collagen peptides + curcumin', price: '$45/mo', desc: 'The OTC starting point. Pairs with BPC-157 later if you upgrade.', cta: 'See picks' },
-    { icon: 'device', name: 'Theragun massage gun', price: '$199', desc: 'Recovery between training days. Reduces soreness immediately.', cta: 'View on Amazon' },
-    { icon: 'book',   name: 'The Recovery Foundations Guide', price: 'Free', desc: 'A 12-page PDF — sleep, protein, and the two stretches that beat most supplements.', cta: 'Download free' }
-  ],
-  body_composition: [
-    { icon: 'pill',   name: 'GLP-1 telehealth (Ro / Hers)', price: '$199–$399/mo', desc: 'Semaglutide or Tirzepatide if peptides aren\'t a fit yet. Provider-managed.', cta: 'Start consult' },
-    { icon: 'device', name: 'Withings body comp scale', price: '$149', desc: 'Tracks body fat %, muscle, water. Daily data > weekly weigh-ins.', cta: 'View on Amazon' },
-    { icon: 'pill',   name: 'Premium protein + berberine', price: '$65/mo', desc: 'The foundation stack. Bigger lever than most realize.', cta: 'See picks' },
-    { icon: 'book',   name: 'The 12-week recomp protocol', price: 'Free', desc: 'Training split, macros, and how to know it\'s working.', cta: 'Download free' }
-  ],
-  energy_recovery: [
-    { icon: 'beaker', name: 'Function Health lab panel', price: '$499', desc: 'Thyroid, iron, vitamin D, cortisol — the four most-missed energy drains.', cta: 'Order labs' },
-    { icon: 'device', name: 'Oura ring', price: '$349', desc: 'Sleep + HRV tracking. Your provider will want this data.', cta: 'View Oura' },
-    { icon: 'pill',   name: 'Magnesium glycinate + creatine', price: '$35/mo', desc: 'The two supplements with the most data for energy and recovery in women 30+.', cta: 'See picks' },
-    { icon: 'book',   name: 'The Energy Floor Guide', price: 'Free', desc: 'Six checks that explain 80% of "I\'m tired all the time."', cta: 'Download free' }
-  ],
-  skin_aging: [
-    { icon: 'pill',   name: 'GHK-Cu topical serum', price: '$60/mo', desc: 'The OTC version of what your provider would prescribe. Start tonight.', cta: 'See picks' },
-    { icon: 'device', name: 'Omnilux LED face mask', price: '$395', desc: 'Red-light therapy. Stacks with peptides; bigger results than serums alone.', cta: 'View Omnilux' },
-    { icon: 'pill',   name: 'Tretinoin (Rx) + Vitamin C', price: '$25/mo', desc: '40 years of skin-aging data behind these two.', cta: 'See picks' },
-    { icon: 'book',   name: 'The Skin Foundations Guide', price: 'Free', desc: 'What to drop, what to add, and the one habit that beats every product.', cta: 'Download free' }
-  ],
-  sleep: [
-    { icon: 'beaker', name: 'Function Health lab panel', price: '$499', desc: 'Cortisol pattern + thyroid + ferritin. Sleep problems often live here.', cta: 'Order labs' },
-    { icon: 'device', name: 'Eight Sleep Pod cover', price: '$2,495', desc: 'Cooling + tracking. Premium pick if your sleep is the bottleneck.', cta: 'View Eight Sleep' },
-    { icon: 'pill',   name: 'Magnesium threonate + glycine', price: '$45/mo', desc: 'The supplement stack with the most sleep-architecture data.', cta: 'See picks' },
-    { icon: 'book',   name: 'The Sleep Reset Protocol', price: 'Free', desc: '5-day plan — caffeine cutoffs, evening light, and the one bedroom change.', cta: 'Download free' }
-  ],
-  perimenopause: [
-    { icon: 'pill',   name: 'Midi Health telehealth', price: 'From $250 first visit', desc: 'Menopause-trained clinicians. HRT prescribed where appropriate.', cta: 'Start consult' },
-    { icon: 'beaker', name: 'Mira hormone tracker', price: '$199', desc: 'At-home estradiol + progesterone tracking. What your clinician will want to see.', cta: 'View Mira' },
-    { icon: 'pill',   name: 'DIM + Magnesium + Omega-3', price: '$55/mo', desc: 'The supplement stack with the most peri-symptom data.', cta: 'See picks' },
-    { icon: 'book',   name: 'The Perimenopause Decoder', price: 'Free', desc: 'The 12 symptoms doctors miss and the labs to ask for.', cta: 'Download free' }
-  ],
-  contraindicated: [
-    { icon: 'book',   name: 'Talk to your physician first', price: 'Free', desc: 'A 1-page summary of your quiz answers to bring to your appointment.', cta: 'Download my summary' },
-    { icon: 'beaker', name: 'Function Health lab panel', price: '$499', desc: 'Comprehensive baseline. Useful no matter what you do next.', cta: 'Order labs' }
-  ],
-  too_young: [
-    { icon: 'book',   name: 'The Under-25 Foundations Guide', price: 'Free', desc: 'What actually moves the needle before peptides become useful.', cta: 'Download free' },
-    { icon: 'pill',   name: 'Creatine + magnesium + omega-3', price: '$35/mo', desc: 'The three with the strongest data for any goal at your age.', cta: 'See picks' },
-    { icon: 'device', name: 'Oura ring', price: '$349', desc: 'Sleep + HRV. The data will be worth a lot more in 5 years.', cta: 'View Oura' }
-  ]
-};
-
-const ALT_ICONS = {
-  beaker: '<svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v6L5 18a2 2 0 002 3h10a2 2 0 002-3l-5-9V3"/></svg>',
-  pill:   '<svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="8" rx="4"/><path d="M12 8v8"/></svg>',
-  device: '<svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="3"/><circle cx="12" cy="17" r="1.5"/></svg>',
-  book:   '<svg viewBox="0 0 24 24"><path d="M4 4h10a4 4 0 014 4v13H8a4 4 0 01-4-4V4z"/><path d="M4 17a4 4 0 014-4h10"/></svg>'
-};
-
-/* ---------- Event firing stub ---------- */
-function fire(event, data = {}) {
-  console.log('[event]', { event, ...session, ...data, ts: Date.now() });
-  // window.posthog?.capture(event, { ...session, ...data });
+/* Fallback to energy_recovery's product lists for buckets that don't define their own */
+function bucketGroups(bucket) {
+  const b = BUCKETS[bucket] || {};
+  const fallback = BUCKETS.energy_recovery;
+  return {
+    tests:    b.tests    || fallback.tests,
+    products: b.products || fallback.products,
+    people:   b.people   || fallback.people
+  };
 }
 
 /* ---------- Session load ---------- */
@@ -858,7 +527,6 @@ function loadSession() {
     const val = params.get(k);
     if (val) session.utm[k] = val;
   });
-  // Allow share-link param fallback
   const urlBucket  = params.get('bucket');
   const urlVerdict = params.get('verdict');
   const urlConf    = params.get('conf');
@@ -875,40 +543,59 @@ function loadSession() {
   if (variant) { chip.textContent = variant; chip.hidden = false; }
 }
 
-/* ---------- Reason copy ---------- */
-function reasonCopy(verdict, answers) {
-  const v = verdict.verdict, code = verdict.reasonCode;
-  if (code === 'contraindication') {
-    return '<strong>One quick thing:</strong> based on what you shared, this is a "talk to your doctor first" situation. Peptides interact with cancer, pregnancy, and disordered eating in ways we don\'t want to play with. The path below gets you to the right help.';
+/* ---------- Event firing (stub for PostHog) ---------- */
+function fire(event, data = {}) {
+  console.log('[event]', { event, ...session.utm, sessionId: session.sessionId, ...data, ts: Date.now() });
+  // window.posthog?.capture(event, ...);
+}
+
+function renderBuyGroup(group, title, accent, items, visibleCount) {
+  const el = document.querySelector(`[data-group="${group}"]`);
+  el.innerHTML = '';
+  const header = document.createElement('div');
+  header.className = 'buy-group-header';
+  header.innerHTML = `<div class="buy-group-title">${title}</div><div class="buy-group-count">${items.length} picks</div>`;
+  el.appendChild(header);
+
+  const stack = document.createElement('div');
+  stack.className = 'buy-stack';
+  items.forEach((item, idx) => {
+    const [emoji, cat, name, price] = item;
+    const a = document.createElement('a');
+    a.href = '#';
+    a.className = 'buy' + (idx >= visibleCount ? ' hidden-extra' : '');
+    a.innerHTML = `
+      <div class="img">${emoji}</div>
+      <div class="body">
+        <div class="cat">${cat}</div>
+        <div class="t">${name}</div>
+      </div>
+      <div class="price-r"><span>${price}</span><span class="arr">→</span></div>`;
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      fire('product_clicked', { group, product: name });
+    });
+    stack.appendChild(a);
+  });
+  el.appendChild(stack);
+
+  if (items.length > visibleCount) {
+    const seeAll = document.createElement('a');
+    seeAll.href = '#';
+    seeAll.className = 'see-all-link';
+    seeAll.innerHTML = `
+      <div class="label-l">
+        <span class="text-default">See all <span class="em">${items.length} ${group}</span></span>
+        <span class="text-expanded">Show fewer ${group}</span>
+      </div>
+      <span class="chev">▾</span>`;
+    seeAll.addEventListener('click', e => {
+      e.preventDefault();
+      const expanded = el.classList.toggle('expanded');
+      fire(expanded ? 'group_expanded' : 'group_collapsed', { group });
+    });
+    el.appendChild(seeAll);
   }
-  if (code === 'too_young') {
-    return '<strong>Honest answer:</strong> at your age, your body already makes more of the signals peptides restore later. Money is better spent on sleep, training, and the foundations below.';
-  }
-  if (code === 'labs_first') {
-    return '<strong>Almost there.</strong> A peptide protocol in this category needs recent bloodwork — yours is older than 12 months. Get a panel done first; we\'ll match you to a provider who can read it.';
-  }
-  if (code === 'foundations_first') {
-    return '<strong>Worth saying out loud:</strong> growth-hormone peptides amplify the work resistance training does. Without that base, the ROI is smaller. Start there for 6–8 weeks, then come back.';
-  }
-  if (code === 'oral_pivot') {
-    return '<strong>No problem.</strong> The strongest peptides for this profile are injection-based, but there\'s a credible oral path. We\'ve pulled both into the recommendations below.';
-  }
-  if (code === 'shared') {
-    return '<strong>This is a shared result.</strong> Take the 2-minute quiz yourself for a result matched to your body, your symptoms, and your goals.';
-  }
-  const sig = answers.q3 || [];
-  if (sig.length) {
-    const labels = {
-      brain_fog:'brain fog', hot_flashes:'temperature swings', stuck_weight:'stubborn weight',
-      sore_joints:'sore joints', dull_skin:'skin changes', mood_shifts:'new mood shifts',
-      cycle_changes:'cycle changes', none:'wanting to optimize'
-    };
-    const cited = sig.slice(0, 3).map(s => labels[s] || s).filter(Boolean);
-    if (cited.length) {
-      return `<strong>Because you said</strong> ${cited.join(', ')}${answers.q2 === 'bad' ? ', and that you\'re tired all the time' : ''}, this profile is a fit. The top match below is what most women in your shoes start with.`;
-    }
-  }
-  return '<strong>Based on your answers,</strong> peptides look like a fit. The top match below is what most women in your shoes start with.';
 }
 
 /* ---------- Render ---------- */
@@ -918,89 +605,128 @@ function render() {
     return;
   }
   const v = session.verdict;
-  const profile = PROFILE_MAP[v.bucket] || PROFILE_MAP.energy_recovery;
-  const alts = ALT_MAP[v.bucket] || ALT_MAP.energy_recovery;
+  const bucket = v.bucket || 'energy_recovery';
+  const meta = BUCKETS[bucket] || BUCKETS.energy_recovery;
 
-  // Verdict chip
-  const chip = document.getElementById('verdictChip');
-  chip.className = 'verdict-chip ' + v.verdict.toLowerCase();
-  document.getElementById('verdictChipLabel').textContent = v.confidence || 'Likely fit';
+  // Drive state-based visibility
+  const stateClass = v.verdict.toLowerCase();
+  document.body.dataset.state = stateClass;
 
-  document.getElementById('verdictName').textContent = 'Your profile: ' + profile.name;
-  document.getElementById('verdictHeadline').innerHTML = profile.headline(v.verdict);
-  document.getElementById('verdictReason').innerHTML = reasonCopy(v, session.answers || {});
+  // Chips
+  document.getElementById('chipYesLabel').textContent   = v.confidence || 'Strong fit';
+  document.getElementById('chipMaybeLabel').textContent = v.confidence || 'Worth exploring';
+  document.getElementById('chipNoLabel').textContent    = 'Not right, right now';
 
-  // Peptides
-  const stack = document.getElementById('peptideStack');
-  stack.innerHTML = '';
-  profile.peptides.forEach((p, i) => {
-    const card = document.createElement('div');
-    card.className = 'peptide-card' + (i === 0 ? ' top' : '');
-    card.innerHTML = `
-      <div class="peptide-head">
-        <span class="peptide-name">${p.name}</span>
-        ${p.tag ? `<span class="peptide-tag">${p.tag}</span>` : ''}
-      </div>
-      <p class="peptide-label">${p.label}</p>
-      <div class="peptide-stats">
-        <div class="stat">Timeline<strong>${p.timeline}</strong></div>
-        <div class="stat">Administration<strong>${p.admin}</strong></div>
-        <div class="stat">Cost<strong>${p.cost}</strong></div>
-      </div>`;
-    card.addEventListener('click', () => fire('peptide_modal_opened', { peptide: p.name }));
-    stack.appendChild(card);
-  });
-
-  // Provider CTA wording
-  const providerCta = document.getElementById('providerCta');
-  const providerSub = document.getElementById('providerCtaSub');
-  if (v.verdict === 'NO' && v.reasonCode === 'contraindication') {
-    providerCta.textContent = 'Talk to your physician — get my summary →';
-    providerSub.textContent = 'Email me my quiz answers';
-  } else if (v.verdict === 'NO') {
-    providerCta.textContent = 'Get the foundations guide →';
-    providerSub.textContent = 'Email me my results';
-  } else if (v.verdict === 'MAYBE') {
-    providerCta.textContent = v.reasonCode === 'labs_first'
-      ? 'Order a peptide-readiness lab panel →'
-      : 'Book a free 15-minute provider call →';
-    providerSub.textContent = 'Browse providers in your state';
-  } else {
-    providerCta.textContent = 'Book a free 15-minute provider call →';
-    providerSub.textContent = 'Browse providers in your state';
+  // MAYBE / NO inline notes — vary copy by reasonCode
+  if (v.reasonCode === 'labs_first') {
+    document.getElementById('maybeNote').innerHTML = '<b>Get bloodwork first.</b>Your last panel is older than 12 months. We\'ll keep your match warm.';
+  } else if (v.reasonCode === 'foundations_first') {
+    document.getElementById('maybeNote').innerHTML = '<b>Build the base first.</b>Resistance training 2× a week makes growth-hormone peptides 5× more useful.';
+  } else if (v.reasonCode === 'oral_pivot') {
+    document.getElementById('maybeNote').innerHTML = '<b>Skip the needle.</b>The strongest options here are injectable — but there\'s a real oral path. Talk to a provider about it.';
   }
-  providerCta.onclick = () => fire('provider_clicked', { verdict: v.verdict, bucket: v.bucket });
-  providerSub.onclick = () => fire('provider_browse_clicked', { verdict: v.verdict, bucket: v.bucket });
+  if (v.reasonCode === 'contraindication') {
+    document.getElementById('noNote').innerHTML = '<b>Talk to your physician first.</b>Peptides interact with what you shared in ways we don\'t want to risk.';
+  } else if (v.reasonCode === 'too_young') {
+    document.getElementById('noNote').innerHTML = '<b>Foundations first.</b>At your age, sleep, training, and protein move more than peptides ever will.';
+  }
 
-  // Alternatives copy
-  document.getElementById('altHeadline').innerHTML = v.verdict === 'NO'
-    ? 'Start <span class="ital">here today</span>'
-    : 'Or start <span class="ital">here today</span>';
-  document.getElementById('altEyebrow').textContent = v.verdict === 'NO' ? 'Your next step' : 'No appointment needed';
-  document.getElementById('altSub').textContent = v.verdict === 'NO'
-    ? 'A short menu so you leave with something useful, even without a provider call.'
-    : 'Hand-picked for your profile. Mix of supplements, devices, and a free guide so there\'s a next step at every budget.';
+  // "Because you said" — cite quiz answers back
+  const becauseList = document.getElementById('becauseList');
+  const a = session.answers || {};
+  const cited = [];
+  const sig = a.q3 || [];
+  const labels = {
+    brain_fog:'brain fog or words on the tip of your tongue',
+    hot_flashes:'hot flashes, night sweats, or temperature swings',
+    stuck_weight:'weight that won\'t move',
+    sore_joints:'sore joints or slow recovery',
+    dull_skin:'skin looking duller or thinner lately',
+    mood_shifts:'new anxiety or mood shifts',
+    cycle_changes:'period changes in the last 2 years',
+    none:'wanting to optimize'
+  };
+  sig.slice(0, 3).forEach(s => cited.push(labels[s] || s));
+  if (a.q2 === 'bad') cited.unshift('you\'re tired all the time');
+  else if (a.q2 === 'restless') cited.unshift('you\'re waking at 3 a.m.');
+  if (!cited.length) cited.push('you want a clear next step', 'you\'re open to a real protocol');
+  becauseList.innerHTML = cited.slice(0, 3).map(c => `<li><span class="arr">→</span>${c}</li>`).join('');
 
-  const altList = document.getElementById('altList');
-  altList.innerHTML = '';
-  alts.forEach(alt => {
-    const card = document.createElement('div');
-    card.className = 'alt-card';
-    card.innerHTML = `
-      <div class="alt-icon">${ALT_ICONS[alt.icon] || ALT_ICONS.book}</div>
-      <div class="alt-body">
-        <div class="alt-head">
-          <span class="alt-name">${alt.name}</span>
-          <span class="alt-price">${alt.price}</span>
-        </div>
-        <p class="alt-desc">${alt.desc}</p>
-        <button class="alt-cta">${alt.cta} →</button>
-      </div>`;
-    card.querySelector('.alt-cta').addEventListener('click', () => fire('product_clicked', { product: alt.name, bucket: v.bucket }));
-    altList.appendChild(card);
+  // Supporting line
+  const peptideCount = (meta.topPeptides || []).length;
+  document.getElementById('supportingLine').innerHTML = peptideCount
+    ? `<b>${peptideCount} of 12 peptides</b> fit your cluster for ${meta.displayName}.`
+    : '';
+
+  // Peptide cards (YES and MAYBE share the same 3-card stack)
+  const peps = (meta.topPeptides || BUCKETS.energy_recovery.topPeptides);
+  function pepHtml(p, isTop, tagText) {
+    return `
+      ${isTop ? `<span class="top-tag">${tagText}</span>` : ''}
+      <div class="icon">${p.initials}</div>
+      <div class="body"><h3>${p.name}</h3><div class="meta">${p.meta}</div></div>
+      <div class="arrow-r">→</div>`;
+  }
+  const yesStack   = document.getElementById('pepStackYes');
+  const maybeStack = document.getElementById('pepStackMaybe');
+  yesStack.innerHTML = '';
+  maybeStack.innerHTML = '';
+  peps.forEach((p, i) => {
+    const a1 = document.createElement('article');
+    a1.className = 'pep' + (i === 0 ? ' top' : '');
+    a1.innerHTML = pepHtml(p, i === 0, 'Top match');
+    a1.addEventListener('click', () => fire('peptide_clicked', { peptide: p.name }));
+    yesStack.appendChild(a1);
+
+    const a2 = document.createElement('article');
+    a2.className = 'pep' + (i === 0 ? ' top' : '');
+    a2.innerHTML = pepHtml(p, i === 0, 'Likely');
+    a2.addEventListener('click', () => fire('peptide_clicked', { peptide: p.name }));
+    maybeStack.appendChild(a2);
   });
 
-  fire('results_viewed', { verdict: v.verdict, bucket: v.bucket });
+  // BLOCK 2 — three groups
+  const groups = bucketGroups(bucket);
+  document.getElementById('block2Headline').innerHTML = `Other moves <span class="accent">worth deciding on</span> for ${meta.displayName}.`;
+  renderBuyGroup('tests',    'Tests worth <span class="accent">running</span>',                groups.tests,    3);
+  renderBuyGroup('products', 'Products that <span class="accent">pair with the protocol</span>', groups.products, 4);
+  renderBuyGroup('people',   'People worth <span class="accent">talking to</span>',            groups.people,   3);
+
+  // Full-store CTA
+  const total = groups.tests.length + groups.products.length + groups.people.length;
+  document.getElementById('storeHeadline').innerHTML = `Everything for <span class="em">${meta.storeName}.</span>`;
+  document.getElementById('storeSub').innerHTML = `${total} products and services — ${meta.storeBlurb}. Filterable by price.`;
+  const preview = document.getElementById('storePreview');
+  preview.innerHTML = '';
+  const previewEmojis = [...groups.tests, ...groups.products, ...groups.people].slice(0, 6).map(i => i[0]);
+  previewEmojis.forEach(emoji => {
+    const b = document.createElement('div');
+    b.className = 'icon-bubble';
+    b.textContent = emoji;
+    preview.appendChild(b);
+  });
+  const more = document.createElement('div');
+  more.className = 'more-bubble';
+  more.textContent = '+' + Math.max(0, total - 6);
+  preview.appendChild(more);
+  // Carry verdict params + utm into store link so it stays in context
+  const storeLink = document.getElementById('storeLink');
+  const params = new URLSearchParams();
+  Object.entries(session.utm).forEach(([k, val]) => params.set(k, val));
+  params.set('bucket', bucket);
+  params.set('verdict', v.verdict);
+  if (v.confidence) params.set('conf', v.confidence);
+  storeLink.href = 'store.html?' + params.toString();
+  storeLink.addEventListener('click', () => fire('full_store_clicked', { bucket }));
+
+  // Provider CTA wiring
+  document.getElementById('ctaBookYes')?.addEventListener('click', () => fire('provider_clicked', { verdict: 'YES', bucket }));
+  document.getElementById('ctaBookMaybe')?.addEventListener('click', () => fire('provider_clicked', { verdict: 'MAYBE', bucket }));
+  document.getElementById('ctaSaveMaybe')?.addEventListener('click', () => openSheet());
+  document.getElementById('ctaSaveNo')?.addEventListener('click', () => openSheet());
+  document.getElementById('ctaRetakeNo')?.addEventListener('click', () => { window.location.href = '/'; });
+
+  fire('results_viewed', { verdict: v.verdict, bucket });
 }
 
 /* ============================================================
@@ -1027,21 +753,14 @@ function closeSheet() {
   scrim.classList.remove('open');
   sheet.classList.remove('open');
   document.body.classList.remove('lock');
-  // Reset to form view after a beat so reopen looks fresh
   setTimeout(() => sheet.classList.remove('success-state'), 400);
 }
 
-saveFab.addEventListener('click', () => {
-  if (saveFab.classList.contains('saved')) {
-    // Already saved — open to a "we already sent it" state, but for V1 reopen for re-send
-  }
-  openSheet();
-});
+saveFab.addEventListener('click', openSheet);
 scrim.addEventListener('click', closeSheet);
 sheetCancel.addEventListener('click', () => { fire('save_sheet_dismissed'); closeSheet(); });
 sheetDone.addEventListener('click', closeSheet);
 
-/* US phone formatting */
 function formatUsPhone(raw) {
   const digits = raw.replace(/\D/g, '').slice(0, 10);
   if (digits.length < 4) return digits;
@@ -1057,7 +776,6 @@ phoneCc.addEventListener('change', () => {
   validate();
 });
 consent.addEventListener('change', validate);
-
 function validate() {
   const digits = phoneInput.value.replace(/\D/g, '');
   const minLen = phoneCc.value === '+1' ? 10 : 7;
@@ -1065,30 +783,27 @@ function validate() {
 }
 
 sheetCta.addEventListener('click', () => {
-  const phone = phoneCc.value + ' ' + phoneInput.value;
   sheetCta.disabled = true;
   sheetCta.textContent = 'Sending…';
-
   fire('save_phone_submitted', {
     phone_country_code: phoneCc.value,
     phone: phoneInput.value,
     verdict: session.verdict?.verdict,
     bucket: session.verdict?.bucket
   });
-
   // ----------- WIRE TO SMS PROVIDER HERE -----------
   // Production: POST { phone, sessionId, verdict, bucket, utm } to your backend.
-  // Backend resolves provider (Twilio / MessageBird / Resend SMS) and sends the
-  // templated message including a magic-link back to /results?token=<jwt>.
-  // For V1 prototype we simulate the round-trip in 700ms.
+  // Backend dispatches via Twilio / MessageBird / Resend SMS with a magic-link
+  // back to /results?token=<jwt>. For V1 prototype we simulate the round-trip.
   setTimeout(() => {
-    const profile = PROFILE_MAP[session.verdict?.bucket || 'energy_recovery'];
-    const topPeptide = profile.peptides[0]?.name || 'your match';
+    const bucket = session.verdict?.bucket || 'energy_recovery';
+    const meta = BUCKETS[bucket] || BUCKETS.energy_recovery;
+    const top = (meta.topPeptides || [])[0];
     document.getElementById('sentTo').textContent = phoneCc.value + ' ' + phoneInput.value;
     document.getElementById('previewMsg').innerHTML =
-      `Hi! Here\'s your PeptideMatch result: <strong>${profile.name}</strong>. ` +
-      `Top match — <strong>${topPeptide}</strong>. ` +
-      `Full results + your alternatives: pep.tch/r/${(session.sessionId||'preview').slice(0,8)} — ` +
+      `Hi! Here's your PeptideMatch result for <strong>${meta.displayName}</strong>. ` +
+      `Top match — <strong>${top ? top.name : 'see your provider'}</strong>. ` +
+      `Full results + your store: pep.tch/r/${(session.sessionId||'preview').slice(0,8)} — ` +
       `Reply STOP to opt out.`;
     sheet.classList.add('success-state');
     sheetCta.disabled = false;
@@ -1099,9 +814,7 @@ sheetCta.addEventListener('click', () => {
   }, 700);
 });
 
-/* ============================================================
-   BOOT
-   ============================================================ */
+/* Boot */
 loadSession();
 render();
 </script>
