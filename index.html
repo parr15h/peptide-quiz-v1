@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0E2238">
+<title>PeptideMatch — Are peptides right for you?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:ital,wght@0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Navy palette — hero + quiz background */
+    --navy-1: #0E2238;
+    --navy-2: #15324F;
+    --navy-3: #1F4567;
+    --navy-deep: #07182A;
+    --sky:   #9ADCFF;
+
+    /* Cream palette — landing body */
+    --cream:     #F5EBDE;
+    --cream-2:   #EFE2D0;
+    --cream-3:   #E6D5BD;
+    --warm-tan:  #BD8E7B;
+    --warm-deep: #756359;
+    --warm-text: #A19389;
+    --warm-brown:#613F25;
+
+    /* UI */
+    --ink:   #1A2333;
+    --ink-2: #4A5666;
+    --muted: #8A95A3;
+    --line:  #E8E0D2;
+    --white: #FFFFFF;
+
+    /* Verdict colors */
+    --yes:   #2C7A5A;
+    --maybe: #B58B25;
+    --no:    #8B3A2F;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--ink); background: var(--cream);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  body.lock { overflow: hidden; height: 100vh; }
+
+  button { font-family: inherit; cursor: pointer; }
+  img { display: block; max-width: 100%; }
+
+  /* ============================================
+     LANDING PAGE
+     ============================================ */
+  .landing { max-width: 480px; margin: 0 auto; background: var(--cream); }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    padding: 18px 22px 36px;
+    background:
+      radial-gradient(120% 60% at 50% 0%, rgba(154,220,255,.08) 0%, transparent 60%),
+      linear-gradient(180deg, var(--navy-2) 0%, var(--navy-1) 55%, var(--navy-deep) 100%);
+    color: #fff;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(60% 35% at 70% 30%, rgba(189,142,123,.28) 0%, transparent 70%),
+      radial-gradient(50% 40% at 20% 50%, rgba(154,220,255,.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner { position: relative; }
+  .hero .eyebrow {
+    text-align: center;
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.75);
+    margin-bottom: 8px;
+  }
+  .logo {
+    text-align: center;
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    font-size: 24px;
+    letter-spacing: .5px;
+    margin-bottom: 20px;
+  }
+  .logo .pep { color: var(--sky); }
+
+  .hero-portrait {
+    position: relative;
+    aspect-ratio: 4/3;
+    border-radius: 18px;
+    margin: 16px -4px 28px;
+    overflow: hidden;
+    background:
+      radial-gradient(60% 70% at 50% 20%, #f4d4b9 0%, #d59a73 35%, #8d5a3e 70%, #4a2e1f 100%);
+    box-shadow: 0 12px 32px rgba(0,0,0,.35), inset 0 0 60px rgba(0,0,0,.2);
+  }
+  .hero-portrait::after {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(50% 40% at 50% 80%, rgba(255,255,255,.15) 0%, transparent 60%),
+      linear-gradient(180deg, transparent 50%, rgba(14,34,56,.4) 100%);
+  }
+  .hero-portrait .placeholder {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,.5);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .hero h1 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 26px;
+    line-height: 1.1;
+    letter-spacing: -.5px;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .hero h1 .accent {
+    display: block;
+    color: var(--sky);
+    font-size: 20px;
+    margin-top: 6px;
+    letter-spacing: -.3px;
+  }
+
+  /* Q1 — the goal tile */
+  .q1 {
+    margin-top: 28px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 22px;
+    padding: 22px 16px 18px;
+    backdrop-filter: blur(6px);
+  }
+  .q1 .step-label {
+    text-align: center;
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.5);
+    margin-bottom: 10px;
+  }
+  .q1 h2 {
+    font-weight: 600;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 16px;
+    color: #fff;
+  }
+  .q1-options { display: flex; flex-direction: column; gap: 9px; }
+  .q1-opt {
+    display: flex; align-items: center; gap: 14px;
+    width: 100%;
+    padding: 14px 18px;
+    border: 0;
+    border-radius: 14px;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.12);
+    color: #fff;
+    font-weight: 500;
+    font-size: 14px;
+    text-align: left;
+    transition: transform .2s ease, background .2s ease, border-color .2s ease;
+  }
+  .q1-opt:hover, .q1-opt:focus-visible {
+    background: rgba(255,255,255,.14);
+    border-color: rgba(255,255,255,.22);
+    transform: translateY(-1px);
+    outline: none;
+  }
+  .q1-opt:active { transform: scale(.98); }
+  .q1-opt .icon {
+    width: 28px; height: 28px;
+    display: grid; place-items: center;
+    color: var(--sky);
+    flex-shrink: 0;
+  }
+  .q1-opt svg { width: 24px; height: 24px; stroke: currentColor; stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .q1-opt .arrow { margin-left: auto; opacity: .4; transition: transform .2s ease, opacity .2s ease; }
+  .q1-opt:hover .arrow { opacity: 1; transform: translateX(2px); }
+
+  /* THREE STEPS */
+  .three-steps {
+    padding: 56px 22px 40px;
+    text-align: center;
+    background: var(--cream);
+  }
+  .three-steps .eyebrow {
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+    color: var(--warm-text);
+    margin-bottom: 14px;
+  }
+  .three-steps h3 {
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 1.05;
+    color: var(--warm-deep);
+    margin-bottom: 26px;
+    letter-spacing: -.5px;
+  }
+  .step-card {
+    background: var(--cream-2);
+    border-radius: 16px;
+    padding: 22px 24px;
+    margin-bottom: 14px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(117,99,89,.08);
+  }
+  .step-card h4 {
+    font-weight: 700;
+    font-size: 19px;
+    color: var(--warm-deep);
+    margin-bottom: 10px;
+  }
+  .step-card p {
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--warm-text);
+  }
+
+  /* FOUNDERS */
+  .founders {
+    padding: 44px 24px 48px;
+    text-align: center;
+    background: var(--cream);
+  }
+  .founders .eyebrow {
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+    color: var(--warm-text);
+    margin-bottom: 18px;
+  }
+  .founders p {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.3;
+    letter-spacing: -.2px;
+    color: var(--warm-deep);
+  }
+  .founders p .accent { color: var(--warm-tan); }
+
+  /* VALUE PROPS */
+  .value-props {
+    padding: 36px 28px 50px;
+    background: var(--cream);
+  }
+  .vp { text-align: center; padding: 20px 0; }
+  .vp h4 {
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 1.05;
+    color: var(--warm-brown);
+    margin-bottom: 10px;
+    letter-spacing: -.4px;
+  }
+  .vp p {
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--ink-2);
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  /* CLOSING CTA */
+  .closing {
+    padding: 36px 28px 40px;
+    text-align: center;
+    background: var(--cream);
+  }
+  .closing h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 1.05;
+    margin-bottom: 16px;
+    letter-spacing: -.8px;
+    color: #1a1a1a;
+  }
+  .closing h3 .ital {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    color: var(--warm-tan);
+  }
+  .closing p {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--ink);
+    margin-bottom: 22px;
+  }
+  .cta-pill {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 28px;
+    border-radius: 999px;
+    background: var(--warm-deep);
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: .3px;
+    border: 0;
+    box-shadow: 0 6px 16px rgba(117,99,89,.35);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .cta-pill:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(117,99,89,.45); }
+  .cta-pill:active { transform: scale(.98); }
+
+  .footer {
+    padding: 22px 24px 28px;
+    text-align: center;
+    background: var(--navy-deep);
+    color: rgba(255,255,255,.65);
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  /* ============================================
+     QUIZ PANEL (slides up over landing)
+     ============================================ */
+  .quiz-panel {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(180deg, var(--navy-2) 0%, var(--navy-1) 100%);
+    color: #fff;
+    z-index: 100;
+    transform: translateY(100%);
+    transition: transform .5s cubic-bezier(.22,.61,.36,1);
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+  .quiz-panel.open { transform: translateY(0); }
+  .quiz-shell {
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+    padding: 18px 22px 110px;
+    display: flex; flex-direction: column;
+  }
+  .quiz-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 22px;
+    padding-top: env(safe-area-inset-top, 0);
+  }
+  .quiz-back, .quiz-close {
+    background: rgba(255,255,255,.08);
+    border: 0; color: #fff;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    transition: background .2s ease;
+  }
+  .quiz-back:hover, .quiz-close:hover { background: rgba(255,255,255,.15); }
+  .quiz-back svg, .quiz-close svg { width: 16px; height: 16px; stroke: #fff; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .quiz-progress {
+    flex: 1;
+    margin: 0 14px;
+    height: 4px;
+    background: rgba(255,255,255,.12);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .quiz-progress-fill {
+    height: 100%;
+    background: var(--sky);
+    border-radius: 999px;
+    transition: width .4s cubic-bezier(.22,.61,.36,1);
+    width: 14%;
+  }
+
+  .quiz-step-label {
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.5);
+    margin-bottom: 14px;
+  }
+  .quiz-q {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 1.2;
+    letter-spacing: -.4px;
+    margin-bottom: 6px;
+  }
+  .quiz-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,.6);
+    margin-bottom: 24px;
+  }
+
+  .opt-list { display: flex; flex-direction: column; gap: 10px; }
+  .opt {
+    display: flex; align-items: center; gap: 14px;
+    width: 100%;
+    padding: 16px 18px;
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 14px;
+    background: rgba(255,255,255,.05);
+    color: #fff;
+    font-weight: 500;
+    font-size: 15px;
+    text-align: left;
+    transition: all .2s ease;
+  }
+  .opt:hover { background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.22); }
+  .opt.selected {
+    background: rgba(154,220,255,.16);
+    border-color: var(--sky);
+    color: #fff;
+  }
+  .opt.selected .check { opacity: 1; transform: scale(1); }
+  .opt .check {
+    margin-left: auto;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--sky);
+    color: var(--navy-1);
+    display: grid; place-items: center;
+    font-size: 12px; font-weight: 700;
+    opacity: 0; transform: scale(.6);
+    transition: all .2s ease;
+  }
+  .opt .check svg { width: 12px; height: 12px; stroke: var(--navy-1); stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+  .pair-q { margin-bottom: 26px; }
+  .pair-q-label {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+
+  .quiz-continue-wrap {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    padding: 14px 22px calc(18px + env(safe-area-inset-bottom, 0));
+    background: linear-gradient(180deg, transparent 0%, var(--navy-deep) 60%);
+    display: none;
+    z-index: 2;
+  }
+  .quiz-continue-wrap.show { display: block; }
+  .quiz-continue {
+    width: 100%;
+    max-width: 436px;
+    margin: 0 auto;
+    display: block;
+    padding: 16px 24px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--sky);
+    color: var(--navy-1);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: .3px;
+    box-shadow: 0 10px 24px rgba(0,0,0,.35);
+    transition: transform .2s ease, opacity .2s ease;
+  }
+  .quiz-continue:disabled { opacity: .35; cursor: not-allowed; }
+  .quiz-continue:not(:disabled):hover { transform: translateY(-1px); }
+  .quiz-continue:not(:disabled):active { transform: scale(.98); }
+
+  .quiz-screen {
+    display: none;
+    animation: fadeUp .35s cubic-bezier(.22,.61,.36,1);
+  }
+  .quiz-screen.active { display: block; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Calculating spinner */
+  .calc {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+    text-align: center;
+  }
+  .calc.active { display: flex; }
+  .spinner {
+    width: 36px; height: 36px;
+    border: 3px solid rgba(255,255,255,.15);
+    border-top-color: var(--sky);
+    border-radius: 50%;
+    animation: spin .8s linear infinite;
+    margin-bottom: 16px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .calc p {
+    color: rgba(255,255,255,.7);
+    font-size: 14px;
+  }
+
+  /* Variant preview chip (dev only) */
+  .dev-chip {
+    position: fixed; top: 8px; left: 8px;
+    background: rgba(0,0,0,.7); color: #fff;
+    font-size: 10px; padding: 4px 8px;
+    border-radius: 6px; z-index: 9999;
+    font-family: monospace;
+    pointer-events: none;
+    opacity: .8;
+  }
+
+  @media (min-width: 480px) {
+    .landing, .quiz-shell, .results-shell { max-width: 480px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================ LANDING ============================================ -->
+<main class="landing" id="landing">
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Personal Assessment</p>
+      <p class="logo"><span class="pep">Peptide</span>Match</p>
+
+      <div class="hero-portrait" aria-hidden="true">
+        <div class="placeholder">Hero photograph</div>
+      </div>
+
+      <h1>
+        Get a clear answer on<br>whether peptides are<br>right for you
+        <span class="accent">in 2 minutes flat</span>
+      </h1>
+
+      <!-- Q1 — LIVES ON LANDING -->
+      <div class="q1">
+        <p class="step-label">Step 1</p>
+        <h2>What do you want most?</h2>
+        <div class="q1-options">
+          <button class="q1-opt" data-goal="body_composition" aria-label="A Better Looking Body">
+            <span class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.4"/><path d="M9 12c0-2 1.5-3 3-3s3 1 3 3v3l-1 8h-4l-1-8v-3z"/></svg></span>
+            A Better Looking Body
+            <span class="arrow"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+          </button>
+
+          <button class="q1-opt" data-goal="energy_recovery" aria-label="More Energy and Focus">
+            <span class="icon"><svg viewBox="0 0 24 24"><path d="M13 2L5 14h7l-1 8 8-12h-7l1-8z"/></svg></span>
+            More Energy &amp; Focus
+            <span class="arrow"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+          </button>
+
+          <button class="q1-opt" data-goal="hormonal" aria-label="Have Better Sex">
+            <span class="icon"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9-9.5C1.5 7 5 4 8 5.5c1.4.7 2.5 1.9 4 4 1.5-2.1 2.6-3.3 4-4C19 4 22.5 7 21 11.5 19 16.5 12 21 12 21z"/></svg></span>
+            Have Better Sex
+            <span class="arrow"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+          </button>
+
+          <button class="q1-opt" data-goal="skin_aging" aria-label="Better Skin and Hair">
+            <span class="icon"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.4L19 10l-5.2 1.6L12 17l-1.8-5.4L5 10l5.2-1.6L12 3z"/></svg></span>
+            Better Skin &amp; Hair
+            <span class="arrow"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+          </button>
+
+          <button class="q1-opt" data-goal="perimenopause_suspected" aria-label="Feel Like Myself Again">
+            <span class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg></span>
+            Feel Like Myself Again
+            <span class="arrow"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="three-steps">
+    <p class="eyebrow">Your free assessment</p>
+    <h3>Three steps.<br>Zero guesswork.</h3>
+    <div class="step-card">
+      <h4>Take the assessment</h4>
+      <p>7 questions about your age, symptoms, goals, and comfort level. We match you to one of five clinically-informed peptide profiles.</p>
+    </div>
+    <div class="step-card">
+      <h4>Get your profile</h4>
+      <p>See exactly what's happening in your body, which peptides match your biology, and a clear action plan starting today.</p>
+    </div>
+    <div class="step-card">
+      <h4>Connect with an expert</h4>
+      <p>Book a consultation with a peptide-informed expert who reviews your bloodwork — or orders new labs if you don't have any — and prescribes a protocol tailored to you.</p>
+    </div>
+  </section>
+
+  <section class="founders">
+    <p class="eyebrow">From our founders</p>
+    <p>We kept hearing about peptides from friends, podcasts, and on socials, but every time we tried to figure out if they were right for us, we hit a wall&hellip; <span class="accent">So we just built the tool we wished we had.</span></p>
+  </section>
+
+  <section class="value-props">
+    <div class="vp">
+      <h4>Your personalized<br>peptide profile</h4>
+      <p>Not generic advice — a recommendation matched to your body, your symptoms, and your goals.</p>
+    </div>
+    <div class="vp">
+      <h4>A clear next step, not<br>a research assignment</h4>
+      <p>Whether that's an over-the-counter product you can start today or a doctor who can build you a real protocol.</p>
+    </div>
+    <div class="vp">
+      <h4>Access to experts<br>when you're ready</h4>
+      <p>A peptide-informed physician who reviews your bloodwork and prescribes a protocol tailored to you.</p>
+    </div>
+    <div class="vp">
+      <h4>No pressure,<br>no upsell</h4>
+      <p>Take the assessment, get your profile, decide what feels right. Move at your own pace.</p>
+    </div>
+  </section>
+
+  <section class="closing">
+    <h3>Find the peptide plan<br><span class="ital">that fits you</span></h3>
+    <p>Two minutes. Seven questions. One clear answer — no more Reddit rabbit holes.</p>
+    <button class="cta-pill" onclick="scrollToQ1()">
+      take the assessment
+      <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+  </section>
+
+  <footer class="footer">
+    For educational purposes only. Not medical advice.<br>Consult a licensed provider before starting any protocol.<br><br>&copy; 2026 PeptideMatch
+  </footer>
+</main>
+
+<!-- ============================================ QUIZ PANEL ============================================ -->
+<aside class="quiz-panel" id="quizPanel" aria-hidden="true">
+  <div class="quiz-shell">
+    <div class="quiz-header">
+      <button class="quiz-back" id="quizBack" aria-label="Back">
+        <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="quiz-progress"><div class="quiz-progress-fill" id="quizProgressFill"></div></div>
+      <button class="quiz-close" id="quizClose" aria-label="Close quiz">
+        <svg viewBox="0 0 24 24"><path d="M6 6l12 12M6 18l12-12"/></svg>
+      </button>
+    </div>
+
+    <!-- Q2: Sleep -->
+    <section class="quiz-screen" data-step="q2">
+      <p class="quiz-step-label">Step 2 of 7</p>
+      <h2 class="quiz-q">How are you sleeping?</h2>
+      <p class="quiz-sub">Pick the one that's closest to your usual week.</p>
+      <div class="opt-list" data-single="q2">
+        <button class="opt" data-val="great">Like a baby — wake up rested<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+        <button class="opt" data-val="okay">Fine, but not deep<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+        <button class="opt" data-val="restless">Restless, or waking at 3 a.m.<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+        <button class="opt" data-val="bad">Honestly bad — I'm tired all the time<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+      </div>
+    </section>
+
+    <!-- Q3: Body signals (multi-select up to 3) -->
+    <section class="quiz-screen" data-step="q3">
+      <p class="quiz-step-label">Step 3 of 7</p>
+      <h2 class="quiz-q">Which of these sound like you right now?</h2>
+      <p class="quiz-sub">Pick up to 3.</p>
+      <div class="opt-list" data-multi="q3" data-max="3">
+        <button class="opt" data-val="brain_fog">Brain fog or words on the tip of my tongue<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+        <button class="opt" data-val="hot_flashes">Hot flashes, night sweats, or temperature swings<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+        <button class="opt" data-val="stuck_weight">Weight that won't move no matter what I do<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+        <button class="opt" data-val="sore_joints">Sore joints or slow recovery<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+        <button class="opt" data-val="dull_skin">Skin looking dull, thinner, or lined faster<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+        <button class="opt" data-val="mood_shifts">Anxiety or mood shifts that feel new to me<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+        <button class="opt" data-val="cycle_changes">Periods have changed or stopped in the last 2 years<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+        <button class="opt" data-val="none">None of these — I just want to optimize<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+      </div>
+    </section>
+
+    <!-- Q4: Age -->
+    <section class="quiz-screen" data-step="q4">
+      <p class="quiz-step-label">Step 4 of 7</p>
+      <h2 class="quiz-q">What's your age?</h2>
+      <p class="quiz-sub">Some peptides aren't appropriate at every life stage. Honesty here helps us get it right.</p>
+      <div class="opt-list" data-single="q4">
+        <button class="opt" data-val="under_25">Under 25<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+        <button class="opt" data-val="25_34">25 – 34<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+        <button class="opt" data-val="35_44">35 – 44<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+        <button class="opt" data-val="45_54">45 – 54<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+        <button class="opt" data-val="55_plus">55+<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+      </div>
+    </section>
+
+    <!-- Q5: Foundations (two-part) -->
+    <section class="quiz-screen" data-step="q5">
+      <p class="quiz-step-label">Step 5 of 7</p>
+      <h2 class="quiz-q">Two quick ones —</h2>
+      <p class="quiz-sub">These help us know whether to recommend peptides first or foundations first.</p>
+
+      <div class="pair-q">
+        <p class="pair-q-label">Do you train with weights at least 2× a week?</p>
+        <div class="opt-list" data-single="q5a">
+          <button class="opt" data-val="yes">Yes<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+          <button class="opt" data-val="no">No<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+        </div>
+      </div>
+
+      <div class="pair-q">
+        <p class="pair-q-label">When was your last blood panel?</p>
+        <div class="opt-list" data-single="q5b">
+          <button class="opt" data-val="12mo">In the last 12 months<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+          <button class="opt" data-val="1_2yr">1 – 2 years ago<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+          <button class="opt" data-val="2_plus">2+ years ago<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+          <button class="opt" data-val="never">Never had one<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q6: Openness + budget (two-part) -->
+    <section class="quiz-screen" data-step="q6">
+      <p class="quiz-step-label">Step 6 of 7</p>
+      <h2 class="quiz-q">A couple of practical things —</h2>
+      <p class="quiz-sub">No judgment on either — we just want the answer to fit your life.</p>
+
+      <div class="pair-q">
+        <p class="pair-q-label">How do you feel about injections?</p>
+        <div class="opt-list" data-single="q6a">
+          <button class="opt" data-val="open">Open<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+          <button class="opt" data-val="prefer_oral">Prefer oral<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+          <button class="opt" data-val="hard_no">Hard no<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+        </div>
+      </div>
+
+      <div class="pair-q">
+        <p class="pair-q-label">What can you spend per month to feel better?</p>
+        <div class="opt-list" data-single="q6b">
+          <button class="opt" data-val="under_50">Under $50<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+          <button class="opt" data-val="50_200">$50 – $200<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+          <button class="opt" data-val="200_500">$200 – $500<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+          <button class="opt" data-val="500_plus">$500+<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q7: Contraindications -->
+    <section class="quiz-screen" data-step="q7">
+      <p class="quiz-step-label">Step 7 of 7</p>
+      <h2 class="quiz-q">Last one, then your results.</h2>
+      <p class="quiz-sub">Any of these apply? Pick all that do — or leave it blank.</p>
+      <div class="opt-list" data-multi="q7" data-max="5">
+        <button class="opt" data-val="pregnant">Pregnant, nursing, or actively trying to conceive<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+        <button class="opt" data-val="cancer">Active or recent cancer diagnosis<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+        <button class="opt" data-val="eating_disorder">Eating disorder, current or history<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+        <button class="opt" data-val="surgery">Major surgery in the last 6 months<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+        <button class="opt" data-val="none">None of these<span class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></span></button>
+      </div>
+    </section>
+
+    <!-- Calculating screen -->
+    <div class="calc" id="calcScreen">
+      <div class="spinner"></div>
+      <p>Reading your answers&hellip;</p>
+    </div>
+  </div>
+
+  <div class="quiz-continue-wrap" id="continueWrap">
+    <button class="quiz-continue" id="quizContinue" disabled>Continue</button>
+  </div>
+</aside>
+
+<div class="dev-chip" id="devChip" hidden></div>
+
+<script>
+/* ============================================================
+   PeptideMatch V1 — Quiz engine, rules engine, results render
+   ============================================================
+   Architecture:
+   - state.answers = { q1, q2, q3 (array), q4, q5a, q5b, q6a, q6b, q7 (array) }
+   - state.utm     = persisted from URL params per doc 03
+   - state.step    = current step index (q2..q7)
+   - rulesEngine() → { verdict: YES|MAYBE|NO, bucket, reason, confidence }
+   - profileMap[bucket] → { name, top, alts[], copy } per build brief §5
+   ============================================================ */
+
+const state = {
+  answers: { q1: null, q2: null, q3: [], q4: null, q5a: null, q5b: null, q6a: null, q6b: null, q7: [] },
+  utm: {},
+  step: 'q2',
+  history: [],
+  sessionId: null
+};
+
+const QUIZ_STEPS = ['q2','q3','q4','q5','q6','q7'];
+
+/* ---------- UTM capture ---------- */
+function captureUtm() {
+  const params = new URLSearchParams(window.location.search);
+  ['utm_source','utm_medium','utm_campaign','v','lp','qz','cta'].forEach(k => {
+    const val = params.get(k);
+    if (val) state.utm[k] = val;
+  });
+  state.sessionId = (crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2));
+  try { sessionStorage.setItem('pm_session', JSON.stringify({ id: state.sessionId, utm: state.utm })); } catch(e) {}
+
+  // Dev chip
+  const chip = document.getElementById('devChip');
+  const variant = Object.entries(state.utm).filter(([k]) => ['v','lp','qz','cta'].includes(k)).map(([k,v]) => `${k}=${v}`).join(' · ');
+  if (variant) { chip.textContent = variant; chip.hidden = false; }
+}
+
+/* ---------- Event firing (stub — wire to PostHog later) ---------- */
+function fire(eventName, payload = {}) {
+  const event = { event: eventName, session_id: state.sessionId, ...state.utm, ...payload, ts: Date.now() };
+  console.log('[event]', event);
+  // window.posthog?.capture(eventName, event);
+}
+
+/* ============================================================
+   Q1 — landing tile selection opens the quiz
+   ============================================================ */
+document.querySelectorAll('.q1-opt').forEach(btn => {
+  btn.addEventListener('click', () => {
+    state.answers.q1 = btn.dataset.goal;
+    fire('q1_answered', { q1: state.answers.q1 });
+    openQuiz();
+  });
+});
+
+function scrollToQ1() {
+  document.querySelector('.q1').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+/* ============================================================
+   Quiz panel open/close + step nav
+   ============================================================ */
+const quizPanel = document.getElementById('quizPanel');
+const continueBtn = document.getElementById('quizContinue');
+const continueWrap = document.getElementById('continueWrap');
+const progressFill = document.getElementById('quizProgressFill');
+
+function openQuiz() {
+  state.step = 'q2';
+  state.history = ['q2'];
+  document.body.classList.add('lock');
+  quizPanel.classList.add('open');
+  quizPanel.setAttribute('aria-hidden', 'false');
+  showStep('q2');
+  fire('quiz_started');
+}
+function closeQuiz() {
+  quizPanel.classList.remove('open');
+  quizPanel.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('lock');
+}
+
+document.getElementById('quizClose').addEventListener('click', () => {
+  if (confirm('Close the quiz? You can come back, but your answers won\'t save.')) closeQuiz();
+});
+document.getElementById('quizBack').addEventListener('click', () => {
+  if (state.history.length > 1) {
+    state.history.pop();
+    const prev = state.history[state.history.length - 1];
+    showStep(prev, /*addHistory=*/false);
+  } else {
+    closeQuiz();
+  }
+});
+
+function showStep(step, addHistory = true) {
+  document.querySelectorAll('.quiz-screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('calcScreen').classList.remove('active');
+  if (addHistory && state.history[state.history.length - 1] !== step) state.history.push(step);
+  state.step = step;
+
+  const screen = document.querySelector(`[data-step="${step}"]`);
+  if (screen) {
+    screen.classList.add('active');
+    // restore prior selections
+    restoreSelection(screen, step);
+  }
+  // progress: q2 = 2/7, ..., q7 = 7/7
+  const stepNum = parseInt(step.slice(1), 10);
+  progressFill.style.width = (stepNum / 7 * 100) + '%';
+  updateContinueState();
+  window.scrollTo(0, 0);
+  quizPanel.scrollTo(0, 0);
+}
+
+function restoreSelection(screen, step) {
+  // single-select groups
+  screen.querySelectorAll('[data-single]').forEach(group => {
+    const key = group.dataset.single;
+    const val = state.answers[key];
+    group.querySelectorAll('.opt').forEach(opt => {
+      opt.classList.toggle('selected', opt.dataset.val === val);
+    });
+  });
+  // multi-select groups
+  screen.querySelectorAll('[data-multi]').forEach(group => {
+    const key = group.dataset.multi;
+    const vals = state.answers[key] || [];
+    group.querySelectorAll('.opt').forEach(opt => {
+      opt.classList.toggle('selected', vals.includes(opt.dataset.val));
+    });
+  });
+}
+
+/* ---------- Single-select handlers (auto-advance) ---------- */
+document.querySelectorAll('[data-single]').forEach(group => {
+  const key = group.dataset.single;
+  group.querySelectorAll('.opt').forEach(opt => {
+    opt.addEventListener('click', () => {
+      group.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+      opt.classList.add('selected');
+      state.answers[key] = opt.dataset.val;
+
+      // Q5 and Q6 are two-part — don't auto-advance, wait for Continue
+      const screen = group.closest('.quiz-screen');
+      const stepName = screen.dataset.step;
+      if (stepName === 'q5' || stepName === 'q6') {
+        updateContinueState();
+        return;
+      }
+      // Auto-advance for single-part single-select steps after 300ms
+      setTimeout(() => advance(), 280);
+    });
+  });
+});
+
+/* ---------- Multi-select handlers ---------- */
+document.querySelectorAll('[data-multi]').forEach(group => {
+  const key = group.dataset.multi;
+  const max = parseInt(group.dataset.max || '99', 10);
+  group.querySelectorAll('.opt').forEach(opt => {
+    opt.addEventListener('click', () => {
+      const val = opt.dataset.val;
+      let current = state.answers[key] || [];
+
+      // "None of these" is exclusive
+      if (val === 'none') {
+        if (opt.classList.contains('selected')) {
+          opt.classList.remove('selected');
+          state.answers[key] = [];
+        } else {
+          group.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+          opt.classList.add('selected');
+          state.answers[key] = ['none'];
+        }
+        updateContinueState();
+        return;
+      }
+      // Selecting any non-none clears "none"
+      const noneOpt = group.querySelector('[data-val="none"]');
+      if (noneOpt) noneOpt.classList.remove('selected');
+      current = current.filter(v => v !== 'none');
+
+      if (current.includes(val)) {
+        current = current.filter(v => v !== val);
+        opt.classList.remove('selected');
+      } else if (current.length < max) {
+        current.push(val);
+        opt.classList.add('selected');
+      }
+      state.answers[key] = current;
+      updateContinueState();
+    });
+  });
+});
+
+/* ---------- Continue button ---------- */
+continueBtn.addEventListener('click', () => advance());
+
+function updateContinueState() {
+  const step = state.step;
+  let ready = false;
+  if (step === 'q2' || step === 'q4') ready = !!state.answers[step];
+  if (step === 'q3') ready = (state.answers.q3 || []).length > 0;
+  if (step === 'q5') ready = !!state.answers.q5a && !!state.answers.q5b;
+  if (step === 'q6') ready = !!state.answers.q6a && !!state.answers.q6b;
+  if (step === 'q7') ready = true; // contraindications can be blank (means "none")
+
+  // Auto-advance steps hide the continue button
+  const autoAdvanceSteps = ['q2','q4'];
+  if (autoAdvanceSteps.includes(step)) {
+    continueWrap.classList.remove('show');
+  } else {
+    continueWrap.classList.add('show');
+    continueBtn.disabled = !ready;
+    continueBtn.textContent = step === 'q7' ? 'See my results' : 'Continue';
+  }
+}
+
+function advance() {
+  fire(state.step + '_answered', { answer: state.answers[state.step] });
+  const idx = QUIZ_STEPS.indexOf(state.step);
+  if (idx < QUIZ_STEPS.length - 1) {
+    showStep(QUIZ_STEPS[idx + 1]);
+  } else {
+    finishQuiz();
+  }
+}
+
+function finishQuiz() {
+  // Normalize q7 — if user didn't tap anything, treat as ['none']
+  if (!state.answers.q7 || state.answers.q7.length === 0) state.answers.q7 = ['none'];
+  fire('quiz_completed', { answers: state.answers });
+
+  // Show calculating screen briefly
+  document.querySelectorAll('.quiz-screen').forEach(s => s.classList.remove('active'));
+  continueWrap.classList.remove('show');
+  document.getElementById('calcScreen').classList.add('active');
+
+  // Compute verdict, persist session, and navigate to the standalone results page.
+  setTimeout(() => {
+    const verdict = rulesEngine(state.answers);
+    try {
+      sessionStorage.setItem('pm_session', JSON.stringify({
+        sessionId: state.sessionId,
+        utm: state.utm,
+        answers: state.answers,
+        verdict
+      }));
+    } catch (e) { /* private mode — fall back to URL params */ }
+
+    // Pass key state in the URL too, so share links and private-mode users still work.
+    const params = new URLSearchParams();
+    Object.entries(state.utm).forEach(([k,v]) => params.set(k, v));
+    params.set('bucket', verdict.bucket);
+    params.set('verdict', verdict.verdict);
+    params.set('conf', verdict.confidence || '');
+    window.location.href = 'results.html?' + params.toString();
+  }, 1100);
+}
+
+/* ============================================================
+   RULES ENGINE — YES / MAYBE / NO + bucket resolution
+   ============================================================ */
+function rulesEngine(a) {
+  // ---- Hard contraindications → auto-NO ----
+  const ci = a.q7 || [];
+  if (ci.includes('pregnant') || ci.includes('cancer') || ci.includes('eating_disorder')) {
+    return {
+      verdict: 'NO',
+      reasonCode: 'contraindication',
+      bucket: 'contraindicated',
+      confidence: 'Stripped block — see your doctor'
+    };
+  }
+
+  // ---- Under-25 with non-skin goal → auto-NO ----
+  if (a.q4 === 'under_25' && a.q1 !== 'skin_aging') {
+    return {
+      verdict: 'NO',
+      reasonCode: 'too_young',
+      bucket: 'too_young',
+      confidence: 'Not the right tool yet'
+    };
+  }
+
+  // ---- Determine bucket ----
+  const bucket = determineBucket(a);
+
+  // ---- MAYBE: GH-pathway + bloodwork 2+ years old ----
+  const ghBuckets = ['body_composition','energy_recovery','sleep'];
+  const oldLabs = (a.q5b === '2_plus' || a.q5b === 'never');
+  if (ghBuckets.includes(bucket) && oldLabs) {
+    return { verdict: 'MAYBE', reasonCode: 'labs_first', bucket, confidence: 'Worth exploring' };
+  }
+  // ---- MAYBE: body composition without resistance training ----
+  if (bucket === 'body_composition' && a.q5a === 'no') {
+    return { verdict: 'MAYBE', reasonCode: 'foundations_first', bucket, confidence: 'Worth exploring' };
+  }
+  // ---- MAYBE: hard-no injections + injection-only top peptide ----
+  const injectionOnlyBuckets = ['body_composition','energy_recovery','sleep','perimenopause'];
+  if (a.q6a === 'hard_no' && injectionOnlyBuckets.includes(bucket)) {
+    return { verdict: 'MAYBE', reasonCode: 'oral_pivot', bucket, confidence: 'Worth exploring' };
+  }
+
+  // ---- YES with confidence chip based on how many Q3 confirmers fired ----
+  const confirmers = countConfirmers(a, bucket);
+  let confidence = 'Worth exploring';
+  if (confirmers >= 3) confidence = 'Strong fit';
+  else if (confirmers >= 2) confidence = 'Likely fit';
+
+  return { verdict: 'YES', reasonCode: 'fit', bucket, confidence };
+}
+
+function determineBucket(a) {
+  const sig = a.q3 || [];
+  const isPeriSignal = ['brain_fog','hot_flashes','mood_shifts','cycle_changes'].filter(s => sig.includes(s)).length >= 2;
+  const olderEnough = ['35_44','45_54','55_plus'].includes(a.q4);
+
+  // Perimenopause routing
+  if ((a.q1 === 'perimenopause_suspected' || a.q1 === 'hormonal') && isPeriSignal && olderEnough) return 'perimenopause';
+
+  // Skin
+  if (a.q1 === 'skin_aging') return 'skin_aging';
+
+  // Body composition
+  if (a.q1 === 'body_composition') return 'body_composition';
+
+  // Energy & Recovery branch
+  if (a.q1 === 'energy_recovery') {
+    if (sig.includes('sore_joints')) return 'joint_tendon';
+    if (a.q2 === 'bad') return 'sleep';
+    return 'energy_recovery';
+  }
+
+  // Hormonal fallback (libido but no peri signal)
+  if (a.q1 === 'hormonal') return 'energy_recovery';
+
+  // Perimenopause suspected but signals don't confirm → route to dominant Q3 signal
+  if (a.q1 === 'perimenopause_suspected') {
+    if (sig.includes('sore_joints')) return 'joint_tendon';
+    if (sig.includes('dull_skin')) return 'skin_aging';
+    if (sig.includes('stuck_weight')) return 'body_composition';
+    if (a.q2 === 'bad') return 'sleep';
+    return 'energy_recovery';
+  }
+  return 'energy_recovery';
+}
+
+function countConfirmers(a, bucket) {
+  const sig = a.q3 || [];
+  const map = {
+    joint_tendon:    ['sore_joints'],
+    body_composition:['stuck_weight','sore_joints'],
+    energy_recovery: ['brain_fog','sore_joints','stuck_weight'],
+    skin_aging:      ['dull_skin'],
+    sleep:           ['brain_fog','mood_shifts'],
+    perimenopause:   ['brain_fog','hot_flashes','mood_shifts','cycle_changes']
+  };
+  return (map[bucket] || []).filter(s => sig.includes(s)).length + (bucket && a.q1 ? 1 : 0);
+}
+
+/* ============================================================
+   Boot
+   ============================================================ */
+captureUtm();
+fire('landing_viewed');
+
+// Expose for debugging
+window.__pm = { state, rulesEngine };
+</script>
+</body>
+</html>
