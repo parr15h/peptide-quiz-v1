@@ -27,6 +27,11 @@ if git ls-files --error-unmatch .claude >/dev/null 2>&1; then
 fi
 
 echo "→ 4/5  Staging changes…"
+# Touch each tracked file so FUSE sync doesn't confuse git's index after a
+# sandbox edit (the working-tree mtime can lag behind, making git think nothing
+# changed even when the file content differs).
+find . -name "*.html" -not -path "./.git/*" -not -path "./.claude/*" -exec touch {} \;
+git update-index --refresh >/dev/null 2>&1 || true
 git add -A
 
 # Bail with a friendly message if nothing actually changed
@@ -40,7 +45,7 @@ echo "       Files in this commit:"
 git status -s | sed 's/^/         /'
 
 echo "→ 5/5  Committing and pushing…"
-git commit -m "Cowork session: responsive homepage + unified results design"
+git commit -m "Cowork session: pending edits from sandbox"
 git push origin main
 
 echo ""

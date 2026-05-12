@@ -92,11 +92,13 @@
   .founders::before    { background: var(--cream); }
   .value-props::before { background: var(--cream); }
 
-  /* HERO — woman photo with logo + eyebrow + headline overlay */
+  /* HERO — woman photo with logo + eyebrow + headline overlay
+     overflow:visible so the .hero::before sky→navy gradient (width: 100vw)
+     bleeds to the viewport edges instead of being clipped to the 402px column. */
   .hero {
     position: relative;
     color: #fff;
-    overflow: hidden;
+    overflow: visible;
     aspect-ratio: 402 / 1043;
     max-width: 402px;
     margin: 0 auto;
@@ -104,7 +106,8 @@
       linear-gradient(180deg, #58a8d8 0%, #6fb2d8 30%, #2c5f86 75%, #0E2238 100%);
   }
   .hero::before {
-    /* Full-viewport-width gradient bleed behind the 402px hero column */
+    /* Full-viewport-width gradient bleed — same gradient as .hero so the photo
+       column blends seamlessly into the blue sides. */
     background:
       linear-gradient(180deg, #58a8d8 0%, #6fb2d8 30%, #2c5f86 75%, #0E2238 100%);
   }
@@ -615,27 +618,24 @@
      via the ::before pseudos defined above.
      ============================================ */
 
-  /* On viewports wider than 402px, swap the hero from aspect-ratio scaling to
-     fixed height — otherwise the hero would be 2-3x taller than designed. */
+  /* On viewports wider than 402px, the hero spans the full viewport so the
+     woman photo bleeds edge-to-edge. Foreground (logo, eyebrow, h1, q1) stays
+     centered in a 402px column via left:50%/translateX. */
   @media (min-width: 480px) {
     .quiz-shell, .results-shell { max-width: 480px; }
 
     .hero {
+      max-width: none;
+      margin: 0;
       aspect-ratio: auto;
       height: 1043px;
     }
-    /* Hero gradient bleeds full width via ::before — still need photo to bleed */
+    /* ::before bleed is redundant once .hero itself spans the viewport,
+       but keep it as a fallback if the photo fails to load */
     .hero::before {
-      /* gradient already inherited from earlier rule; add a desktop variant of
-         the photo as a faint background-image so it doesn't crop awkwardly */
       background:
-        linear-gradient(180deg, rgba(7,24,42,0.55) 0%, rgba(7,24,42,0.65) 100%),
-        url('assets/hero-woman.png') center top / cover,
         linear-gradient(180deg, #58a8d8 0%, #6fb2d8 30%, #2c5f86 75%, #0E2238 100%);
     }
-    /* The 402px-wide foreground photo gets slightly dimmer to read on top of
-       the wider bleed without looking pasted-on */
-    .hero-photo { opacity: 0.95; }
   }
 
   /* Smaller phones (<402px) — shrink the hero proportionally so absolute-pixel
