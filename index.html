@@ -618,9 +618,11 @@
      via the ::before pseudos defined above.
      ============================================ */
 
-  /* On viewports wider than 402px, the hero spans the full viewport so the
-     woman photo bleeds edge-to-edge. Foreground (logo, eyebrow, h1, q1) stays
-     centered in a 402px column via left:50%/translateX. */
+  /* On viewports wider than 402px, the hero spans the full viewport — the
+     blue gradient bleeds edge-to-edge — but the woman photo stays pinned to
+     the 402px center column so her composition isn't blown up by object-fit:
+     cover at desktop widths. Foreground (logo, eyebrow, h1, q1) is also
+     centered there via the existing left:50%/translateX on each element. */
   @media (min-width: 480px) {
     .quiz-shell, .results-shell { max-width: 480px; }
 
@@ -630,8 +632,15 @@
       aspect-ratio: auto;
       height: 1043px;
     }
-    /* ::before bleed is redundant once .hero itself spans the viewport,
-       but keep it as a fallback if the photo fails to load */
+    /* Photo: 402px wide, centered. Blue gradient on .hero shows on the sides. */
+    .hero-photo {
+      inset: 0 auto 0 50%;
+      transform: translateX(-50%);
+      width: 402px;
+      height: 100%;
+    }
+    /* Keep ::before's gradient identical to .hero's bg so any z-index quirks
+       at the column edges blend seamlessly */
     .hero::before {
       background:
         linear-gradient(180deg, #58a8d8 0%, #6fb2d8 30%, #2c5f86 75%, #0E2238 100%);

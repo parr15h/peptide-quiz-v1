@@ -16,7 +16,9 @@ set -e
 cd "$(dirname "$0")"
 
 echo "→ 1/5  Clearing stale sandbox git locks…"
-rm -f .git/HEAD.lock .git/index.lock
+# Sandbox FUSE leaves *.lock files all over .git/ — HEAD.lock, index.lock,
+# and refs/heads/main.lock have all bitten us in this project. Sweep them all.
+find .git -name "*.lock" -delete 2>/dev/null || true
 
 echo "→ 2/5  Resetting half-staged state from the sandbox…"
 git reset HEAD >/dev/null 2>&1 || true
