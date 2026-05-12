@@ -392,115 +392,1650 @@
    - tests/products/people → group lists for BLOCK 2 (showing 3–4 + expand)
 */
 const BUCKETS = {
-  energy_recovery: {
-    displayName: 'energy & focus',
-    storeName: 'energy & focus',
-    storeBlurb: 'curated for women who matched to CJC + Ipamorelin',
-    topPeptides: [
-      { name: 'CJC + Ipamorelin', initials: 'CJ', meta: '8–12 weeks' },
-      { name: 'BPC-157',          initials: 'BP', meta: '4–8 weeks' },
-      { name: 'Thymosin Alpha-1', initials: 'Tα', meta: '6–10 weeks' }
+  "energy_recovery": {
+    "displayName": "energy & focus",
+    "storeName": "energy & focus",
+    "storeBlurb": "curated for women who matched to CJC + Ipamorelin",
+    "topPeptides": [
+      {
+        "name": "CJC + Ipamorelin",
+        "initials": "CJ",
+        "meta": "8–12 weeks"
+      },
+      {
+        "name": "BPC-157",
+        "initials": "BP",
+        "meta": "4–8 weeks"
+      },
+      {
+        "name": "Thymosin Alpha-1",
+        "initials": "Tα",
+        "meta": "6–10 weeks"
+      }
     ],
-    tests: [
-      ['🧪','Lab panel','Function Health','$499/yr'],
-      ['📊','Metabolic data','Levels CGM','$199 + sub'],
-      ['🩸','Cortisol panel','DUTCH 4-point test','$300'],
-      ['🌙','Hormone tracking','Mira monitor','$199 + sub'],
-      ['🧬','Annual deep panel','InsideTracker Ultimate','$599'],
-      ['⚗️','Hormone optimization','Marek Health','$1,500/yr'],
-      ['🦴','Bone density','DEXA scan','$300'],
-      ['🦠','Gut panel','Genova GI','$699'],
-      ['❤️','Cardiovascular','Function CV+ panel','$499'],
-      ['🧠','Genetic testing','23andMe Health','$199']
+    "segment": "S1",
+    "segmentName": "The Optimizer",
+    "tests": [
+      [
+        "🧪",
+        "Diagnostics",
+        "Function Health membership",
+        "$100–$500"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "Levels CGM (annual)",
+        "$100–$500"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "InsideTracker Ultimate",
+        "$100–$500"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "Marek Health hormone optimization",
+        "$500–$2,000"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "Microbiome testing (Viome, Ombre)",
+        "$100–$500"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "Genetic testing (Genova premium)",
+        "$500–$2,000"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "Mira hormone monitor",
+        "$500–$2,000"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "Ketone monitor + ester drinks",
+        "$500–$2,000"
+      ]
     ],
-    products: [
-      ['🛌','Sleep optimization','Eight Sleep Pod','$2,500'],
-      ['💍','Recovery tracking','Oura Ring','$299 + sub'],
-      ['🔥','Recovery','HigherDose sauna blanket','$699'],
-      ['🦵','Active recovery','Therabody compression boots','$700'],
-      ['🧊','Cold therapy','The Plunge','$4,995'],
-      ['🔴','Red light','Joovv panel','$1,500'],
-      ['⏰','Sleep environment','Hatch Restore','$200'],
-      ['💪','Recovery','Theragun Pro','$300'],
-      ['💊','Foundational','Magnesium glycinate','$25/mo'],
-      ['🥬','Daily greens','AG1 / Athletic Greens','$99/mo'],
-      ['⚡','Longevity stack','Tru Niagen NMN/NR','$40/mo'],
-      ['🏋️','Performance','Premium creatine','$25/mo']
+    "products": [
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Oura Ring + subscription",
+        "$100–$500"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Eight Sleep Pod",
+        "$2,000+"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "NMN / NR (Tru Niagen, Renue)",
+        "$500–$2,000"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Methylene Blue",
+        "$100–$500"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Cold plunge tub (The Plunge)",
+        "$2,000+"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Sauna blanket (HigherDose)",
+        "$500–$2,000"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Red light panel (Joovv)",
+        "$2,000+"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "PEMF mat (Higher Dose, BioBalance)",
+        "$2,000+"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Hyperbaric chamber rental",
+        "$500–$2,000"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Premium creatine + electrolytes",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Athletic Greens / AG1",
+        "$100–$500"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Thorne / Pure Encapsulations stack",
+        "$100–$500"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Heads Up Health (data agg.)",
+        "$25–$100"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "PRP injections (cosmetic + joint)",
+        "$500–$2,000"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Recovery boots (Therabody RecoveryAir)",
+        "$500–$2,000"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Vibration plate (Power Plate)",
+        "$500–$2,000"
+      ],
+      [
+        "🍽️",
+        "Lifestyle",
+        "Premium organic meal delivery (Sakara)",
+        "$2,000+"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Personal trainer / 1:1 coaching",
+        "$500–$2,000"
+      ],
+      [
+        "📚",
+        "Education",
+        "Continuous education (Attia membership, Andrew Huberman premium)",
+        "$100–$500"
+      ]
     ],
-    people: [
-      ['🩺','Concierge medicine','Forward','$99/mo'],
-      ['🌿','Functional medicine','Parsley Health','$175/mo'],
-      ['💪','Personal training','Future','$199/mo'],
-      ['🏥','Premium concierge','Q.bio','$349/mo'],
-      ['🧬','Longevity workup','Modern Age','$1,500'],
-      ['🏋️‍♀️','Strength coaching','Caliber','$30/mo'],
-      ['💉','IV therapy','NAD+ IV protocol','$300/session'],
-      ['😴','Sleep specialty','Sleep specialist','$500+'],
-      ['🧘','Mental health','Alma therapist match','$150/session'],
-      ['🍽️','Nutrition coaching','MacroFactor','$72/yr']
+    "people": [
+      [
+        "🩺",
+        "Concierge",
+        "Forward / Q.bio concierge",
+        "$2,000+"
+      ],
+      [
+        "🩺",
+        "Concierge",
+        "NAD+ IV therapy (recurring)",
+        "$500–$2,000"
+      ],
+      [
+        "🩺",
+        "Concierge",
+        "Stem cell therapy referral",
+        "$2,000+"
+      ]
     ]
   },
-  joint_tendon: {
-    displayName: 'joint & recovery',
-    storeName: 'joint recovery',
-    storeBlurb: 'curated for women who matched to BPC-157',
-    topPeptides: [
-      { name: 'BPC-157', initials: 'BP', meta: '4–8 weeks' },
-      { name: 'TB-500',  initials: 'TB', meta: '6–10 weeks' },
-      { name: 'Collagen + curcumin', initials: 'C+', meta: '8–12 weeks' }
+  "joint_tendon": {
+    "displayName": "joint & recovery",
+    "storeName": "joint recovery",
+    "storeBlurb": "curated for women who matched to BPC-157",
+    "topPeptides": [
+      {
+        "name": "BPC-157",
+        "initials": "BP",
+        "meta": "4–8 weeks"
+      },
+      {
+        "name": "TB-500",
+        "initials": "TB",
+        "meta": "6–10 weeks"
+      },
+      {
+        "name": "Collagen + curcumin",
+        "initials": "C+",
+        "meta": "8–12 weeks"
+      }
+    ],
+    "segment": "S6",
+    "segmentName": "The Athlete",
+    "tests": [
+      [
+        "🧪",
+        "Diagnostics",
+        "Levels CGM (annual)",
+        "$100–$500"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "Resting metabolic rate test",
+        "$100–$500"
+      ]
+    ],
+    "products": [
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Whoop / Oura subscription",
+        "$100–$500"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Eight Sleep Pod",
+        "$2,000+"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Compression boots (Therabody, Hyperice)",
+        "$500–$2,000"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Massage gun (Theragun)",
+        "$100–$500"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Sauna blanket (HigherDose)",
+        "$500–$2,000"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Cold plunge (The Plunge, Ice Barrel)",
+        "$500–$2,000"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Vibration plate (Power Plate)",
+        "$500–$2,000"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "PEMF mat",
+        "$500–$2,000"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Recovery sleep mask (smart)",
+        "$100–$500"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Heart rate chest strap (Polar, Garmin)",
+        "$100–$500"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Premium creatine monohydrate",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "LMNT or premium electrolytes",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Whey isolate (premium)",
+        "$100–$500"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "EAA / BCAA",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Beta-alanine",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Glutamine",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Magnesium glycinate",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Tart cherry (recovery)",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Curcumin (recovery / inflammation)",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Omega-3 high-dose",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Collagen for joints",
+        "$25–$100"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "MacroFactor / RP Diet coaching",
+        "$25–$100"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Personal training subscription (Future, Caliber)",
+        "$500–$2,000"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Pilates / Barre subscription",
+        "$100–$500"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Indoor cycling (Peloton, Zwift)",
+        "$500–$2,000"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Premium fitness watch (Garmin, Apple Watch Ultra)",
+        "$500–$2,000"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Periodization / programming coach",
+        "$500–$2,000"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Functional movement assessment",
+        "$100–$500"
+      ]
+    ],
+    "people": []
+  },
+  "body_composition": {
+    "displayName": "body composition",
+    "storeName": "body composition",
+    "storeBlurb": "curated for women who matched to Tesamorelin + CJC",
+    "topPeptides": [
+      {
+        "name": "Tesamorelin",
+        "initials": "Tm",
+        "meta": "12–16 weeks"
+      },
+      {
+        "name": "CJC + Ipamorelin",
+        "initials": "CJ",
+        "meta": "8–12 weeks"
+      },
+      {
+        "name": "GLP-1 partner",
+        "initials": "GL",
+        "meta": "4–8 weeks"
+      }
+    ],
+    "segment": "S6",
+    "segmentName": "The Athlete",
+    "tests": [
+      [
+        "🧪",
+        "Diagnostics",
+        "Levels CGM (annual)",
+        "$100–$500"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "Resting metabolic rate test",
+        "$100–$500"
+      ]
+    ],
+    "products": [
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Whoop / Oura subscription",
+        "$100–$500"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Eight Sleep Pod",
+        "$2,000+"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Compression boots (Therabody, Hyperice)",
+        "$500–$2,000"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Massage gun (Theragun)",
+        "$100–$500"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Sauna blanket (HigherDose)",
+        "$500–$2,000"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Cold plunge (The Plunge, Ice Barrel)",
+        "$500–$2,000"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Vibration plate (Power Plate)",
+        "$500–$2,000"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "PEMF mat",
+        "$500–$2,000"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Recovery sleep mask (smart)",
+        "$100–$500"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Heart rate chest strap (Polar, Garmin)",
+        "$100–$500"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Premium creatine monohydrate",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "LMNT or premium electrolytes",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Whey isolate (premium)",
+        "$100–$500"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "EAA / BCAA",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Beta-alanine",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Glutamine",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Magnesium glycinate",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Tart cherry (recovery)",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Curcumin (recovery / inflammation)",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Omega-3 high-dose",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Collagen for joints",
+        "$25–$100"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "MacroFactor / RP Diet coaching",
+        "$25–$100"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Personal training subscription (Future, Caliber)",
+        "$500–$2,000"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Pilates / Barre subscription",
+        "$100–$500"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Indoor cycling (Peloton, Zwift)",
+        "$500–$2,000"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Premium fitness watch (Garmin, Apple Watch Ultra)",
+        "$500–$2,000"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Periodization / programming coach",
+        "$500–$2,000"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Functional movement assessment",
+        "$100–$500"
+      ]
+    ],
+    "people": []
+  },
+  "skin_aging": {
+    "displayName": "skin & anti-aging",
+    "storeName": "skin & anti-aging",
+    "storeBlurb": "curated for women who matched to GHK-Cu",
+    "topPeptides": [
+      {
+        "name": "GHK-Cu",
+        "initials": "GH",
+        "meta": "6–12 weeks"
+      },
+      {
+        "name": "Epitalon",
+        "initials": "Ep",
+        "meta": "12+ weeks"
+      },
+      {
+        "name": "CJC + Ipamorelin",
+        "initials": "CJ",
+        "meta": "8–12 weeks"
+      }
+    ],
+    "segment": "S5",
+    "segmentName": "The Aesthetic Investor",
+    "tests": [],
+    "products": [
+      [
+        "💄",
+        "Aesthetics",
+        "Cosmetic dermatologist consult",
+        "$500–$2,000"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Botox / Dysport referral",
+        "$500–$2,000"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Filler referral",
+        "$500–$2,000"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Sculptra referral",
+        "$500–$2,000"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "At-home microneedling pen (Dr. Pen)",
+        "$100–$500"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "In-clinic microneedling series",
+        "$500–$2,000"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Vampire facial (PRP)",
+        "$500–$2,000"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Microcurrent device (NuFace, Foreo Bear)",
+        "$100–$500"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "LED face mask (Omnilux Contour)",
+        "$500–$2,000"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Red light panel (face/body)",
+        "$500–$2,000"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Laser referral (BBL, Clear+Brilliant)",
+        "$500–$2,000"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Hair laser cap (CapillusRX)",
+        "$500–$2,000"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "PRP for hair growth referral",
+        "$500–$2,000"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Vitamin C serum (SkinCeuticals)",
+        "$500–$2,000"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Retinol OTC (lower strength)",
+        "$100–$500"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Peptide serum (multi-peptide blend)",
+        "$100–$500"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "GHK-Cu serum (topical)",
+        "$100–$500"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Niacinamide",
+        "$25–$100"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Premium daily SPF",
+        "$100–$500"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Collagen peptides",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Hyaluronic acid oral",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Glutathione (oral or IV)",
+        "$100–$500"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Biotin + saw palmetto for hair",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Skin-focused multivitamin",
+        "$100–$500"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Lash serum (Vegamour, Latisse)",
+        "$100–$500"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Lip filler / lash lift (referral)",
+        "$500–$2,000"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Premium skincare subscription box",
+        "$500–$2,000"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Dermal roller / scalp massagers",
+        "$25–$100"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Aesthetic-focused Pilates / posture",
+        "$100–$500"
+      ]
+    ],
+    "people": [
+      [
+        "💉",
+        "Hormones & Rx",
+        "Tretinoin Rx (Curology, Apostrophe)",
+        "$100–$500"
+      ]
     ]
   },
-  body_composition: {
-    displayName: 'body composition',
-    storeName: 'body composition',
-    storeBlurb: 'curated for women who matched to Tesamorelin + CJC',
-    topPeptides: [
-      { name: 'Tesamorelin', initials: 'Tm', meta: '12–16 weeks' },
-      { name: 'CJC + Ipamorelin', initials: 'CJ', meta: '8–12 weeks' },
-      { name: 'GLP-1 partner', initials: 'GL', meta: '4–8 weeks' }
+  "sleep": {
+    "displayName": "sleep",
+    "storeName": "sleep",
+    "storeBlurb": "curated for women who matched to DSIP",
+    "topPeptides": [
+      {
+        "name": "DSIP",
+        "initials": "DS",
+        "meta": "2–6 weeks"
+      },
+      {
+        "name": "CJC + Ipamorelin",
+        "initials": "CJ",
+        "meta": "2–4 weeks"
+      },
+      {
+        "name": "Epitalon",
+        "initials": "Ep",
+        "meta": "4–8 weeks"
+      }
+    ],
+    "segment": "S7",
+    "segmentName": "The Quiet Burnout",
+    "tests": [
+      [
+        "🧪",
+        "Diagnostics",
+        "Levels CGM",
+        "$100–$500"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "Cognitive testing (Cambridge Brain Sciences)",
+        "$100–$500"
+      ]
+    ],
+    "products": [
+      [
+        "🦵",
+        "Recovery",
+        "Massage therapy subscription",
+        "$500–$2,000"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Float tank membership",
+        "$500–$2,000"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Sauna / cold plunge facility membership",
+        "$500–$2,000"
+      ],
+      [
+        "🍽️",
+        "Lifestyle",
+        "Personal chef / Sakara",
+        "$2,000+"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "In-home personal trainer",
+        "$2,000+"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Yoga / movement private instruction",
+        "$500–$2,000"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Premium adaptogenic stack",
+        "$500–$2,000"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "NAD precursors (NMN, NR)",
+        "$500–$2,000"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Oura Ring + Eight Sleep stack",
+        "$2,000+"
+      ],
+      [
+        "🍽️",
+        "Lifestyle",
+        "Smart desk + ergonomic setup",
+        "$500–$2,000"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "HRV / stress training (HeartMath)",
+        "$100–$500"
+      ],
+      [
+        "🍽️",
+        "Lifestyle",
+        "Travel concierge (sleep adjustment kits)",
+        "$500–$2,000"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Light therapy lamp (premium)",
+        "$100–$500"
+      ],
+      [
+        "🍽️",
+        "Lifestyle",
+        "Air + water filter (Air Doctor, Berkey)",
+        "$500–$2,000"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Premium mattress (Avocado, Saatva)",
+        "$2,000+"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Walking treadmill / standing desk",
+        "$500–$2,000"
+      ],
+      [
+        "🍽️",
+        "Lifestyle",
+        "Premium organic grocery delivery",
+        "$2,000+"
+      ]
+    ],
+    "people": [
+      [
+        "🩺",
+        "Concierge",
+        "Forward / Q.bio / Function Premium",
+        "$2,000+"
+      ],
+      [
+        "🩺",
+        "Concierge",
+        "Concierge medicine (private)",
+        "$2,000+"
+      ],
+      [
+        "🩺",
+        "Concierge",
+        "Executive physical (Mayo, Cleveland Clinic)",
+        "$2,000+"
+      ],
+      [
+        "🩺",
+        "Concierge",
+        "NAD+ IV therapy series",
+        "$500–$2,000"
+      ],
+      [
+        "🩺",
+        "Concierge",
+        "Vitamin IV drip subscription",
+        "$500–$2,000"
+      ],
+      [
+        "🩺",
+        "Concierge",
+        "Functional medicine deep workup",
+        "$500–$2,000"
+      ],
+      [
+        "🤝",
+        "Service",
+        "Sleep clinic referral / sleep study",
+        "$100–$500"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "CBT-i program (digital)",
+        "$100–$500"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "Burnout / executive coaching therapy",
+        "$500–$2,000"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "Modern Health / Lyra (premium)",
+        "$500–$2,000"
+      ],
+      [
+        "🩺",
+        "Concierge",
+        "Acupuncture series",
+        "$100–$500"
+      ]
     ]
   },
-  skin_aging: {
-    displayName: 'skin & anti-aging',
-    storeName: 'skin & anti-aging',
-    storeBlurb: 'curated for women who matched to GHK-Cu',
-    topPeptides: [
-      { name: 'GHK-Cu',   initials: 'GH', meta: '6–12 weeks' },
-      { name: 'Epitalon', initials: 'Ep', meta: '12+ weeks' },
-      { name: 'CJC + Ipamorelin', initials: 'CJ', meta: '8–12 weeks' }
+  "perimenopause": {
+    "displayName": "hormones",
+    "storeName": "hormonal balance",
+    "storeBlurb": "routed primarily to an HRT partner; peptides as adjunct",
+    "topPeptides": [
+      {
+        "name": "HRT partner consult",
+        "initials": "HR",
+        "meta": "4–8 weeks"
+      },
+      {
+        "name": "PT-141",
+        "initials": "PT",
+        "meta": "4–8 weeks"
+      },
+      {
+        "name": "Kisspeptin-10",
+        "initials": "Ks",
+        "meta": "8–12 weeks"
+      }
+    ],
+    "segment": "S4",
+    "segmentName": "The Peri-Recognized",
+    "tests": [
+      [
+        "🧪",
+        "Diagnostics",
+        "Bone density DEXA + tracking",
+        "$100–$500"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "Cardiovascular workup (full)",
+        "$100–$500"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "Hormone monitor at home (track HRT response)",
+        "$500–$2,000"
+      ]
+    ],
+    "products": [
+      [
+        "💄",
+        "Aesthetics",
+        "Replens / vaginal moisturizer",
+        "$25–$100"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Vaginal CO2 laser referral (MonaLisa Touch)",
+        "$500–$2,000"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Cooling pillow + sheets + sleepwear",
+        "$100–$500"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Eight Sleep Pod (cooling)",
+        "$2,000+"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Strength program for menopausal women",
+        "$100–$500"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Pilates studio / barre membership",
+        "$100–$500"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Yoga (gentle, restorative) program",
+        "$25–$100"
+      ],
+      [
+        "🍽️",
+        "Lifestyle",
+        "Peri-focused nutrition program",
+        "$100–$500"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Peri-focused supplement multi",
+        "$100–$500"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Magnesium for sleep + mood",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Vitamin D + K2 (bone)",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Omega-3 / EPA-DHA (heart + brain)",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Bone-supporting stack (calcium, K2, boron)",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Heart-supporting stack (CoQ10, omega-3)",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Brain-supporting stack (lion's mane, citicoline)",
+        "$100–$500"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Skincare for menopausal skin (ceramides, peptides)",
+        "$100–$500"
+      ]
+    ],
+    "people": [
+      [
+        "💉",
+        "Hormones & Rx",
+        "Midi Health subscription (HRT)",
+        "$100–$500"
+      ],
+      [
+        "💉",
+        "Hormones & Rx",
+        "Alloy Health subscription (HRT)",
+        "$100–$500"
+      ],
+      [
+        "💉",
+        "Hormones & Rx",
+        "Evernow subscription (HRT)",
+        "$100–$500"
+      ],
+      [
+        "💉",
+        "Hormones & Rx",
+        "Estrogen patch / estradiol Rx (via partner)",
+        "$100–$500"
+      ],
+      [
+        "💉",
+        "Hormones & Rx",
+        "Progesterone Rx (via partner)",
+        "$100–$500"
+      ],
+      [
+        "💉",
+        "Hormones & Rx",
+        "Low-dose testosterone Rx (women)",
+        "$100–$500"
+      ],
+      [
+        "💉",
+        "Hormones & Rx",
+        "Vaginal estrogen",
+        "$100–$500"
+      ],
+      [
+        "💉",
+        "Hormones & Rx",
+        "Compounded HRT (specific formulations)",
+        "$500–$2,000"
+      ],
+      [
+        "💉",
+        "Hormones & Rx",
+        "PT-141 for libido",
+        "$100–$500"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "Cycle-ending acceptance therapy",
+        "$100–$500"
+      ],
+      [
+        "🩺",
+        "Concierge",
+        "Functional medicine concierge",
+        "$500–$2,000"
+      ]
     ]
   },
-  sleep: {
-    displayName: 'sleep',
-    storeName: 'sleep',
-    storeBlurb: 'curated for women who matched to DSIP',
-    topPeptides: [
-      { name: 'DSIP', initials: 'DS', meta: '2–6 weeks' },
-      { name: 'CJC + Ipamorelin', initials: 'CJ', meta: '2–4 weeks' },
-      { name: 'Epitalon', initials: 'Ep', meta: '4–8 weeks' }
+  "contraindicated": {
+    "displayName": "foundations",
+    "storeName": "foundations",
+    "storeBlurb": "a short menu so you leave with something useful",
+    "topPeptides": [],
+    "segment": "S10",
+    "segmentName": "The Out-of-Bounds",
+    "tests": [
+      [
+        "🧪",
+        "Diagnostics",
+        "Family planning / fertility tracking (Mira)",
+        "$500–$2,000"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "Hormone testing (post-treatment)",
+        "$100–$500"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "Bone density (post hormone-blocker context)",
+        "$100–$500"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "Cardiovascular screening",
+        "$100–$500"
+      ]
+    ],
+    "products": [
+      [
+        "💊",
+        "Supplements",
+        "Pregnancy/nursing-safe prenatals (Ritual, FullWell)",
+        "$100–$500"
+      ],
+      [
+        "📚",
+        "Education",
+        "Postpartum prep kit / course",
+        "$25–$100"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Cancer recovery program (post-treatment fitness)",
+        "$100–$500"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "988 / Crisis Text Line (free)",
+        "Free"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Pregnancy-safe skincare",
+        "$100–$500"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Pregnancy-safe supplements",
+        "$100–$500"
+      ],
+      [
+        "🍽️",
+        "Lifestyle",
+        "Meal delivery (treatment / postpartum)",
+        "$100–$500"
+      ],
+      [
+        "📚",
+        "Education",
+        "Books: 'The Birth Partner,' 'Anticancer'",
+        "$25–$100"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Pregnancy-safe pillows + Eight Sleep",
+        "$500–$2,000"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Compression / postpartum recovery wear",
+        "$100–$500"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Premium prenatal subscription",
+        "$100–$500"
+      ],
+      [
+        "📚",
+        "Education",
+        "Spousal/partner education materials",
+        "$25–$100"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "Crisis-line cards / family safety resources",
+        "Free"
+      ],
+      [
+        "📚",
+        "Education",
+        "'We're here' check-in cadence (newsletter)",
+        "Free"
+      ]
+    ],
+    "people": [
+      [
+        "🩺",
+        "Concierge",
+        "Pregnancy nutrition coaching",
+        "$100–$500"
+      ],
+      [
+        "🤝",
+        "Service",
+        "Doula referral",
+        "$500–$2,000"
+      ],
+      [
+        "🤝",
+        "Service",
+        "Lactation consultant referral",
+        "$100–$500"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "Caregiver support resources / community",
+        "$25–$100"
+      ],
+      [
+        "🩺",
+        "Concierge",
+        "Post-cancer nutrition coaching",
+        "$100–$500"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "Therapy (BetterHelp, Talkspace, Alma)",
+        "$100–$500"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "Eating-disorder-specialty therapy (NAED)",
+        "$100–$500"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "Mindfulness apps (Calm, Headspace)",
+        "$25–$100"
+      ],
+      [
+        "💉",
+        "Hormones & Rx",
+        "OB/GYN telehealth (Maven)",
+        "$100–$500"
+      ],
+      [
+        "🤝",
+        "Service",
+        "Pelvic floor PT (Origin)",
+        "$100–$500"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "Online community (postpartum, survivors, recovery)",
+        "$25–$100"
+      ],
+      [
+        "🩺",
+        "Concierge",
+        "Mental-health-trained nutritionist",
+        "$100–$500"
+      ]
     ]
   },
-  perimenopause: {
-    displayName: 'hormones',
-    storeName: 'hormonal balance',
-    storeBlurb: 'routed primarily to an HRT partner; peptides as adjunct',
-    topPeptides: [
-      { name: 'HRT partner consult', initials: 'HR', meta: '4–8 weeks' },
-      { name: 'PT-141',          initials: 'PT', meta: '4–8 weeks' },
-      { name: 'Kisspeptin-10',   initials: 'Ks', meta: '8–12 weeks' }
+  "too_young": {
+    "displayName": "foundations",
+    "storeName": "foundations",
+    "storeBlurb": "what moves the needle before peptides become useful",
+    "topPeptides": [],
+    "segment": "S9",
+    "segmentName": "The Foundation-Gated",
+    "tests": [
+      [
+        "🧪",
+        "Diagnostics",
+        "Function Health lab panel (the gate)",
+        "$100–$500"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "InsideTracker (alt)",
+        "$100–$500"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "Levels CGM (entry to data)",
+        "$100–$500"
+      ]
+    ],
+    "products": [
+      [
+        "💊",
+        "Supplements",
+        "Magnesium glycinate (sleep)",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Glycine (sleep)",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "L-theanine (sleep + calm)",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Melatonin (low-dose)",
+        "$25–$100"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Hatch sleep mask + sound",
+        "$25–$100"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Eight Sleep Pod (premium foundation)",
+        "$2,000+"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Oura Ring (sleep tracking)",
+        "$100–$500"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Beginner strength program (Future, Caliber)",
+        "$100–$500"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "In-person personal trainer (beginner)",
+        "$500–$2,000"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Pilates / Lagree / barre (entry)",
+        "$100–$500"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Yoga studio (in-person or app)",
+        "$25–$100"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Bodyweight training program (entry)",
+        "$25–$100"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "HRV / stress training (HeartMath)",
+        "$100–$500"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Adaptogenic stack (cortisol)",
+        "$100–$500"
+      ],
+      [
+        "📚",
+        "Education",
+        "Caffeine reduction protocol (course)",
+        "$25–$100"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Walking / step program",
+        "$25–$100"
+      ],
+      [
+        "🍽️",
+        "Lifestyle",
+        "Outdoor activity gear (hiking entry kit)",
+        "$100–$500"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Nutrition coaching app (entry, MacroFactor)",
+        "$25–$100"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Greens powder",
+        "$100–$500"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Multivitamin (women's)",
+        "$25–$100"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Daily resistance band kit (entry strength)",
+        "$25–$100"
+      ],
+      [
+        "📚",
+        "Education",
+        "Books: 'Why We Sleep,' 'The Stress Solution'",
+        "$25–$100"
+      ]
+    ],
+    "people": [
+      [
+        "🤝",
+        "Service",
+        "Sleep clinic referral / study",
+        "$100–$500"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "CBT-i program (digital)",
+        "$100–$500"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "Therapy / mental health (entry)",
+        "$100–$500"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "Alcohol reduction support (Sunnyside, Reframe)",
+        "$25–$100"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "Meditation app (Calm)",
+        "$25–$100"
+      ]
     ]
-  },
-  contraindicated: {
-    displayName: 'foundations',
-    storeName: 'foundations',
-    storeBlurb: 'a short menu so you leave with something useful',
-    topPeptides: []
-  },
-  too_young: {
-    displayName: 'foundations',
-    storeName: 'foundations',
-    storeBlurb: 'what moves the needle before peptides become useful',
-    topPeptides: []
   }
 };
 
@@ -551,7 +2086,14 @@ function fire(event, data = {}) {
 
 function renderBuyGroup(group, title, accent, items, visibleCount) {
   const el = document.querySelector(`[data-group="${group}"]`);
+  if (!el) return;
   el.innerHTML = '';
+  // Skip the whole group if the segment has no items in this category
+  if (!items || items.length === 0) {
+    el.style.display = 'none';
+    return;
+  }
+  el.style.display = '';
   const header = document.createElement('div');
   header.className = 'buy-group-header';
   header.innerHTML = `<div class="buy-group-title">${title}</div><div class="buy-group-count">${items.length} picks</div>`;

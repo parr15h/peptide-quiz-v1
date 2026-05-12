@@ -231,46 +231,2017 @@
    ============================================================ */
 
 const BUCKETS = {
-  energy_recovery: {
-    storeName: 'energy & focus.',
-    storeBlurb: 'curated for women who matched to CJC + Ipamorelin',
-    tests: [
-      ['🧪','Lab panel','Function Health','Comprehensive baseline before any peptide protocol — the marker most providers want before prescribing.','$499/yr','mid'],
-      ['📊','Metabolic data','Levels CGM','Glucose volatility is an underrated 3am-waker. 30 days of data tells you whether to invest in the protocol or fix the diet first.','$199 + sub','mid'],
-      ['🩸','Cortisol panel','DUTCH 4-point test','Maps your cortisol curve across the day. If yours is wrong-shaped, peptides won\'t deliver until cortisol\'s addressed.','$300','mid'],
-      ['🌙','Hormone tracking','Mira monitor','Monthly home hormone tracking. Useful if you want to see whether peri is in the picture before any GH-pathway protocol.','$199 + sub','mid'],
-      ['🧬','Annual deep panel','InsideTracker Ultimate','Alternative to Function — heavier on athletic / performance markers. Pick this one if your goal is recomp + recovery.','$599','premium'],
-      ['⚗️','Hormone optimization','Marek Health','For when you want to actually optimize hormones, not just test them. Includes provider-led interpretation + Rx if needed.','$1,500/yr','premium'],
-      ['🦴','Bone density','DEXA scan','Catches early bone loss that peri quietly accelerates. Worth a baseline if you\'re 35+, especially before HRT discussions.','$300','mid'],
-      ['🦠','Gut panel','Genova GI Effects','If your fatigue tracks with bloat or recent antibiotic use, this is more useful than another fatigue panel.','$699','premium'],
-      ['❤️','Cardiovascular','Function CV+ panel','ApoB, Lp(a), advanced lipids. Most women your age never get these run. They are the ones that matter.','$499','mid'],
-      ['🧠','Genetic testing','23andMe Health','One-time. Tells you about caffeine metabolism, vitamin D conversion, and a few peptide-relevant pathways.','$199','mid']
+  "energy_recovery": {
+    "storeName": "energy & focus",
+    "storeBlurb": "curated for women who matched to CJC + Ipamorelin",
+    "segment": "S1",
+    "segmentName": "The Optimizer",
+    "tests": [
+      [
+        "🧪",
+        "Diagnostics",
+        "Function Health membership",
+        "Tier-1 partner. Gateway.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "Levels CGM (annual)",
+        "Subscription LTV.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "InsideTracker Ultimate",
+        "Alt to Function for variety.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "Marek Health hormone optimization",
+        "Deep hormone protocol.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "Microbiome testing (Viome, Ombre)",
+        "Recurring + supplement upsell.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "Genetic testing (Genova premium)",
+        "One-time premium.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "Mira hormone monitor",
+        "Monthly tracking subscription.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "Ketone monitor + ester drinks",
+        "Niche optimizer.",
+        "$500–$2,000",
+        "premium"
+      ]
     ],
-    products: [
-      ['🛌','Sleep optimization','Eight Sleep Pod','CJC works during deep sleep. Cooling tech adds 30–60 min of deep sleep nightly — where the entire protocol does its job.','$2,500','premium'],
-      ['💍','Recovery tracking','Oura Ring','Measures the variables your protocol is supposed to move. Without it you\'re guessing whether anything\'s working.','$299 + sub','mid'],
-      ['🔥','Recovery','HigherDose sauna blanket','Heat-shock proteins compound the same recovery pathways peptides target. 4× per week is the sweet spot.','$699','premium'],
-      ['🦵','Active recovery','Therabody compression boots','Most-impactful active recovery tool for women training 3×+/wk. 20 min between sessions = better return on the protocol.','$700','premium'],
-      ['🧊','Cold therapy','The Plunge','Premium cold-plunge tier. Cold exposure 2–3× a week pairs surprisingly well with GH-pathway protocols for fat metabolism.','$4,995','premium'],
-      ['🔴','Red light','Joovv panel','Skin + recovery + mitochondrial markers. Real evidence base — but only worth it if you\'re already doing the basics.','$1,500','premium'],
-      ['⏰','Sleep environment','Hatch Restore','Sunrise alarm + sound + dim wake-up routine. The least-sexy tool with the most consistent compliance lift.','$200','mid'],
-      ['💪','Recovery','Theragun Pro','Mass-market device, real benefit. Consider this if you\'re not ready for compression boots.','$300','mid'],
-      ['💊','Foundational','Magnesium glycinate (Pure Encap.)','Foundational. The supplement we\'d send a friend to. Take with peptides or instead of them — both work.','$25/mo','entry'],
-      ['🥬','Daily greens','AG1 / Athletic Greens','Pricey but real if you struggle to eat veggies + protein consistently. Skip if your basics are already covered.','$99/mo','mid'],
-      ['⚡','Longevity stack','Tru Niagen NMN/NR','NAD precursor. Pairs well with CJC for energy + cellular repair. Best evidence base in the longevity-supplement category.','$40/mo','entry'],
-      ['🏋️','Performance','Premium creatine subscription','5g daily. Brain + body benefits women over 30 underuse. The cheapest legitimate performance supplement on this list.','$25/mo','entry']
+    "products": [
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Oura Ring + subscription",
+        "Tier-1 partner.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Eight Sleep Pod",
+        "Premium-end sleep optimization.",
+        "$2,000+",
+        "premium"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "NMN / NR (Tru Niagen, Renue)",
+        "Longevity stack.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Methylene Blue",
+        "Trending in optimizer circles.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Cold plunge tub (The Plunge)",
+        "Brand-direct partnership.",
+        "$2,000+",
+        "premium"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Sauna blanket (HigherDose)",
+        "Affiliate available.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Red light panel (Joovv)",
+        "Brand-direct partnership.",
+        "$2,000+",
+        "premium"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "PEMF mat (Higher Dose, BioBalance)",
+        "Niche but matches buyer.",
+        "$2,000+",
+        "premium"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Hyperbaric chamber rental",
+        "Niche; matches buyer profile.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Premium creatine + electrolytes",
+        "Foundation; subscription works.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Athletic Greens / AG1",
+        "Subscription affiliate.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Thorne / Pure Encapsulations stack",
+        "Brand-direct partnership.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Heads Up Health (data agg.)",
+        "Aggregates Oura + Levels + labs.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "PRP injections (cosmetic + joint)",
+        "Referral fee.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Recovery boots (Therabody RecoveryAir)",
+        "Affiliate.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Vibration plate (Power Plate)",
+        "Bone density angle.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🍽️",
+        "Lifestyle",
+        "Premium organic meal delivery (Sakara)",
+        "Subscription LTV.",
+        "$2,000+",
+        "premium"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Personal trainer / 1:1 coaching",
+        "Recurring.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "📚",
+        "Education",
+        "Continuous education (Attia membership, Andrew Huberman premium)",
+        "Affinity-led.",
+        "$100–$500",
+        "mid"
+      ]
     ],
-    people: [
-      ['🩺','Concierge medicine','Forward','Tech-forward concierge primary care. Includes labs, basic specialty referrals, and unlimited messaging — useful as a hub.','$99/mo','mid'],
-      ['🌿','Functional medicine','Parsley Health','Functional-med approach with telehealth + labs. Good fit if your symptoms haven\'t been taken seriously by traditional GPs.','$175/mo','mid'],
-      ['💪','Personal training','Future','App-based 1:1 coaching. Real human, real adjustments, real accountability. Most-likely-to-stick performance investment.','$199/mo','mid'],
-      ['🏥','Premium concierge','Q.bio','Premium tier — includes regular advanced imaging + concierge primary. The Forward step-up if you want more visibility.','$349/mo','premium'],
-      ['🧬','Longevity workup','Modern Age','One-time deep dive. Useful if you\'re peri-curious + want a longevity-medicine framing on your numbers.','$1,500','premium'],
-      ['🏋️‍♀️','Strength coaching','Caliber','App-based strength-specific coaching. Cheaper than Future, slightly less hand-holding. Good if you have form basics already.','$30/mo','entry'],
-      ['💉','IV therapy','NAD+ IV protocol','5–10 session series. Real benefit for some, expensive theater for others. Worth trying once if your foundations are dialed.','$300/session','mid'],
-      ['😴','Sleep specialty','Sleep specialist referral','If your sleep tracker shows low deep sleep + apnea risk markers, see one of these before you spend on devices.','$500+','premium'],
-      ['🧘','Mental health','Alma therapist match','Insurance-friendly therapist matching. A good therapist is the highest-ROI line on this entire page.','$150/session','mid'],
-      ['🍽️','Nutrition coaching','MacroFactor','App-based macro tracking that adapts. The smartest nutrition tool on the market if you\'ll actually use it.','$72/yr','entry']
+    "people": [
+      [
+        "🩺",
+        "Concierge",
+        "Forward / Q.bio concierge",
+        "Tech-forward concierge med.",
+        "$2,000+",
+        "premium"
+      ],
+      [
+        "🩺",
+        "Concierge",
+        "NAD+ IV therapy (recurring)",
+        "Recurring service.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🩺",
+        "Concierge",
+        "Stem cell therapy referral",
+        "Referral. Niche.",
+        "$2,000+",
+        "premium"
+      ]
+    ]
+  },
+  "joint_tendon": {
+    "storeName": "joint recovery",
+    "storeBlurb": "curated for women who matched to BPC-157",
+    "segment": "S6",
+    "segmentName": "The Athlete",
+    "tests": [
+      [
+        "🧪",
+        "Diagnostics",
+        "Levels CGM (annual)",
+        "Diagnostics · Device + Sub · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "Resting metabolic rate test",
+        "Diagnostics · Service · Mid tier.",
+        "$100–$500",
+        "mid"
+      ]
+    ],
+    "products": [
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Whoop / Oura subscription",
+        "Sleep & Tracking · Device + Sub · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Eight Sleep Pod",
+        "Sleep & Tracking · Device · Ultra tier.",
+        "$2,000+",
+        "premium"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Compression boots (Therabody, Hyperice)",
+        "Recovery · Device · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Massage gun (Theragun)",
+        "Recovery · Device · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Sauna blanket (HigherDose)",
+        "Recovery · Device · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Cold plunge (The Plunge, Ice Barrel)",
+        "Recovery · Device · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Vibration plate (Power Plate)",
+        "Recovery · Device · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "PEMF mat",
+        "Recovery · Device · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Recovery sleep mask (smart)",
+        "Sleep & Tracking · Device · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Heart rate chest strap (Polar, Garmin)",
+        "Sleep & Tracking · Device · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Premium creatine monohydrate",
+        "Supplements · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "LMNT or premium electrolytes",
+        "Supplements · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Whey isolate (premium)",
+        "Supplements · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "EAA / BCAA",
+        "Supplements · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Beta-alanine",
+        "Supplements · Product · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Glutamine",
+        "Supplements · Product · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Magnesium glycinate",
+        "Supplements · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Tart cherry (recovery)",
+        "Supplements · Product · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Curcumin (recovery / inflammation)",
+        "Supplements · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Omega-3 high-dose",
+        "Supplements · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Collagen for joints",
+        "Supplements · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "MacroFactor / RP Diet coaching",
+        "Performance · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Personal training subscription (Future, Caliber)",
+        "Performance · Subscription · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Pilates / Barre subscription",
+        "Performance · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Indoor cycling (Peloton, Zwift)",
+        "Performance · Subscription · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Premium fitness watch (Garmin, Apple Watch Ultra)",
+        "Sleep & Tracking · Device · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Periodization / programming coach",
+        "Performance · Service · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Functional movement assessment",
+        "Performance · Service · Mid tier.",
+        "$100–$500",
+        "mid"
+      ]
+    ],
+    "people": []
+  },
+  "body_composition": {
+    "storeName": "body composition",
+    "storeBlurb": "curated for women who matched to Tesamorelin + CJC",
+    "segment": "S6",
+    "segmentName": "The Athlete",
+    "tests": [
+      [
+        "🧪",
+        "Diagnostics",
+        "Levels CGM (annual)",
+        "Diagnostics · Device + Sub · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "Resting metabolic rate test",
+        "Diagnostics · Service · Mid tier.",
+        "$100–$500",
+        "mid"
+      ]
+    ],
+    "products": [
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Whoop / Oura subscription",
+        "Sleep & Tracking · Device + Sub · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Eight Sleep Pod",
+        "Sleep & Tracking · Device · Ultra tier.",
+        "$2,000+",
+        "premium"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Compression boots (Therabody, Hyperice)",
+        "Recovery · Device · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Massage gun (Theragun)",
+        "Recovery · Device · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Sauna blanket (HigherDose)",
+        "Recovery · Device · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Cold plunge (The Plunge, Ice Barrel)",
+        "Recovery · Device · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Vibration plate (Power Plate)",
+        "Recovery · Device · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "PEMF mat",
+        "Recovery · Device · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Recovery sleep mask (smart)",
+        "Sleep & Tracking · Device · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Heart rate chest strap (Polar, Garmin)",
+        "Sleep & Tracking · Device · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Premium creatine monohydrate",
+        "Supplements · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "LMNT or premium electrolytes",
+        "Supplements · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Whey isolate (premium)",
+        "Supplements · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "EAA / BCAA",
+        "Supplements · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Beta-alanine",
+        "Supplements · Product · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Glutamine",
+        "Supplements · Product · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Magnesium glycinate",
+        "Supplements · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Tart cherry (recovery)",
+        "Supplements · Product · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Curcumin (recovery / inflammation)",
+        "Supplements · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Omega-3 high-dose",
+        "Supplements · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Collagen for joints",
+        "Supplements · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "MacroFactor / RP Diet coaching",
+        "Performance · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Personal training subscription (Future, Caliber)",
+        "Performance · Subscription · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Pilates / Barre subscription",
+        "Performance · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Indoor cycling (Peloton, Zwift)",
+        "Performance · Subscription · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Premium fitness watch (Garmin, Apple Watch Ultra)",
+        "Sleep & Tracking · Device · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Periodization / programming coach",
+        "Performance · Service · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Functional movement assessment",
+        "Performance · Service · Mid tier.",
+        "$100–$500",
+        "mid"
+      ]
+    ],
+    "people": []
+  },
+  "skin_aging": {
+    "storeName": "skin & anti-aging",
+    "storeBlurb": "curated for women who matched to GHK-Cu",
+    "segment": "S5",
+    "segmentName": "The Aesthetic Investor",
+    "tests": [],
+    "products": [
+      [
+        "💄",
+        "Aesthetics",
+        "Cosmetic dermatologist consult",
+        "Aesthetics · Service · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Botox / Dysport referral",
+        "Recurring 3-4mo.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Filler referral",
+        "Aesthetics · Service · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Sculptra referral",
+        "Aesthetics · Service · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "At-home microneedling pen (Dr. Pen)",
+        "Aesthetics · Device · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "In-clinic microneedling series",
+        "Aesthetics · Service · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Vampire facial (PRP)",
+        "Aesthetics · Service · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Microcurrent device (NuFace, Foreo Bear)",
+        "Aesthetics · Device · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "LED face mask (Omnilux Contour)",
+        "Aesthetics · Device · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Red light panel (face/body)",
+        "Aesthetics · Device · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Laser referral (BBL, Clear+Brilliant)",
+        "Recurring.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Hair laser cap (CapillusRX)",
+        "Aesthetics · Device · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "PRP for hair growth referral",
+        "Aesthetics · Service · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Vitamin C serum (SkinCeuticals)",
+        "Aesthetics · Subscription · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Retinol OTC (lower strength)",
+        "Aesthetics · Product · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Peptide serum (multi-peptide blend)",
+        "Private-label opportunity.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "GHK-Cu serum (topical)",
+        "Private-label opportunity.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Niacinamide",
+        "Aesthetics · Product · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Premium daily SPF",
+        "Aesthetics · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Collagen peptides",
+        "Supplements · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Hyaluronic acid oral",
+        "Supplements · Product · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Glutathione (oral or IV)",
+        "Supplements · Product · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Biotin + saw palmetto for hair",
+        "Supplements · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Skin-focused multivitamin",
+        "Supplements · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Lash serum (Vegamour, Latisse)",
+        "Aesthetics · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Lip filler / lash lift (referral)",
+        "Aesthetics · Service · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Premium skincare subscription box",
+        "Aesthetics · Subscription · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Dermal roller / scalp massagers",
+        "Aesthetics · Device · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Aesthetic-focused Pilates / posture",
+        "Visible posture transformation.",
+        "$100–$500",
+        "mid"
+      ]
+    ],
+    "people": [
+      [
+        "💉",
+        "Hormones & Rx",
+        "Tretinoin Rx (Curology, Apostrophe)",
+        "Subscription. Anchor.",
+        "$100–$500",
+        "mid"
+      ]
+    ]
+  },
+  "sleep": {
+    "storeName": "sleep",
+    "storeBlurb": "curated for women who matched to DSIP",
+    "segment": "S7",
+    "segmentName": "The Quiet Burnout",
+    "tests": [
+      [
+        "🧪",
+        "Diagnostics",
+        "Levels CGM",
+        "Diagnostics · Device + Sub · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "Cognitive testing (Cambridge Brain Sciences)",
+        "Diagnostics · Service · Mid tier.",
+        "$100–$500",
+        "mid"
+      ]
+    ],
+    "products": [
+      [
+        "🦵",
+        "Recovery",
+        "Massage therapy subscription",
+        "Recovery · Service · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Float tank membership",
+        "Recovery · Subscription · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Sauna / cold plunge facility membership",
+        "Recovery · Subscription · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🍽️",
+        "Lifestyle",
+        "Personal chef / Sakara",
+        "Lifestyle · Subscription · Ultra tier.",
+        "$2,000+",
+        "premium"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "In-home personal trainer",
+        "Performance · Service · Ultra tier.",
+        "$2,000+",
+        "premium"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Yoga / movement private instruction",
+        "Performance · Service · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Premium adaptogenic stack",
+        "Supplements · Subscription · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "NAD precursors (NMN, NR)",
+        "Supplements · Subscription · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Oura Ring + Eight Sleep stack",
+        "Sleep & Tracking · Device + Sub · Ultra tier.",
+        "$2,000+",
+        "premium"
+      ],
+      [
+        "🍽️",
+        "Lifestyle",
+        "Smart desk + ergonomic setup",
+        "Lifestyle · Product · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "HRV / stress training (HeartMath)",
+        "Mental Health · Device + Sub · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🍽️",
+        "Lifestyle",
+        "Travel concierge (sleep adjustment kits)",
+        "Frequent traveler.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Light therapy lamp (premium)",
+        "Sleep & Tracking · Device · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🍽️",
+        "Lifestyle",
+        "Air + water filter (Air Doctor, Berkey)",
+        "Lifestyle · Product · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Premium mattress (Avocado, Saatva)",
+        "Sleep & Tracking · Product · Ultra tier.",
+        "$2,000+",
+        "premium"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Walking treadmill / standing desk",
+        "Performance · Product · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🍽️",
+        "Lifestyle",
+        "Premium organic grocery delivery",
+        "Lifestyle · Subscription · Ultra tier.",
+        "$2,000+",
+        "premium"
+      ]
+    ],
+    "people": [
+      [
+        "🩺",
+        "Concierge",
+        "Forward / Q.bio / Function Premium",
+        "Concierge · Subscription · Ultra tier.",
+        "$2,000+",
+        "premium"
+      ],
+      [
+        "🩺",
+        "Concierge",
+        "Concierge medicine (private)",
+        "Concierge · Subscription · Ultra tier.",
+        "$2,000+",
+        "premium"
+      ],
+      [
+        "🩺",
+        "Concierge",
+        "Executive physical (Mayo, Cleveland Clinic)",
+        "Concierge · Service · Ultra tier.",
+        "$2,000+",
+        "premium"
+      ],
+      [
+        "🩺",
+        "Concierge",
+        "NAD+ IV therapy series",
+        "Recurring.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🩺",
+        "Concierge",
+        "Vitamin IV drip subscription",
+        "Concierge · Service · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🩺",
+        "Concierge",
+        "Functional medicine deep workup",
+        "Concierge · Service · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🤝",
+        "Service",
+        "Sleep clinic referral / sleep study",
+        "Insurance covers.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "CBT-i program (digital)",
+        "Mental Health · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "Burnout / executive coaching therapy",
+        "Mental Health · Service · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "Modern Health / Lyra (premium)",
+        "Mental Health · Subscription · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🩺",
+        "Concierge",
+        "Acupuncture series",
+        "Concierge · Service · Mid tier.",
+        "$100–$500",
+        "mid"
+      ]
+    ]
+  },
+  "perimenopause": {
+    "storeName": "hormonal balance",
+    "storeBlurb": "routed primarily to an HRT partner; peptides as adjunct",
+    "segment": "S4",
+    "segmentName": "The Peri-Recognized",
+    "tests": [
+      [
+        "🧪",
+        "Diagnostics",
+        "Bone density DEXA + tracking",
+        "Diagnostics · Service · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "Cardiovascular workup (full)",
+        "Diagnostics · Service · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "Hormone monitor at home (track HRT response)",
+        "Diagnostics · Device + Sub · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ]
+    ],
+    "products": [
+      [
+        "💄",
+        "Aesthetics",
+        "Replens / vaginal moisturizer",
+        "Recurring purchase.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Vaginal CO2 laser referral (MonaLisa Touch)",
+        "Referral fee.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Cooling pillow + sheets + sleepwear",
+        "Sleep & Tracking · Product · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Eight Sleep Pod (cooling)",
+        "Single highest-impact peri product.",
+        "$2,000+",
+        "premium"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Strength program for menopausal women",
+        "Performance · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Pilates studio / barre membership",
+        "Performance · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Yoga (gentle, restorative) program",
+        "Performance · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "🍽️",
+        "Lifestyle",
+        "Peri-focused nutrition program",
+        "Lifestyle · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Peri-focused supplement multi",
+        "Brand-direct partner.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Magnesium for sleep + mood",
+        "Supplements · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Vitamin D + K2 (bone)",
+        "Supplements · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Omega-3 / EPA-DHA (heart + brain)",
+        "Supplements · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Bone-supporting stack (calcium, K2, boron)",
+        "Supplements · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Heart-supporting stack (CoQ10, omega-3)",
+        "Supplements · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Brain-supporting stack (lion's mane, citicoline)",
+        "Supplements · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Skincare for menopausal skin (ceramides, peptides)",
+        "Aesthetics · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ]
+    ],
+    "people": [
+      [
+        "💉",
+        "Hormones & Rx",
+        "Midi Health subscription (HRT)",
+        "Highest economics line in the model.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "💉",
+        "Hormones & Rx",
+        "Alloy Health subscription (HRT)",
+        "Hormones & Rx · Service · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "💉",
+        "Hormones & Rx",
+        "Evernow subscription (HRT)",
+        "Hormones & Rx · Service · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "💉",
+        "Hormones & Rx",
+        "Estrogen patch / estradiol Rx (via partner)",
+        "Hormones & Rx · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "💉",
+        "Hormones & Rx",
+        "Progesterone Rx (via partner)",
+        "Hormones & Rx · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "💉",
+        "Hormones & Rx",
+        "Low-dose testosterone Rx (women)",
+        "Hormones & Rx · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "💉",
+        "Hormones & Rx",
+        "Vaginal estrogen",
+        "Hormones & Rx · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "💉",
+        "Hormones & Rx",
+        "Compounded HRT (specific formulations)",
+        "Hormones & Rx · Subscription · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "💉",
+        "Hormones & Rx",
+        "PT-141 for libido",
+        "Hormones & Rx · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "Cycle-ending acceptance therapy",
+        "Mental Health · Service · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🩺",
+        "Concierge",
+        "Functional medicine concierge",
+        "Concierge · Service · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ]
+    ]
+  },
+  "contraindicated": {
+    "storeName": "foundations",
+    "storeBlurb": "a short menu so you leave with something useful",
+    "segment": "S10",
+    "segmentName": "The Out-of-Bounds",
+    "tests": [
+      [
+        "🧪",
+        "Diagnostics",
+        "Family planning / fertility tracking (Mira)",
+        "Diagnostics · Device + Sub · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "Hormone testing (post-treatment)",
+        "Diagnostics · Service · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "Bone density (post hormone-blocker context)",
+        "Diagnostics · Service · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "Cardiovascular screening",
+        "Diagnostics · Service · Mid tier.",
+        "$100–$500",
+        "mid"
+      ]
+    ],
+    "products": [
+      [
+        "💊",
+        "Supplements",
+        "Pregnancy/nursing-safe prenatals (Ritual, FullWell)",
+        "Supplements · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "📚",
+        "Education",
+        "Postpartum prep kit / course",
+        "Education · Product · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Cancer recovery program (post-treatment fitness)",
+        "Performance · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "988 / Crisis Text Line (free)",
+        "Trust > revenue.",
+        "Free",
+        "entry"
+      ],
+      [
+        "💄",
+        "Aesthetics",
+        "Pregnancy-safe skincare",
+        "Aesthetics · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Pregnancy-safe supplements",
+        "Supplements · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🍽️",
+        "Lifestyle",
+        "Meal delivery (treatment / postpartum)",
+        "High-value during recovery.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "📚",
+        "Education",
+        "Books: 'The Birth Partner,' 'Anticancer'",
+        "Education · Product · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Pregnancy-safe pillows + Eight Sleep",
+        "Sleep & Tracking · Product · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🦵",
+        "Recovery",
+        "Compression / postpartum recovery wear",
+        "Recovery · Product · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Premium prenatal subscription",
+        "Supplements · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "📚",
+        "Education",
+        "Spousal/partner education materials",
+        "Education · Product · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "Crisis-line cards / family safety resources",
+        "Trust.",
+        "Free",
+        "entry"
+      ],
+      [
+        "📚",
+        "Education",
+        "'We're here' check-in cadence (newsletter)",
+        "List retention.",
+        "Free",
+        "entry"
+      ]
+    ],
+    "people": [
+      [
+        "🩺",
+        "Concierge",
+        "Pregnancy nutrition coaching",
+        "Concierge · Service · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🤝",
+        "Service",
+        "Doula referral",
+        "Service · Service · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🤝",
+        "Service",
+        "Lactation consultant referral",
+        "Service · Service · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "Caregiver support resources / community",
+        "Mental Health · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "🩺",
+        "Concierge",
+        "Post-cancer nutrition coaching",
+        "Concierge · Service · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "Therapy (BetterHelp, Talkspace, Alma)",
+        "Mental Health · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "Eating-disorder-specialty therapy (NAED)",
+        "Mental Health · Service · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "Mindfulness apps (Calm, Headspace)",
+        "Mental Health · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💉",
+        "Hormones & Rx",
+        "OB/GYN telehealth (Maven)",
+        "Hormones & Rx · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🤝",
+        "Service",
+        "Pelvic floor PT (Origin)",
+        "Service · Service · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "Online community (postpartum, survivors, recovery)",
+        "Mental Health · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "🩺",
+        "Concierge",
+        "Mental-health-trained nutritionist",
+        "Concierge · Service · Mid tier.",
+        "$100–$500",
+        "mid"
+      ]
+    ]
+  },
+  "too_young": {
+    "storeName": "foundations",
+    "storeBlurb": "what moves the needle before peptides become useful",
+    "segment": "S9",
+    "segmentName": "The Foundation-Gated",
+    "tests": [
+      [
+        "🧪",
+        "Diagnostics",
+        "Function Health lab panel (the gate)",
+        "Most important purchase.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "InsideTracker (alt)",
+        "Diagnostics · Service · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🧪",
+        "Diagnostics",
+        "Levels CGM (entry to data)",
+        "Diagnostics · Device + Sub · Mid tier.",
+        "$100–$500",
+        "mid"
+      ]
+    ],
+    "products": [
+      [
+        "💊",
+        "Supplements",
+        "Magnesium glycinate (sleep)",
+        "Foundation-1.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Glycine (sleep)",
+        "Supplements · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "L-theanine (sleep + calm)",
+        "Supplements · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Melatonin (low-dose)",
+        "Supplements · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Hatch sleep mask + sound",
+        "Sleep & Tracking · Device · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Eight Sleep Pod (premium foundation)",
+        "Sleep & Tracking · Device · Ultra tier.",
+        "$2,000+",
+        "premium"
+      ],
+      [
+        "🛌",
+        "Sleep & Tracking",
+        "Oura Ring (sleep tracking)",
+        "Sleep & Tracking · Device + Sub · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Beginner strength program (Future, Caliber)",
+        "Performance · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "In-person personal trainer (beginner)",
+        "Performance · Service · Premium tier.",
+        "$500–$2,000",
+        "premium"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Pilates / Lagree / barre (entry)",
+        "Performance · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Yoga studio (in-person or app)",
+        "Performance · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Bodyweight training program (entry)",
+        "Performance · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "HRV / stress training (HeartMath)",
+        "Mental Health · Device + Sub · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Adaptogenic stack (cortisol)",
+        "Supplements · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "📚",
+        "Education",
+        "Caffeine reduction protocol (course)",
+        "Education · Product · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Walking / step program",
+        "Performance · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "🍽️",
+        "Lifestyle",
+        "Outdoor activity gear (hiking entry kit)",
+        "Lifestyle · Product · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Nutrition coaching app (entry, MacroFactor)",
+        "Performance · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Greens powder",
+        "Supplements · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "💊",
+        "Supplements",
+        "Multivitamin (women's)",
+        "Supplements · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "🏋️",
+        "Performance",
+        "Daily resistance band kit (entry strength)",
+        "Performance · Product · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "📚",
+        "Education",
+        "Books: 'Why We Sleep,' 'The Stress Solution'",
+        "Trust.",
+        "$25–$100",
+        "entry"
+      ]
+    ],
+    "people": [
+      [
+        "🤝",
+        "Service",
+        "Sleep clinic referral / study",
+        "Service · Service · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "CBT-i program (digital)",
+        "Mental Health · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "Therapy / mental health (entry)",
+        "Mental Health · Subscription · Mid tier.",
+        "$100–$500",
+        "mid"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "Alcohol reduction support (Sunnyside, Reframe)",
+        "Mental Health · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ],
+      [
+        "🧘",
+        "Mental Health",
+        "Meditation app (Calm)",
+        "Mental Health · Subscription · Entry tier.",
+        "$25–$100",
+        "entry"
+      ]
     ]
   }
 };
@@ -308,8 +2279,15 @@ document.getElementById('heroHeadline').innerHTML = headline
 /* Render product stacks */
 function renderSection(sectionName, items) {
   const section = document.querySelector(`[data-section="${sectionName}"]`);
+  if (!section) return;
   const stack = section.querySelector('.product-stack');
   stack.innerHTML = '';
+  // Hide the section entirely if this segment has no items in this category
+  if (!items || items.length === 0) {
+    section.style.display = 'none';
+    return;
+  }
+  section.style.display = '';
   items.forEach(item => {
     const [emoji, cat, name, why, price, tier] = item;
     const a = document.createElement('a');
